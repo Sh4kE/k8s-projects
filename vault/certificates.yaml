@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: vault-sh4ke-rocks
+spec:
+  secretName: vault-sh4ke-rocks-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: vault.sh4ke.rocks
+  dnsNames:
+  - vault.sh4ke.rocks
+...
+
