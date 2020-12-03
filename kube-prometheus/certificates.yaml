@@ -24,18 +24,5 @@ spec:
   commonName: grafana.sh4ke.rocks
   dnsNames:
   - grafana.sh4ke.rocks
----
-apiVersion: cert-manager.io/v1
-kind: Certificate
-metadata:
-  name: prometheus-sh4ke-rocks
-spec:
-  secretName: prometheus-sh4ke-rocks-tls
-  issuerRef:
-    name: letsencrypt-prod
-    kind: ClusterIssuer
-  commonName: prometheus.sh4ke.rocks
-  dnsNames:
-  - prometheus.sh4ke.rocks
 ...
 
