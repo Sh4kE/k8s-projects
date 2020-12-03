@@ -5,6 +5,9 @@ extends: default
 rules:
   comments: disable
   comments-indentation: disable
+  indentation:
+    level: warning
+  empty-lines: disable
   line-length:
     max: 120
     level: warning

@@ -215,7 +215,7 @@ alertmanager:
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
     ingressClassName: nginx
 
-    annotations: 
+    annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
 
     labels: {}
