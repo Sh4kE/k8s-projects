@@ -608,6 +608,8 @@ grafana:
     accessModes:
       - ReadWriteOnce
     size: 10Gi
+    finalizers:
+      - kubernetes.io/pvc-protection
 
   ingress:
     ## If true, Grafana Ingress will be created
@@ -620,6 +622,7 @@ grafana:
     annotations: #{}
       kubernetes.io/ingress.class: nginx
       cert-manager.io/cluster-issuer: letsencrypt-prod
+      kubernetes.io/tls-acme: "true"
 
     ## Labels to be added to the Ingress
     ##
@@ -630,7 +633,7 @@ grafana:
     ##
     # hosts:
     #   - grafana.sh4ke.rocks
-    hosts: #[]
+    hosts:
       - grafana.sh4ke.rocks
 
     ## Path for grafana ingress
