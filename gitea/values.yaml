@@ -82,7 +82,30 @@ gitea:
     bindPassword: ""
     usernameAttribute: ""
 
-  config: {}
+  config:
+    RUN_MODE: prod
+
+    ui:
+      DEFAULT_THEME: arc-green
+
+    # server:
+    #   LFS_START_SERVER: true
+
+    service:
+      REGISTER_EMAIL_CONFIRM: true
+
+    mailer:
+      ENABLED: true
+      HOST: "in-v3.mailjet.com:587"
+      USER: "72f7fc0111ac7842d08c8e1e464324dd"
+      PASSWD: "***REMOVED***"
+      FROM: "noreply@sh4ke.rocks"
+      # IS_TLS_ENABLED: true
+      SUBJECT_PREFIX: Gitea
+
+    cron:
+      ENABLED: true
+
   #  APP_NAME: "Gitea: Git with a cup of tea"
   #  RUN_MODE: dev
   #
