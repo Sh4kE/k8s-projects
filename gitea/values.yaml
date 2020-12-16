@@ -1,0 +1,148 @@
+# Default values for gitea.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+clusterDomain: cluster.local
+
+image:
+  repository: gitea/gitea
+  version: 1.13.0
+  pullPolicy: Always
+
+imagePullSecrets: []
+
+service:
+  http:
+    type: ClusterIP
+    port: 3000
+    clusterIP: None
+    #loadBalancerIP:
+    #nodePort:
+    annotations:
+  ssh:
+    type: ClusterIP
+    port: 22
+    clusterIP: None
+    #loadBalancerIP:
+    #nodePort:
+    #externalTrafficPolicy:
+    #externalIPs:
+    annotations:
+
+ingress:
+  enabled: true
+  annotations: {}
+  hosts:
+    - gitea.sh4ke.rocks
+  tls:
+    - secretName: gitea-sh4ke-rocks-tls
+      hosts:
+        - gitea.sh4ke.rocks
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+statefulset:
+  env: []
+    # - name: VARIABLE
+    #   value: my-value
+  terminationGracePeriodSeconds: 60
+
+persistence:
+  enabled: true
+  size: 10Gi
+  storageClass: nfs-client
+  accessModes:
+    - ReadWriteOnce
+
+gitea:
+  admin:
+    username: gitea_admin
+    password: ***REMOVED***
+    email: "gitea@local.domain"
+
+  ldap:
+    enabled: false
+    name: ""
+    securityProtocol: ""
+    host: ""
+    port: ""
+    userSearchBase: ""
+    userFilter: ""
+    adminFilter: ""
+    emailAttribute: ""
+    bindDn: ""
+    bindPassword: ""
+    usernameAttribute: ""
+
+  config: {}
+  #  APP_NAME: "Gitea: Git with a cup of tea"
+  #  RUN_MODE: dev   
+  #   
+  #  server:
+  #    SSH_PORT: 22
+  #
+  #  security:
+  #    PASSWORD_COMPLEXITY: spec
+
+  podAnnotations: {}
+
+  database:
+    builtIn:
+      postgresql:
+        enabled: true
+      mysql:
+        enabled: false
+      mariadb:
+        enabled: false
+
+  cache:
+    builtIn:
+      enabled: true
+
+memcached:
+  service:
+    port: 11211
+
+postgresql:
+  global:
+    postgresql:
+      postgresqlDatabase: gitea
+      postgresqlUsername: gitea
+      postgresqlPassword: gitea
+      servicePort: 5432
+  persistence:
+    size: 10Gi
+    storageClass: nfs-client
+
+mysql:
+  root:
+    ***REMOVED***
+  db:
+    user: gitea
+    ***REMOVED***
+    name: gitea
+  service:
+    port: 3306
+  persistence:
+    size: 10Gi
+
+mariadb:
+  auth:
+    database: gitea
+    username: gitea
+    ***REMOVED***
+    rootPassword: gitea
+  primary:
+    service:
+      port: 3306
+    persistence:
+      size: 10Gi
+
