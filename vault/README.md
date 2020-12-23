@@ -32,3 +32,19 @@ $ vault write auth/kubernetes/config \
         kubernetes_host="https://$KUBERNETES_PORT_443_TCP_ADDR:443" \
         kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
 ```
+
+#### Create hiera policies
+```
+vault policy write hiera hcl/hiera.hcl
+vault policy write hiera-operator hcl/hiera-operator.hcl
+```
+
+#### Create Hiera role with assigned policy
+```
+vault write auth/approle/role/hiera token_policies="hiera"
+
+vault token create -policy=hiera
+
+vault read auth/approle/role/hiera/role-id
+vault write -f auth/approle/role/hiera/secret-id
+```
