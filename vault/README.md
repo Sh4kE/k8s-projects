@@ -33,18 +33,32 @@ $ vault write auth/kubernetes/config \
         kubernetes_ca_cert=@/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
 ```
 
-#### Create hiera policies
+### AppRole
+```
+vault auth enable approle
+```
+
+#### Create policies
 ```
 vault policy write hiera hcl/hiera.hcl
 vault policy write hiera-operator hcl/hiera-operator.hcl
 ```
 
+#### Explicitly create a token with a policy
+
+
+```
+vault token create -policy=hiera
+```
+
 #### Create Hiera role with assigned policy
 ```
 vault write auth/approle/role/hiera token_policies="hiera"
+```
+Tokens created from this role will have the specified policy attached
 
-vault token create -policy=hiera
-
+```
 vault read auth/approle/role/hiera/role-id
 vault write -f auth/approle/role/hiera/secret-id
 ```
+Use the role-id and secret-id to generate a new token
