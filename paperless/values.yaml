@@ -1,0 +1,60 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  repository: jonaswinkler/paperless-ng
+  pullPolicy: IfNotPresent
+  tag: latest
+
+strategy:
+  type: Recreate
+
+# See the following files for additional environment variables
+# https://github.com/jonaswinkler/paperless-ng/tree/master/docker/compose/
+# https://github.com/jonaswinkler/paperless-ng/blob/master/paperless.conf.example
+env:
+  COMPOSE_PROJECT_NAME: paperless
+  PAPERLESS_REDIS: redis://localhost:6379
+  PAPERLESS_OCR_LANGUAGE: deu
+  # USERMAP_UID: 1000
+  # USERMAP_GID: 1000
+  PAPERLESS_TIME_ZONE: Europe/Berlin
+
+service:
+  port:
+    port: 8000
+
+ingress:
+  enabled: false
+
+persistence:
+  data:
+    enabled: false
+    mountPath: /usr/src/paperless/data
+    emptyDir:
+      enabled: false
+  media:
+    enabled: false
+    mountPath: /usr/src/paperless/media
+    emptyDir:
+      enabled: false
+  consume:
+    enabled: false
+    mountPath: /usr/src/paperless/consume
+    emptyDir:
+      enabled: false
+  export:
+    enabled: false
+    mountPath: /usr/src/paperless/export
+    emptyDir:
+      enabled: false
+
+additionalContainers:
+  - name: broker
+    image: redis:6.0
+    imagePullPolicy: IfNotPresent
+
