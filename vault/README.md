@@ -61,4 +61,7 @@ Tokens created from this role will have the specified policy attached
 vault read auth/approle/role/hiera/role-id
 vault write -f auth/approle/role/hiera/secret-id
 ```
-Use the role-id and secret-id to generate a new token
+Use the role-id and secret-id to generate a new token:
+```
+vault write auth/approle/login role_id="$ROLE_ID" secret_id="$SECRET_ID"
+```
