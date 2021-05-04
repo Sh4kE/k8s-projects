@@ -12,7 +12,7 @@ helm repo update
 helm install \
   cert-manager jetstack/cert-manager \
   --namespace cert-manager \
-  --version v1.1.0 \
+  --version v1.3.1 \
   --set installCRDs=true
 
 kubectl apply -f cluster-issuer-prod.yaml
