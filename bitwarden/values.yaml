@@ -5,7 +5,7 @@
 image:
   # From repository https://github.com/dani-garcia/bitwarden_rs
   repository: bitwardenrs/server
-  tag: 1.17.0-alpine
+  tag: 1.21.0-alpine
   pullPolicy: IfNotPresent
 
 ## Add additional labels to all resources
