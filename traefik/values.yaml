@@ -295,6 +295,7 @@ traefik:
         - main: sh4ke.rocks
           sans:
             - test.sh4ke.rocks
+            - argo.sh4ke.rocks
     metrics:
       port: 9100
       # hostPort: 9100
