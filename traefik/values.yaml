@@ -448,4 +448,3 @@ traefik:
 
   podSecurityContext:
     fsGroup: 65532
-
