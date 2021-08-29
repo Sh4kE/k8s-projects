@@ -1,0 +1,30 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+  annotations:
+    kubernetes.io/ingress.class: "traefik"
+spec:
+  rules:
+  - host: test.sh4ke.rocks
+    http:
+      paths:
+      - path: /greet-the-world
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-service
+            port: 
+              number: 60000
+      - path: /greet-kubernetes
+        pathType: Prefix
+        backend:
+          service:
+            name: hello-service
+            port: 
+              number: 60001
+  tls:
+  - hosts:
+      - test.sh4ke.rocks
+    secretName: test-sh4ke-rocks-tls
