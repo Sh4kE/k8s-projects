@@ -7,10 +7,11 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo add stable https://charts.helm.sh/stable
 helm repo update
 
-kubectl create namespace kubernetes-dashboard
+kubectl create namespace kube-prometheus
 kubectl config set-context --current --namespace=kube-prometheus
 
-kubectl apply -f certificates.yaml
+# kubectl apply -f certificates.yaml
 
 helm install kube-prometheus -f values.yaml prometheus-community/kube-prometheus-stack
+helm upgrade kube-prometheus -f values.yaml prometheus-community/kube-prometheus-stack
 ``` 
