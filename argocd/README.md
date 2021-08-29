@@ -8,5 +8,6 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/st
 
 ## Or via ArgoCD Application
 ```commandline
+kubectl create namespace argocd
 kubectl apply -n argocd -f application.yaml
 ```
