@@ -290,12 +290,11 @@ traefik:
         enabled: true
         # this is the name of a TLSOption definition
         options: ""
-        certResolver: "acme-issuer"
+        certResolver: "le"
         domains: #[]
         - main: sh4ke.rocks
           sans:
-            - test.sh4ke.rocks
-            - argo.sh4ke.rocks
+            - "*.sh4ke.rocks"
     metrics:
       port: 9100
       # hostPort: 9100
@@ -382,6 +381,9 @@ traefik:
     path: /data
     additionalArguments:
       - "--certificatesresolvers.le.acme.storage=/data/acme.json"
+      - "--certificatesresolvers.le.acme.email=witmic1+acme@gmail.com"
+      - "--certificatesresolvers.le.acme.httpchallenge=true"
+      - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
     annotations: {}
     # subPath: "" # only mount a subpath of the Volume into the pod
 
