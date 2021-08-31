@@ -393,8 +393,8 @@ traefik:
     - "--certificatesresolvers.le.acme.email=witmic1+acme@gmail.com"
     - "--certificatesresolvers.le.acme.httpchallenge=true"
     - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
-    - "--certificatesresolvers.le.acme.tlschallenge=true"
-    - "--certificatesresolvers.le.acme.tlschallenge.entrypoint=websecure"
+    # - "--certificatesresolvers.le.acme.tlschallenge=true"
+    # - "--certificatesresolvers.le.acme.tlschallenge.entrypoint=websecure"
 
   # If hostNetwork is true, runs traefik in the host network namespace
   # To prevent unschedulabel pods due to port collisions, if hostNetwork=true
