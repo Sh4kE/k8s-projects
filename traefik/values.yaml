@@ -290,7 +290,7 @@ traefik:
         enabled: true
         # this is the name of a TLSOption definition
         options: ""
-        certResolver: "letsencrypt-prod"
+        certResolver: "acme-issuer"
         domains: #[]
         - main: sh4ke.rocks
           sans:
