@@ -292,9 +292,15 @@ traefik:
         options: ""
         certResolver: "le"
         domains: #[]
-        - main: sh4ke.rocks
+        - main: k8s.sh4ke.rocks
           sans:
-            - "*.sh4ke.rocks"
+            - "alertmanager.sh4ke.rocks"
+            - "argo.sh4ke.rocks"
+            - "grafana.sh4ke.rocks"
+            - "owncloud.sh4ke.rocks"
+            - "prometheus.sh4ke.rocks"
+            - "test.sh4ke.rocks"
+            - "vault.sh4ke.rocks"
     metrics:
       port: 9100
       # hostPort: 9100
@@ -385,8 +391,8 @@ traefik:
   additionalArguments:
     - "--certificatesresolvers.le.acme.storage=/data/acme.json"
     - "--certificatesresolvers.le.acme.email=witmic1+acme@gmail.com"
-    # - "--certificatesresolvers.le.acme.httpchallenge=true"
-    # - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
+    - "--certificatesresolvers.le.acme.httpchallenge=true"
+    - "--certificatesresolvers.le.acme.httpchallenge.entrypoint=web"
     - "--certificatesresolvers.le.acme.tlschallenge=true"
     - "--certificatesresolvers.le.acme.tlschallenge.entrypoint=websecure"
 
