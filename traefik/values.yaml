@@ -380,6 +380,8 @@ traefik:
     size: 128Mi
     storageClass: "nfs-client"
     path: /data
+    additionalArguments:
+      - "--certificatesresolvers.le.acme.storage=/data/acme.json"
     annotations: {}
     # subPath: "" # only mount a subpath of the Volume into the pod
 
