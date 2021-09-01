@@ -1390,7 +1390,7 @@ prometheusOperator:
     ## certs ahead of time if you wish.
     ##
     patch:
-      enabled: true
+      enabled: false
       image:
         repository: jettech/kube-webhook-certgen
         tag: v1.5.2
