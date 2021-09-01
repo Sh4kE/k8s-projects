@@ -14,4 +14,4 @@ kubectl config set-context --current --namespace=kube-prometheus
 
 helm install kube-prometheus -f values.yaml prometheus-community/kube-prometheus-stack
 helm upgrade kube-prometheus -f values.yaml prometheus-community/kube-prometheus-stack
-``` 
+```
