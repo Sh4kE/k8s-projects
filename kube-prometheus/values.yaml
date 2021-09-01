@@ -1400,7 +1400,8 @@ prometheusOperator:
       ## Provide a priority class name to the webhook patching job
       ##
       priorityClassName: ""
-      podAnnotations: {}
+      podAnnotations: #{}
+        linkerd.io/inject: disabled
       nodeSelector: {}
       affinity: {}
       tolerations: []
