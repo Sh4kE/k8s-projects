@@ -28,6 +28,9 @@ paperless:
     # USERMAP_GID: 1000
     PAPERLESS_TIME_ZONE: Europe/Berlin
     PAPERLESS_DBHOST: paperless-ng-postgresql
+    PAPERLESS_DBNAME: paperlessdb
+    PAPERLESS_DBUSER: paperlessuser
+    ***REMOVED***password
 
   # -- Configures service settings for the chart.
   # @default -- See values.yaml
