@@ -30,3 +30,6 @@ dependencies:
   version: 10.9.4
   repository: https://charts.bitnami.com/bitnami
   condition: postgresql.enabled
+- name: gotenberg
+  version: 2.1.10
+  repository: https://kurt108.github.io/helm-charts
