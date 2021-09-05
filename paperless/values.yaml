@@ -27,6 +27,7 @@ paperless:
     # USERMAP_UID: 1000
     # USERMAP_GID: 1000
     PAPERLESS_TIME_ZONE: Europe/Berlin
+    PAPERLESS_DBHOST: postgresql
 
   # -- Configures service settings for the chart.
   # @default -- See values.yaml
@@ -104,3 +105,16 @@ paperless:
       image: redis:6.0
       imagePullPolicy: IfNotPresent
 
+# -- Enable and configure postgresql database subchart under this key.
+#    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
+# @default -- See values.yaml
+postgresql:
+  enabled: true
+  postgresqlUsername: paperlessuser
+  postgresqlPassword: paperlesspassword
+  postgresqlDatabase: paperlessdb
+
+  persistence:
+    enabled: true
+    storageClass: nfs-client
+    accessMode: ReadWriteOnce
