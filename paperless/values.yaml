@@ -62,6 +62,7 @@ paperless:
       mountPath: /usr/src/paperless/data
       accessMode: ReadWriteOnce
       storageClass: nfs-client
+      size: 1Gi
       emptyDir:
         enabled: false
     # -- Configure persistence for media.
@@ -71,6 +72,7 @@ paperless:
       mountPath: /usr/src/paperless/media
       accessMode: ReadWriteOnce
       storageClass: nfs-client
+      size: 1Gi
       emptyDir:
         enabled: false
     # -- Configure volume to monitor for new documents.
@@ -80,6 +82,7 @@ paperless:
       mountPath: /usr/src/paperless/consume
       accessMode: ReadWriteOnce
       storageClass: nfs-client
+      size: 1Gi
       emptyDir:
         enabled: false
     # -- Configure export volume.
@@ -89,6 +92,7 @@ paperless:
       mountPath: /usr/src/paperless/export
       accessMode: ReadWriteOnce
       storageClass: nfs-client
+      size: 1Gi
       emptyDir:
         enabled: false
 
