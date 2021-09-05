@@ -33,3 +33,6 @@ dependencies:
 - name: gotenberg
   version: 2.1.10
   repository: https://kurt108.github.io/helm-charts
+- name: tika
+  version: 1.26
+  repository: https://apache.jfrog.io/artifactory/tika

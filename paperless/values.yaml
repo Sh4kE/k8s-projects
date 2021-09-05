@@ -27,10 +27,16 @@ paperless:
     # USERMAP_UID: 1000
     # USERMAP_GID: 1000
     PAPERLESS_TIME_ZONE: Europe/Berlin
+    # -- Database
     PAPERLESS_DBHOST: paperless-ng-postgresql
     PAPERLESS_DBNAME: paperlessdb
     PAPERLESS_DBUSER: paperlessuser
     ***REMOVED***password
+    # Tika + Gotenberg
+    PAPERLESS_TIKA_ENABLED: 1
+    PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-ng-gotenberg:3000
+    PAPERLESS_TIKA_ENDPOINT: http://paperless-ng-tika:9998
+
 
   # -- Configures service settings for the chart.
   # @default -- See values.yaml
