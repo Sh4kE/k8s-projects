@@ -1,0 +1,27 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: client-openvpn-cert
+spec:
+  secretName: client.openvpn-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: client.openvpn.sh4ke.rocks
+  dnsNames:
+  - client.openvpn.sh4ke.rocks
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: admin-openvpn-cert
+spec:
+  secretName: admin.openvpn-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: admin.openvpn.sh4ke.rocks
+  dnsNames:
+  - admin.openvpn.sh4ke.rocks
+...
