@@ -23,6 +23,6 @@ version: 0.1.8
 appVersion: "1.0"
 
 dependencies:
-- name: openvpn
+- name: openvpn-as
   version: 0.1.8
   repository: https://stenic.github.io/helm-charts
