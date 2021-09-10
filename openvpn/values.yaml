@@ -75,7 +75,7 @@ openvpn-as:
 
   service:
     # -- Kubernetes Service type for VPN, generally this is "LoadBalancer"
-    type: ClusterIP
+    type: LoadBalancer
     admin:
       # -- Kubernetes Service type for Admin GUI
       type: ClusterIP
