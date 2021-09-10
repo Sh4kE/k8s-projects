@@ -88,7 +88,7 @@ openvpn:
       # -- Enable ingress resource for Client GUI
       enabled: true
       # -- Ingress annotations
-      annotations: {}
+      annotations:
         kubernetes.io/ingress.class: traefik
         kubernetes.io/tls-acme: "true"
       # -- Host for the Client GUI
@@ -101,7 +101,7 @@ openvpn:
       # -- Enable ingress resource for Admin GUI
       enabled: true
       # -- Ingress annotations
-      annotations: {}
+      annotations:
         kubernetes.io/ingress.class: traefik
         kubernetes.io/tls-acme: "true"
       # -- Host for the Admin GUI
