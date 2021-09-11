@@ -71,7 +71,7 @@ owncloud:
     ##
     - ip: "127.0.0.1"
       hostnames:
-        - "status.sh4ke.rockshost"
+        - "status.sh4ke.rocks"
   ## @param replicaCount Number of replicas (requires ReadWriteMany PVC support)
   ##
   replicaCount: 1
@@ -264,7 +264,7 @@ owncloud:
   ## @param readinessProbe.successThreshold Success threshold for readinessProbe
   ##
   readinessProbe:
-    enabled: true
+    enabled: false
     path: /status.php
     initialDelaySeconds: 30
     periodSeconds: 5
