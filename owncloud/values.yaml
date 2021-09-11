@@ -86,12 +86,12 @@ owncloud:
   ## @param owncloudUsername User of the application
   ## ref: https://github.com/bitnami/bitnami-docker-owncloud#configuration
   ##
-  owncloudUsername: Sh4kE
+  owncloudUsername: sh4ke
   ## @param owncloudPassword Application password
   ## Defaults to a random 10-character alphanumeric string if not set
   ## ref: https://github.com/bitnami/bitnami-docker-owncloud#configuration
   ##
-  owncloudPassword: ""
+  owncloudPassword: "***REMOVED***"
   ## @param owncloudEmail Admin email
   ## ref: https://github.com/bitnami/bitnami-docker-owncloud#configuration
   ##
