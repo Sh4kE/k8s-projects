@@ -25,4 +25,4 @@ appVersion: "10.8.0"
 dependencies:
 - name: owncloud
   version: 10.2.24
-  repository: https://stenic.github.io/helm-charts
+  repository: https://charts.bitnami.com/bitnami
