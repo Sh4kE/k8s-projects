@@ -99,7 +99,7 @@ owncloud:
   ## @param allowEmptyPassword Allow DB blank passwords
   ## ref: https://github.com/bitnami/bitnami-docker-owncloud#environment-variables
   ##
-  allowEmptyPassword: false
+  allowEmptyPassword: true
   ## @param command Override default container command (useful when using custom images)
   ##
   command: []
