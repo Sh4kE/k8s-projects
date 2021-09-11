@@ -246,7 +246,7 @@ owncloud:
   ## @param livenessProbe.successThreshold Success threshold for livenessProbe
   ##
   livenessProbe:
-    enabled: true
+    enabled: false
     path: /status.php
     initialDelaySeconds: 120
     periodSeconds: 10
