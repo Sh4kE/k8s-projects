@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: harbor-cert
+spec:
+  secretName: harbor-sh4ke-rocks-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: harbor.sh4ke.rocks
+  dnsNames:
+  - core.harbor.sh4ke.rocks
+  - notary.harbor.sh4ke.rocks

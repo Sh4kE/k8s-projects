@@ -119,7 +119,7 @@ harbor:
   ## the IP address of k8s node. If Harbor is deployed behind the proxy,
   ## set it as the URL of proxy
   ##
-  externalURL: https://192.168.178.55
+  externalURL: https://core.harbor.sh4ke.rocks
   ## SecurityContext configuration
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
   ## @param containerSecurityContext.runAsUser Set container's Security Context runAsUser
@@ -132,16 +132,16 @@ harbor:
   ##
   podSecurityContext:
     fsGroup: 1001
-  ## @param logLevel The log level used for Harbor services. Allowed values are [ fatal | error | warn | info | debug | trace ]
+  ## @param logLevel The log level used for Harbor services. Allowed values are [ fatal | error | error | info | debug | trace ]
   ##
-  logLevel: debug
+  logLevel: error
   ## @param forcePassword Option to force users to specify passwords (core.secret, harborAdminPassword, and secretKey). That is required for 'helm upgrade' to work properly.
   ## If it is not forced, random values will be generated.
   ##
-  forcePassword: false
+  forcePassword: true
   ## @param harborAdminPassword The initial password of Harbor admin. Change it from portal after launching Harbor
   ##
-  harborAdminPassword: ""
+  harborAdminPassword: "1gpwmypx4iMgLW0pzy"
   ## If expose the service via Ingress, the NGINX server will not be used
   ##
   ## The proxy settings for updating clair vulnerabilities from the Internet and replicating
@@ -180,7 +180,7 @@ harbor:
       enabled: true
       ## @param service.tls.existingSecret Existing secret name containing your own TLS certificates. The secret must contain the keys: `tls.crt` - the certificate (required), `tls.key` - the private key (required), `ca.crt` - the certificate of CA (optional). Self-signed TLS certificates will be used otherwise.
       ##
-      existingSecret: ""
+      existingSecret: "harbor-sh4ke-rocks-tls"
       ## @param service.tls.notaryExistingSecret By default, the Notary service will use the same cert and key as described above. Fill the name of secret if you want to use a separated one. Only needed when the `service.type` is `ingress`.
       ##
       notaryExistingSecret: ""
