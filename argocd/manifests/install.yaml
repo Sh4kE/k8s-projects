@@ -3044,7 +3044,7 @@ spec:
         securityContext:
           allowPrivilegeEscalation: false
           readOnlyRootFilesystem: true
-          runAsNonRoot: true
+          runAsNonRoot: false
         volumeMounts:
         - mountPath: /shared
           name: static-files
@@ -3115,7 +3115,7 @@ spec:
         ports:
         - containerPort: 6379
       securityContext:
-        runAsNonRoot: true
+        runAsNonRoot: false
         runAsUser: 999
       serviceAccountName: argocd-redis
 ---
@@ -3256,7 +3256,7 @@ spec:
             drop:
             - all
           readOnlyRootFilesystem: true
-          runAsNonRoot: true
+          runAsNonRoot: false
         volumeMounts:
         - mountPath: /app/config/ssh
           name: ssh-known-hosts
@@ -3500,7 +3500,7 @@ spec:
             drop:
             - all
           readOnlyRootFilesystem: true
-          runAsNonRoot: true
+          runAsNonRoot: false
         volumeMounts:
         - mountPath: /app/config/ssh
           name: ssh-known-hosts
@@ -3689,7 +3689,7 @@ spec:
             drop:
             - all
           readOnlyRootFilesystem: true
-          runAsNonRoot: true
+          runAsNonRoot: false
         volumeMounts:
         - mountPath: /app/config/controller/tls
           name: argocd-repo-server-tls
