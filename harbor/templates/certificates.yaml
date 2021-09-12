@@ -10,5 +10,6 @@ spec:
     kind: ClusterIssuer
   commonName: harbor.sh4ke.rocks
   dnsNames:
-  - core.harbor.sh4ke.rocks
-  - notary.harbor.sh4ke.rocks
+    - harbor.sh4ke.rocks
+    - core.harbor.sh4ke.rocks
+    - notary.harbor.sh4ke.rocks
