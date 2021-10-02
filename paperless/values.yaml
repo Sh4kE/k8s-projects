@@ -119,9 +119,9 @@ paperless:
 # @default -- See values.yaml
 postgresql:
   enabled: true
-  postgresqlUsername: paperlessuser
-  postgresqlPassword: paperlesspassword
-  postgresqlDatabase: paperlessdb
+  postgresqlUsername: paperless
+  postgresqlPassword: paperless
+  postgresqlDatabase: paperless
 
   image:
     tag: 13
