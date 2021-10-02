@@ -123,6 +123,9 @@ postgresql:
   postgresqlPassword: paperlesspassword
   postgresqlDatabase: paperlessdb
 
+  image:
+    tag: 13
+
   persistence:
     enabled: true
     storageClass: nfs-client
