@@ -37,7 +37,7 @@ paperless:
     PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-ng-gotenberg:3000
     PAPERLESS_TIKA_ENDPOINT: http://paperless-ng-tika:9998
     # Handling inotify not working on NFS
-    PAPERLESS_CONSUMER_POLLING: 1
+    PAPERLESS_CONSUMER_POLLING: 30
     PAPERLESS_CONSUMER_RECURSIVE: 1
 
 
