@@ -530,10 +530,7 @@ owncloud:
     ##     - owncloud.sh4ke.rocks
     ##   secretName: owncloud.sh4ke.rocks-tls
     ##
-    extraTls:
-      - hosts:
-          - owncloud.sh4ke.rocks
-        secretName: owncloud.sh4ke.rocks-tls
+    extraTls: []
 
     ## @param ingress.secrets If you're providing your own certificates, please use this to add the certificates as secrets
     ## key and certificate should start with -----BEGIN CERTIFICATE----- or -----BEGIN RSA PRIVATE KEY-----
@@ -549,6 +546,8 @@ owncloud:
     ##   certificate:
     ##
     secrets: []
+
+    hostname: owncloud.sh4ke.rocks
 
   ## @section Metrics parameters
 
