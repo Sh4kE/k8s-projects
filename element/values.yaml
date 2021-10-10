@@ -60,7 +60,7 @@ element-web:
     hosts:
       - host: element-web.sh4ke.rocks
         paths:
-          - ""
+          - "/"
         #   - backend:
         #     service:
         #       name: element-element-web
