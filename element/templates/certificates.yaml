@@ -1,0 +1,26 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: element-im-cert
+spec:
+  secretName: element-im.sh4ke.rocks-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: element-im.sh4ke.rocks
+  dnsNames:
+  - element-im.sh4ke.rocks
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: element-web-cert
+spec:
+  secretName: element-web.sh4ke.rocks-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: element-web.sh4ke.rocks
+  dnsNames:
+  - element-web.sh4ke.rocks
