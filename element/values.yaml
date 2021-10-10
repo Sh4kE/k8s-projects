@@ -59,13 +59,13 @@ element-web:
       kubernetes.io/tls-acme: "true"
     hosts:
       - host: element-web.sh4ke.rocks
-        paths:
-          - backend:
-            service:
-              name: element-element-web
-              port:
-                name: http
-            pathType: ImplementationSpecific
+        paths: []
+        #   - backend:
+        #     service:
+        #       name: element-element-web
+        #       port:
+        #         name: http
+        #     pathType: ImplementationSpecific
     tls:
       - secretName: element-web.sh4ke.rocks-tls
         hosts:
