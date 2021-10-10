@@ -115,6 +115,8 @@ synapse:
 
   postgresql:
     enabled: true
+    persistence:
+      storageClass: "nfs-client"
 
   ## Persist configuration to a persistent volume
   persistence:
