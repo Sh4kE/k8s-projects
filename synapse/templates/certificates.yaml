@@ -2,12 +2,12 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: element-im-cert
+  name: synapse-web-cert
 spec:
-  secretName: element-im.sh4ke.rocks-tls
+  secretName: synapse.sh4ke.rocks-tls
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: element-im.sh4ke.rocks
+  commonName: synapse.sh4ke.rocks
   dnsNames:
-  - element-im.sh4ke.rocks
+  - synapse.sh4ke.rocks
