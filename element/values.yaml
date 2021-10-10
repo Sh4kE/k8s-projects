@@ -59,7 +59,8 @@ element-web:
       kubernetes.io/tls-acme: "true"
     hosts:
       - host: element-web.sh4ke.rocks
-        paths: []
+        paths:
+          - ""
         #   - backend:
         #     service:
         #       name: element-element-web
