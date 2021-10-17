@@ -51,15 +51,15 @@ synapse:
     liveness:
       initialDelaySeconds: 5
       failureThreshold: 5
-      periodSeconds: 10
+      periodSeconds: 100
     readiness:
       initialDelaySeconds: 5
       failureThreshold: 5
-      periodSeconds: 10
+      periodSeconds: 100
     startup:
       initialDelaySeconds: 5
       failureThreshold: 30
-      periodSeconds: 10
+      periodSeconds: 100
 
   ingress:
     enabled: true
