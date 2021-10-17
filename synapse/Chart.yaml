@@ -23,6 +23,6 @@ version: 0.7.51
 appVersion: "v1.44.0"
 
 dependencies:
-- name: sh4ke-synapse
+- name: synapse
   version: 0.7.51
   repository: https://core.harbor.sh4ke.rocks/chartrepo/synapse
