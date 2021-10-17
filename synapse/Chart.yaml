@@ -15,7 +15,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.7.50
+version: 0.7.51
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
@@ -23,6 +23,6 @@ version: 0.7.50
 appVersion: "v1.44.0"
 
 dependencies:
-- name: synapse
-  version: 0.7.50
-  repository: https://halkeye.github.io/helm-charts/
+- name: sh4ke-synapse
+  version: 0.7.51
+  repository: https://core.harbor.sh4ke.rocks/chartrepo/synapse
