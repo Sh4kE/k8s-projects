@@ -1135,7 +1135,7 @@ synapse:
 
     # Enable 3PIDs lookup requests to identity servers from this server.
     #
-    #enable_3pid_lookup: true
+    enable_3pid_lookup: true
 
     # If set, allows registration of standard or admin accounts by anyone who
     # has the shared secret, even if registration is otherwise disabled.
@@ -1162,7 +1162,7 @@ synapse:
     # (By default, no suggestion is made, so it is left up to the client.
     # This setting is ignored unless public_baseurl is also set.)
     #
-    #default_identity_server: https://matrix.org
+    default_identity_server: https://matrix.org
 
     # The list of identity servers trusted to verify third party
     # identifiers by this server.
@@ -1178,9 +1178,9 @@ synapse:
     # As of Synapse v1.4.0, all other functionality of this option has been deprecated, and
     # it is now solely used for the purposes of the background migration script, and can be
     # removed once it has run.
-    #trusted_third_party_id_servers:
-    #  - matrix.org
-    #  - vector.im
+    trusted_third_party_id_servers:
+      - matrix.org
+      - vector.im
 
     # Handle threepid (email/phone etc) registration and password resets through a set of
     # *trusted* identity servers. Note that this allows the configured identity server to
