@@ -1287,13 +1287,13 @@ synapse:
     # the registration_shared_secret is used, if one is given; otherwise,
     # a secret key is derived from the signing key.
     #
-    macaroon_secret_key: ""
+    macaroon_secret_key: "a0wZ24PqL6XCfNuU2q84Y93tlqC6jaHdWIZmL8NESfPDM9sGpUiWZ6NYIe9sKBkr"
 
     # a secret which is used to calculate HMACs for form values, to stop
     # falsification of values. Must be specified for the User Consent
     # forms to work.
     #
-    form_secret: ""
+    form_secret: "FU9aSiIsFxHCIas3xZBPUXGE9ObQRbYTR2PEpY4oiy0PKMYyLSSq15cPhzuDYAST"
 
     ## Signing Keys ##
 
