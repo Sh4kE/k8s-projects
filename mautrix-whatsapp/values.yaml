@@ -38,7 +38,7 @@ mautrix-whatsapp:
 
   ingress:
     enabled: true
-    annotations: {}
+    annotations:
       kubernetes.io/ingress.class: traefik
       kubernetes.io/tls-acme: "true"
     hosts:
