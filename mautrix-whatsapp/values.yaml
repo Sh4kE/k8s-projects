@@ -6,7 +6,7 @@ mautrix-whatsapp:
   replicaCount: 1
 
   image:
-    repository: dock.mau.dev/tulir/mautrix-whatsapp
+    repository: dock.mau.dev/mautrix/whatsapp
     tag: v0.1.8
     pullPolicy: Always
 
