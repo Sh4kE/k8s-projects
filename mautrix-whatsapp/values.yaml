@@ -43,12 +43,12 @@ mautrix-whatsapp:
       kubernetes.io/tls-acme: "true"
     hosts:
       - host: mautrix-whatsapp.sh4ke.rocks
-        paths: [ "/" ]
+        paths: ["/"]
 
-      tls:
-        - secretName: mautrix-whatsapp.sh4ke.rocks-tls
-          hosts:
-            - mautrix-whatsapp.sh4ke.rocks
+    tls:
+      - secretName: mautrix-whatsapp.sh4ke.rocks-tls
+        hosts:
+          - mautrix-whatsapp.sh4ke.rocks
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
