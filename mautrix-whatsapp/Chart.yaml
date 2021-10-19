@@ -25,4 +25,4 @@ appVersion: "latest"
 dependencies:
 - name: mautrix-whatsapp
   version: 1.0.1
-  repository: https://halkeye.github.io/helm-charts/
+  repository: https://core.harbor.sh4ke.rocks/chartrepo/mautrix-whatsapp
