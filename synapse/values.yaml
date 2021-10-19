@@ -79,7 +79,8 @@ synapse:
   # cacheFactor -- How much data should be cached in ram - See https://github.com/matrix-org/synapse#help-synapse-is-slow-and-eats-all-my-ramcpu
   cacheFactor: 0.5
 
-  extraConfigs: {}
+  extraConfigs:
+    signing.key: ed25519 a_qNAx pO1VKXoSNzNjgLlv1ikUfYlfKKFcpFqeP3AIWMwLYpE
 
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
@@ -1298,7 +1299,7 @@ synapse:
 
     # Path to the signing key to sign messages with
     #
-    signing_key_path: "/data/server_name.signing.key"
+    signing_key_path: "/data/signing.key"
 
     # The keys that the server used to sign messages with but won't use
     # to sign new messages.
