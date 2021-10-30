@@ -121,7 +121,7 @@ wordpress:
   wordpressTablePrefix: wp_svbvb49_
   ## @param wordpressScheme Scheme to use to generate WordPress URLs
   ##
-  wordpressScheme: http
+  wordpressScheme: https
   ## @param wordpressSkipInstall Skip wizard installation
   ## NOTE: useful if you use an external database that already contains WordPress data
   ## ref: https://github.com/bitnami/bitnami-docker-wordpress#connect-wordpress-docker-container-to-an-existing-database
