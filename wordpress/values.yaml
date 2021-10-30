@@ -480,7 +480,7 @@ wordpress:
     httpsPort: 443
     ## @param service.httpsTargetPort Target port for HTTPS
     ##
-    httpsTargetPort: https
+    httpsTargetPort: http
     ## Node ports to expose
     ## @param service.nodePorts.http Node port for HTTP
     ## @param service.nodePorts.https Node port for HTTPS
