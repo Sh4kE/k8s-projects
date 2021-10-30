@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: wordpress-sh4ke-rocks
+spec:
+  secretName: wordpress.sh4ke.rocks-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: wordpress.sh4ke.rocks
+  dnsNames:
+  - wordpress.sh4ke.rocks
+...
