@@ -11,4 +11,5 @@ spec:
   commonName: wordpress.sh4ke.rocks
   dnsNames:
   - wordpress.sh4ke.rocks
+  - svbvb49.sh4ke.rocks
 ...
