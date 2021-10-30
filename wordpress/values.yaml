@@ -573,7 +573,9 @@ wordpress:
     ##   - name: wordpress.local
     ##     path: /
     ##
-    extraHosts: []
+    extraHosts:
+      - name: svbvb49.sh4ke.rocks
+        path: /
     ## @param ingress.extraPaths An array with additional arbitrary paths that may need to be added to the ingress under the main host
     ## e.g:
     ## extraPaths:
