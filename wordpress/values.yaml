@@ -15,7 +15,7 @@ wordpress:
     ##   - myRegistryKeySecretName
     ##
     imagePullSecrets: []
-    storageClass: "nfsclient"
+    storageClass: "nfs-client"
 
   ## @section Common parameters
 
@@ -627,7 +627,7 @@ wordpress:
     ## If set to "-", storageClassName: "", which disables dynamic provisioning
     ## If undefined (the default) or set to null, no storageClassName spec is set, choosing the default provisioner
     ##
-    storageClass: "nfsclient"
+    storageClass: "nfs-client"
     ## @param persistence.accessModes [array] Persistent Volume access modes
     ##
     accessModes:
@@ -831,7 +831,7 @@ wordpress:
       ##
       persistence:
         enabled: true
-        storageClass: "nfsclient"
+        storageClass: "nfs-client"
         accessModes:
           - ReadWriteOnce
         size: 8Gi
