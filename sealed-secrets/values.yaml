@@ -6,9 +6,8 @@ sealed-secrets:
     # Enables ServiceMonitor creation for the Prometheus Operator
     create: true
 
-    # The namespace where the ServiceMonitor is deployed, defaults to the installation namespace
-    # namespace:
-
+    labels:
+      release: kube-prometheus
 
   dashboards:
     # If enabled, sealed-secrets will create a configmap with a dashboard in json that's going to be picked up by grafana
