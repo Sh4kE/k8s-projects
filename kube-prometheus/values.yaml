@@ -1,175 +1,176 @@
-## Configuration for alertmanager
-## ref: https://prometheus.io/docs/alerting/alertmanager/
-##
-alertmanager:
-  ingress:
-    enabled: true
-
-    # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
-    # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-    ingressClassName: traefik
-
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-
-    ## Hosts must be provided if Ingress is enabled.
-    ##
-    hosts:
-      - alertmanager.sh4ke.rocks
-
-    ## Paths to use for ingress rules - one path should match the alertmanagerSpec.routePrefix
-    ##
-    paths:
-    - /
-
-    ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
-    ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
-    pathType: ImplementationSpecific
-
-    ## TLS configuration for Alertmanager Ingress
-    ## Secret must be manually created in the namespace
-    ##
-    tls:
-      - hosts:
-          - alertmanager.sh4ke.rocks
-        secretName: alertmanager-sh4ke-rocks-tls
-
-  ## Settings affecting alertmanagerSpec
-  ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#alertmanagerspec
+kube-prometheus-stack:
+  ## Configuration for alertmanager
+  ## ref: https://prometheus.io/docs/alerting/alertmanager/
   ##
-  alertmanagerSpec:
-    ## Storage is the definition of how storage will be used by the Alertmanager instances.
-    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/user-guides/storage.md
-    ##
-    storage: #{}
-      volumeClaimTemplate:
-        spec:
-          storageClassName: nfs-client
-          accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 50Gi
-      #  selector: {}
-
-## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
-##
-grafana:
-  ## Timezone for the default dashboards
-  ## Other options are: browser or a specific timezone, i.e. Europe/Luxembourg
-  ##
-  defaultDashboardsTimezone: "Europe/Berlin"
-
-  adminPassword: "k3*RJW2hmaHRJHNk"
-
-  grafana.ini:
-    server:
-      root_url: https://grafana.sh4ke.rocks
-    smtp:
+  alertmanager:
+    ingress:
       enabled: true
-      existingSecret: ""
-      host: "in-v3.mailjet.com:587"
-      user: "72f7fc0111ac7842d08c8e1e464324dd"
-      password: "***REMOVED***"
-      from_address: "noreply@sh4ke.rocks"
 
-  persistence:
-    type: pvc
-    enabled: true
-    storageClassName: nfs-client
-    accessModes:
-      - ReadWriteOnce
-    size: 10Gi
-    finalizers:
-      - kubernetes.io/pvc-protection
+      # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+      # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+      ingressClassName: traefik
 
-  ingress:
-    ## If true, Grafana Ingress will be created
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+
+      ## Hosts must be provided if Ingress is enabled.
+      ##
+      hosts:
+        - alertmanager.sh4ke.rocks
+
+      ## Paths to use for ingress rules - one path should match the alertmanagerSpec.routePrefix
+      ##
+      paths:
+      - /
+
+      ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
+      ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
+      pathType: ImplementationSpecific
+
+      ## TLS configuration for Alertmanager Ingress
+      ## Secret must be manually created in the namespace
+      ##
+      tls:
+        - hosts:
+            - alertmanager.sh4ke.rocks
+          secretName: alertmanager-sh4ke-rocks-tls
+
+    ## Settings affecting alertmanagerSpec
+    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#alertmanagerspec
     ##
-    enabled: true
-    ingressClassName: traefik
+    alertmanagerSpec:
+      ## Storage is the definition of how storage will be used by the Alertmanager instances.
+      ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/user-guides/storage.md
+      ##
+      storage: #{}
+        volumeClaimTemplate:
+          spec:
+            storageClassName: nfs-client
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 50Gi
+        #  selector: {}
 
-    ## Annotations for Grafana Ingress
-    ##
-    annotations:
-      # kubernetes.io/ingress.class: nginx
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-      kubernetes.io/tls-acme: "true"
-
-    ## Hostnames.
-    ## Must be provided if Ingress is enable.
-    ##
-    hosts:
-      - grafana.sh4ke.rocks
-
-    ## TLS configuration for grafana Ingress
-    ## Secret must be manually created in the namespace
-    ##
-    tls:
-      - hosts:
-          - grafana.sh4ke.rocks
-        secretName: grafana-sh4ke-rocks-tls
-
-## Manages Prometheus and Alertmanager components
-##
-prometheusOperator:
-    # Use certmanager to generate webhook certs
-    certManager:
-      enabled: true
-      issuerRef:
-        name: "letsencrypt-prod"
-        kind: "ClusterIssuer"
-
-## Deploy a Prometheus instance
-##
-prometheus:
-  ingress:
-    enabled: true
-
-    # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
-    # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-    ingressClassName: traefik
-
-    ## Annotations for Grafana Ingress
-    ##
-    annotations:
-      # kubernetes.io/ingress.class: nginx
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-      kubernetes.io/tls-acme: "true"
-
-    ## Hostnames.
-    ## Must be provided if Ingress is enabled.
-    ##
-    hosts:
-      - prometheus.sh4ke.rocks
-
-
-    ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
-    ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
-    pathType: ImplementationSpecific
-
-    ## TLS configuration for Prometheus Ingress
-    ## Secret must be manually created in the namespace
-    ##
-    tls:
-      - secretName: prometheus-sh4ke-rocks-tls
-        hosts:
-          - prometheus.sh4ke.rocks
-
-  ## Settings affecting prometheusSpec
-  ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
+  ## Using default values from https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
   ##
-  prometheusSpec:
-    ## Prometheus StorageSpec for persistent data
-    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/user-guides/storage.md
+  grafana:
+    ## Timezone for the default dashboards
+    ## Other options are: browser or a specific timezone, i.e. Europe/Luxembourg
     ##
-    storageSpec:
-    ## Using PersistentVolumeClaim
+    defaultDashboardsTimezone: "Europe/Berlin"
+
+    adminPassword: "k3*RJW2hmaHRJHNk"
+
+    grafana.ini:
+      server:
+        root_url: https://grafana.sh4ke.rocks
+      smtp:
+        enabled: true
+        existingSecret: ""
+        host: "in-v3.mailjet.com:587"
+        user: "72f7fc0111ac7842d08c8e1e464324dd"
+        password: "***REMOVED***"
+        from_address: "noreply@sh4ke.rocks"
+
+    persistence:
+      type: pvc
+      enabled: true
+      storageClassName: nfs-client
+      accessModes:
+        - ReadWriteOnce
+      size: 10Gi
+      finalizers:
+        - kubernetes.io/pvc-protection
+
+    ingress:
+      ## If true, Grafana Ingress will be created
+      ##
+      enabled: true
+      ingressClassName: traefik
+
+      ## Annotations for Grafana Ingress
+      ##
+      annotations:
+        # kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        kubernetes.io/tls-acme: "true"
+
+      ## Hostnames.
+      ## Must be provided if Ingress is enable.
+      ##
+      hosts:
+        - grafana.sh4ke.rocks
+
+      ## TLS configuration for grafana Ingress
+      ## Secret must be manually created in the namespace
+      ##
+      tls:
+        - hosts:
+            - grafana.sh4ke.rocks
+          secretName: grafana-sh4ke-rocks-tls
+
+  ## Manages Prometheus and Alertmanager components
+  ##
+  prometheusOperator:
+      # Use certmanager to generate webhook certs
+      certManager:
+        enabled: true
+        issuerRef:
+          name: "letsencrypt-prod"
+          kind: "ClusterIssuer"
+
+  ## Deploy a Prometheus instance
+  ##
+  prometheus:
+    ingress:
+      enabled: true
+
+      # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
+      # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
+      ingressClassName: traefik
+
+      ## Annotations for Grafana Ingress
+      ##
+      annotations:
+        # kubernetes.io/ingress.class: nginx
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+        kubernetes.io/tls-acme: "true"
+
+      ## Hostnames.
+      ## Must be provided if Ingress is enabled.
+      ##
+      hosts:
+        - prometheus.sh4ke.rocks
+
+
+      ## For Kubernetes >= 1.18 you should specify the pathType (determines how Ingress paths should be matched)
+      ## See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#better-path-matching-with-path-types
+      pathType: ImplementationSpecific
+
+      ## TLS configuration for Prometheus Ingress
+      ## Secret must be manually created in the namespace
+      ##
+      tls:
+        - secretName: prometheus-sh4ke-rocks-tls
+          hosts:
+            - prometheus.sh4ke.rocks
+
+    ## Settings affecting prometheusSpec
+    ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#prometheusspec
     ##
-      volumeClaimTemplate:
-        spec:
-          storageClassName: nfs-client
-          accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 50Gi
-      # selector: {}
+    prometheusSpec:
+      ## Prometheus StorageSpec for persistent data
+      ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/user-guides/storage.md
+      ##
+      storageSpec:
+      ## Using PersistentVolumeClaim
+      ##
+        volumeClaimTemplate:
+          spec:
+            storageClassName: nfs-client
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 50Gi
+        # selector: {}
