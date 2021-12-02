@@ -2827,14 +2827,6 @@ data:
         hs = {}
         hs.status = "Healthy"
         return hs
-  configManagementPlugins: |
-    - name: helm3-secrets
-      init:
-        command: ["/bin/sh", "-c"]
-        args: ["gpg --pinentry-mode loopback --passphrase-file /opt/helm-secrets-config/passphrase.txt --import /opt/helm-secrets-config/private.gpg && gpg --export-secret-keys > ~/.gnupg/secring.gpg || true"]
-      # generate:
-      #   command: ["/bin/sh", "-c"]
-      #   args: ["helm secrets template -f values.yaml -f secrets.yaml $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE ."]
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -3520,8 +3512,6 @@ spec:
           name: plugins-home
         - mountPath: /tmp
           name: tmp
-        - mountPath: /opt/helm-secrets-config/helm-secrets.key
-          name: sops-secret-key
       serviceAccountName: argocd-server
       volumes:
       - emptyDir: {}
@@ -3547,9 +3537,6 @@ spec:
             path: ca.crt
           optional: true
           secretName: argocd-repo-server-tls
-      - configMap:
-          name: private.gpg
-        name: sops-secret-key
 ---
 apiVersion: apps/v1
 kind: StatefulSet
