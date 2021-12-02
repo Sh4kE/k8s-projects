@@ -110,6 +110,10 @@ kube-prometheus-stack:
             - grafana.sh4ke.rocks
           secretName: grafana-sh4ke-rocks-tls
 
+    sidecar:
+      dashboards:
+        searchNamespace: "ALL
+
   ## Manages Prometheus and Alertmanager components
   ##
   prometheusOperator:
