@@ -5,7 +5,6 @@ sealed-secrets:
   serviceMonitor:
     # Enables ServiceMonitor creation for the Prometheus Operator
     create: true
-
     labels:
       release: kube-prometheus
 
@@ -13,5 +12,5 @@ sealed-secrets:
     # If enabled, sealed-secrets will create a configmap with a dashboard in json that's going to be picked up by grafana
     # See https://github.com/helm/charts/tree/master/stable/grafana#configuration - `sidecar.dashboards.enabled`
     create: true
-    # The namespace where the dashboards are deployed, defaults to the installation namespace
-    # namespace:
+    labels:
+      grafana_dashboard: true
