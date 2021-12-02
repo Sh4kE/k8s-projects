@@ -112,7 +112,7 @@ kube-prometheus-stack:
 
     sidecar:
       dashboards:
-        searchNamespace: "ALL
+        searchNamespace: "ALL"
 
   ## Manages Prometheus and Alertmanager components
   ##
