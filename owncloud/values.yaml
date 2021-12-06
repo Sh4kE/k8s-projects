@@ -358,27 +358,27 @@ owncloud:
         ##
         existingClaim: ""
 
-      # startupProbe:
-      #   enabled: false
-      #   initialDelaySeconds: 120
-      #   periodSeconds: 15
-      #   timeoutSeconds: 5
-      #   failureThreshold: 10
-      #   successThreshold: 1
-      # livenessProbe:
-      #   enabled: true
-      #   initialDelaySeconds: 120
-      #   periodSeconds: 10
-      #   timeoutSeconds: 1
-      #   failureThreshold: 3
-      #   successThreshold: 1
-      # readinessProbe:
-      #   enabled: true
-      #   initialDelaySeconds: 30
-      #   periodSeconds: 10
-      #   timeoutSeconds: 1
-      #   failureThreshold: 3
-      #   successThreshold: 1
+      startupProbe:
+        enabled: false
+        # initialDelaySeconds: 120
+        # periodSeconds: 15
+        # timeoutSeconds: 5
+        # failureThreshold: 10
+        # successThreshold: 1
+      livenessProbe:
+        enabled: false
+        # initialDelaySeconds: 120
+        # periodSeconds: 10
+        # timeoutSeconds: 1
+        # failureThreshold: 3
+        # successThreshold: 1
+      readinessProbe:
+        enabled: false
+        # initialDelaySeconds: 30
+        # periodSeconds: 10
+        # timeoutSeconds: 1
+        # failureThreshold: 3
+        # successThreshold: 1
 
     image:
       debug: true
