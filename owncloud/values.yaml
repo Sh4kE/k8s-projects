@@ -316,7 +316,7 @@ owncloud:
       ## @param mariadb.auth.rootPassword Password for the MariaDB `root` user
       ## ref: https://github.com/bitnami/bitnami-docker-mariadb#setting-the-root-password-on-first-run
       ##
-      rootPassword: ""
+      rootPassword: "***REMOVED***"
       ## @param mariadb.auth.database Database name to create
       ## ref: https://github.com/bitnami/bitnami-docker-mariadb/blob/master/README.md#creating-a-database-on-first-run
       ##
@@ -327,7 +327,7 @@ owncloud:
       username: bn_owncloud
       ## @param mariadb.auth.password Password for the database
       ##
-      password: ""
+      password: "***REMOVED***"
     primary:
       ## Enable persistence using Persistent Volume Claims
       ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
