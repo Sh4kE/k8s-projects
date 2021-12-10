@@ -1,0 +1,12 @@
+wireguard:
+  env:
+    # -- Set the container timezone
+    TZ: DE
+
+  ingress:
+    main:
+      enabled: true
+
+  persistence:
+    config:
+      enabled: true
