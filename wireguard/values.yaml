@@ -10,3 +10,4 @@ wireguard:
   persistence:
     config:
       enabled: true
+      storageClass: nfs-client
