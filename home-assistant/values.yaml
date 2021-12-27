@@ -1,0 +1,16 @@
+home-assistant:
+  env:
+    TZ: "Europe/Berlin"
+  persistence:
+    config:
+      enabled: true
+      storageClass: "nfs-client"
+  securityContext:
+    # -- (bool) Privileged securityContext may be required if USB devics are accessed directly through the host machine
+    privileged:  false
+  mariadb:
+    enabled: true
+    primary:
+      persistence:
+        enabled: true
+        storageClass: "nfs-client"

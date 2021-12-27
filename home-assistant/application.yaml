@@ -1,20 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: wireguard
+  name: home-assistant
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'shake@git.sh4ke.rocks:sh4ke/k8s-projects.git'
-    path: wireguard
+    path: home-assistant
     targetRevision: HEAD
     helm:
       valueFiles:
         - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: wireguard
+    namespace: home-assistant
   syncPolicy:
     automated:
       selfHeal: true
