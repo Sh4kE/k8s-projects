@@ -11,3 +11,4 @@ jellyfin:
       mountPath: /media
       storageClass: "nfs-client"
       accessMode: "ReadWriteOnce"
+      size: "1000Gi"
