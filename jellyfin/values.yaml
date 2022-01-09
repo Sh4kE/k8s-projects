@@ -5,6 +5,8 @@ jellyfin:
   ingress:
     main:
       enabled: true
+      hosts:
+        - ganymed
 
   persistence:
     config:
