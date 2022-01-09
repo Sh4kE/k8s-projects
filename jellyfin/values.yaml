@@ -10,3 +10,4 @@ jellyfin:
       enabled: true
       mountPath: /media
       storageClass: "nfs-client"
+      accessMode: "ReadWriteOnce"
