@@ -1,0 +1,12 @@
+jellyfin:
+  env:
+    TZ: 'Europe/Berlin'
+
+  persistence:
+    config:
+      enabled: true
+      storageClass: "nfs-client"
+    media:
+      enabled: true
+      mountPath: /media
+      storageClass: "nfs-client"
