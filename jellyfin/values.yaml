@@ -6,7 +6,10 @@ jellyfin:
     main:
       enabled: true
       hosts:
-        - ganymed
+        - host: ganymed
+          paths:
+            - path: /
+              pathType: Prefix
 
   persistence:
     config:
