@@ -2,6 +2,10 @@ jellyfin:
   env:
     TZ: 'Europe/Berlin'
 
+  ingress:
+    main:
+      enabled: true
+
   persistence:
     config:
       enabled: true
