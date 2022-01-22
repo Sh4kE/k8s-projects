@@ -13,3 +13,8 @@ hivemq-operator:
               storage: 1Gi
           volumeMode: Filesystem
           storageClassName: nfs-client
+  operator:
+    # Let the operator verify all HiveMQCluster objects before accepting them.
+    # Not using the validation hook can result in erroneous cluster configurations which are hard to debug.
+    admissionWebhooks:
+      enabled: false
