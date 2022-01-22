@@ -1,0 +1,10 @@
+mosquitto:
+  service:
+    main:
+      ports:
+        http:
+          enabled: true
+  persistence:
+    data:
+      enabled: true
+      storageClass: "nfs-client"
