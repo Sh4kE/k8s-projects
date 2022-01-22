@@ -8,3 +8,4 @@ mosquitto:
     data:
       enabled: true
       storageClass: "nfs-client"
+      accessMode: "ReadWriteOnce"
