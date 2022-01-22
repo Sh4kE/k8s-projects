@@ -1,6 +1,6 @@
 apiVersion: v2
-name: jellyfin
-description: A Helm chart for jellyfin
+name: hivemq
+description: A Helm chart for hivemq
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -15,14 +15,14 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 9.3.0
+version: 0.10.1
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: "10.7.7"
+appVersion: "2.3.2"
 
 dependencies:
-- name: jellyfin
-  version: 9.3.0
-  repository: https://k8s-at-home.com/charts/
+- name: hivemq-operator
+  version: 4.7.3
+  repository: https://hivemq.github.io/helm-charts
