@@ -9,3 +9,4 @@ mosquitto:
       enabled: true
       storageClass: "nfs-client"
       accessMode: "ReadWriteOnce"
+      size: 10Gi
