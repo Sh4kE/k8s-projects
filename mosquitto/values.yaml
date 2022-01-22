@@ -1,4 +1,11 @@
 mosquitto:
+  service:
+    main:
+      ports:
+        mqtt:
+          enabled: true
+          nodePort: 1883
+          svcType: NodePort
   persistence:
     data:
       enabled: true
