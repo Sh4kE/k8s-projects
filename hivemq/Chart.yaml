@@ -20,9 +20,9 @@ version: 0.10.1
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: "2.3.2"
+appVersion: "4.7.3"
 
 dependencies:
 - name: hivemq-operator
-  version: 4.7.3
+  version: 0.10.1
   repository: https://hivemq.github.io/helm-charts
