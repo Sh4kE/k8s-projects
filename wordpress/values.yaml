@@ -471,7 +471,7 @@ wordpress:
   service:
     ## @param service.type WordPress service type
     ##
-    type: LoadBalancer
+    type: ClusterIP
     ## @param service.port WordPress service HTTP port
     ##
     port: 80
