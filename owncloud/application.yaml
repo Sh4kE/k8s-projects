@@ -9,9 +9,6 @@ spec:
     repoURL: 'shake@git.sh4ke.rocks:sh4ke/k8s-projects.git'
     path: owncloud
     targetRevision: HEAD
-    helm:
-      valueFiles:
-        - values.yaml
     plugin:
       name: kustomized-helm
   destination:

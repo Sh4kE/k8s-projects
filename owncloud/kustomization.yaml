@@ -1,2 +1,4 @@
 resources:
 - mariadb-sealed-secret.yaml
+
+values: values.yaml
