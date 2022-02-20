@@ -28,7 +28,5 @@ owncloud:
   ingress:
     enabled: true
     hostname: owncloud.sh4ke.rocks
-    annotations:
-      kubernetes.io/ingress.class: traefik
     tls: true
     ingressClassName: "traefik"
