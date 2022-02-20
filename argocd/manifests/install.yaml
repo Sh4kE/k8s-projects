@@ -2913,6 +2913,12 @@ data:
         hs = {}
         hs.status = "Healthy"
         return hs
+  # configManagementPlugins: |
+  #   - name: kustomize-build-with-helm
+  #     generate:
+  #       command: [ "sh", "-c" ]
+  #       args: [ "kustomize build --load-restrictor LoadRestrictionsNone --enable-helm" ]
+  kustomize.buildOptions: "--load-restrictor LoadRestrictionsNone --enable-helm"
 ---
 apiVersion: v1
 kind: ConfigMap
