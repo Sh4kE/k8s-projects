@@ -1,0 +1,12 @@
+commonLabels:
+  kustomized: "true"
+
+resources:
+- mariadb-sealed-secret.yaml
+
+helmChartInflationGenerator:
+- chartName: owncloud
+  chartHome: ".."
+  releaseName: owncloud
+  releaseNamespace: owncloud
+  values: values.yaml

@@ -13,9 +13,9 @@ owncloud:
   smtpProtocol: "tls"
 
   mariadb:
-    auth:
-      rootPassword: "***REMOVED***"
-      password: "***REMOVED***"
+    # auth:
+    #   rootPassword: "***REMOVED***"
+    #   password: "***REMOVED***"
     primary:
       storageClass: "nfs-client"
 
