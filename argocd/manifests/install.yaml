@@ -2918,7 +2918,15 @@ data:
   #     generate:
   #       command: [ "sh", "-c" ]
   #       args: [ "kustomize build --load-restrictor LoadRestrictionsNone --enable-helm" ]
-  kustomize.buildOptions: "--load-restrictor LoadRestrictionsNone --enable-helm"
+  # kustomize.buildOptions: "--load-restrictor LoadRestrictionsNone --enable-helm"
+  configManagementPlugins: |
+    - name: kustomized-helm
+      init:
+        command: ["/bin/sh", "-c"]
+        args: ["helm dependency build || true"]
+      generate:
+        command: ["/bin/sh", "-c"]
+        args: ["helm template . --name-template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE --include-crds > all.yaml && kustomize build"]
 ---
 apiVersion: v1
 kind: ConfigMap
