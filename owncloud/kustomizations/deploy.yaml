@@ -20,8 +20,8 @@ spec:
             - name: OWNCLOUD_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: owncloud
-                  key: owncloud-password-from-seal
+                  name: owncloud-from-seal
+                  key: owncloud-password
             - name: OWNCLOUD_SMTP_PASSWORD
               valueFrom:
                 secretKeyRef:
