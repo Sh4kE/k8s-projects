@@ -7,10 +7,6 @@ spec:
     spec:
       containers:
         - name: owncloud
-          image: docker.io/bitnami/owncloud:10.8.0-debian-10-r97
-          imagePullPolicy: "IfNotPresent"
-          securityContext:
-            runAsUser: 1001
           env:
             - name: OWNCLOUD_DATABASE_PASSWORD
               valueFrom:
