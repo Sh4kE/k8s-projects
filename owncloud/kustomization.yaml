@@ -2,5 +2,12 @@ resources:
   - all.yaml
   - kustomizations/mariadb-sealed-secret.yaml
   - kustomizations/owncloud-sealed-secret.yaml
-  - kustomizations/deploy.yaml
-  - kustomizations/sts.yaml
+patches:
+  - path: kustomizations/deploy.yaml
+    target:
+      kind: Deployment
+      name: owncloud
+  - path: kustomizations/sts.yaml
+    target:
+      kind: StatefulSet
+      name: owncloud-mariadb
