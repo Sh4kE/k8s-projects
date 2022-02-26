@@ -31,7 +31,7 @@ paperless:
     PAPERLESS_DBHOST: paperless-ng-postgresql
     PAPERLESS_DBNAME: paperless
     PAPERLESS_DBUSER: paperless
-    ***REMOVED***
+    PAPERLESS_DBPASS: paperless
     # Tika + Gotenberg
     PAPERLESS_TIKA_ENABLED: 1
     PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-ng-gotenberg:3000

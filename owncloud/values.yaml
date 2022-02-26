@@ -3,19 +3,14 @@ owncloud:
     storageClass: "nfs-client"
 
   owncloudUsername: Sh4kE
-  owncloudPassword: "***REMOVED***"
   owncloudEmail: michael.wittig@posteo.de
 
   smtpHost: "in-v3.mailjet.com"
   smtpPort: "587"
   smtpUser: "72f7fc0111ac7842d08c8e1e464324dd"
-  smtpPassword: "***REMOVED***"
   smtpProtocol: "tls"
 
   mariadb:
-    # auth:
-    #   rootPassword: "***REMOVED***"
-    #   password: "***REMOVED***"
     primary:
       storageClass: "nfs-client"
 

@@ -70,7 +70,7 @@ kube-prometheus-stack:
         existingSecret: ""
         host: "in-v3.mailjet.com:587"
         user: "72f7fc0111ac7842d08c8e1e464324dd"
-        password: "***REMOVED***"
+        password: "e9f800478ba1b1069511e0f8485e6fe8"
         from_address: "noreply@sh4ke.rocks"
 
     persistence:
