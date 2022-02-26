@@ -4,21 +4,26 @@ metadata:
   name: owncloud
 spec:
   template:
+    spec:
       containers:
-      - env:
-        - name: OWNCLOUD_DATABASE_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: mariadb-password
-              name: owncloud-mariadb-from-seal
-        - name: OWNCLOUD_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: owncloud-password
-              name: owncloud-from-seal
-        - name: OWNCLOUD_SMTP_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              key: smtp-password
-              name: owncloud-from-seal
-        name: owncloud
+        - name: owncloud
+          image: docker.io/bitnami/owncloud:10.8.0-debian-10-r97
+          imagePullPolicy: "IfNotPresent"
+          securityContext:
+            runAsUser: 1001
+          env:
+            - name: OWNCLOUD_DATABASE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: owncloud-mariadb-from-seal
+                  key: mariadb-password
+            - name: OWNCLOUD_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: owncloud
+                  key: owncloud-password-from-seal
+            - name: OWNCLOUD_SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: owncloud-from-seal
+                  key: smtp-password
