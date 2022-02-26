@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: owncloud
+spec:
+  template:
+      containers:
+      - env:
+        - name: OWNCLOUD_DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: mariadb-password
+              name: owncloud-mariadb-from-seal
+        - name: OWNCLOUD_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: owncloud-password
+              name: owncloud-from-seal
+        - name: OWNCLOUD_SMTP_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: smtp-password
+              name: owncloud-from-seal
+        name: owncloud
