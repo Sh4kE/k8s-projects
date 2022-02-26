@@ -9563,6 +9563,11 @@ data:
         hs = {}
         hs.status = "Healthy"
         return hs
+  resource.customizations.health.bitnami.com_SealedSecret: |
+    hs = {}
+    hs.status = "Healthy"
+    hs.message = "Controller doesn't report resource status"
+    return hs
   # configManagementPlugins: |
   #   - name: kustomize-build-with-helm
   #     generate:
