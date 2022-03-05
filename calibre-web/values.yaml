@@ -5,6 +5,9 @@ calibre-web:
   ingress:
     main:
       enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
       hosts:
         - host: calibre-web.sh4ke.rocks
           paths:
