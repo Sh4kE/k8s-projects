@@ -8,10 +8,11 @@ kube-prometheus-stack:
 
       # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
       # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-      ingressClassName: traefik
+      ingressClassName: nginx
 
       annotations:
-        cert-manager.io/cluster-issuer: letsencrypt-prod
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
 
       ## Hosts must be provided if Ingress is enabled.
       ##
@@ -87,14 +88,13 @@ kube-prometheus-stack:
       ## If true, Grafana Ingress will be created
       ##
       enabled: true
-      ingressClassName: traefik
+      ingressClassName: nginx
 
       ## Annotations for Grafana Ingress
       ##
       annotations:
-        # kubernetes.io/ingress.class: nginx
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-        kubernetes.io/tls-acme: "true"
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
 
       ## Hostnames.
       ## Must be provided if Ingress is enable.
@@ -132,14 +132,13 @@ kube-prometheus-stack:
 
       # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
       # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-      ingressClassName: traefik
+      ingressClassName: nginx
 
       ## Annotations for Grafana Ingress
       ##
       annotations:
-        # kubernetes.io/ingress.class: nginx
-        cert-manager.io/cluster-issuer: letsencrypt-prod
-        kubernetes.io/tls-acme: "true"
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
 
       ## Hostnames.
       ## Must be provided if Ingress is enabled.
