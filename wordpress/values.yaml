@@ -16,21 +16,11 @@ wordpress:
   ingress:
     enabled: true
     ingressClassName: ""
-    hostname: wordpress.sh4ke.rocks
+    hostname: svbvb49.sh4ke.rocks
     annotations:
       kubernetes.io/ingress.class: "nginx"
       cert-manager.io/cluster-issuer: "letsencrypt-prod"
     tls: true
-    extraHosts:
-      - name: svbvb49.sh4ke.rocks
-        path: /
-      - name: wordpress.sh4ke.rocks
-        path: /
-    extraTls:
-      - hosts:
-          - wordpress.sh4ke.rocks
-          - svbvb49.sh4ke.rocks
-        secretName: wordpress-sh4ke-rocks-tls
   persistence:
     storageClass: "nfs-client"
   mariadb:
