@@ -24,4 +24,6 @@ owncloud:
     enabled: true
     hostname: owncloud.sh4ke.rocks
     tls: true
-    ingressClassName: "traefik"
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
