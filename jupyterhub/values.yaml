@@ -1,0 +1,20 @@
+jupyterhub:
+  hub:
+    db:
+      pvc:
+        storageClass: "nfs-client"
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    hosts:
+      - jupyterhub.sh4ke.rocks
+    tls:
+      - hosts:
+        - jupyterhub.sh4ke.rocks
+        secretName: jupyterhub-sh4ke-rocks-tls
+  singleuser:
+    storage:
+      dynamic:
+        storageClass: "nfs-client"
