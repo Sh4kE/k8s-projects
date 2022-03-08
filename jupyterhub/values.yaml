@@ -2,7 +2,7 @@ jupyterhub:
   hub:
     db:
       pvc:
-        storageClass: "nfs-client"
+        storageClassName: "nfs-client"
   ingress:
     enabled: true
     annotations:
