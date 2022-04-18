@@ -13,3 +13,9 @@ kubectl config set-context --current --namespace=argocd
 
 kubectl apply -n argocd -f application.yaml
 ```
+
+## add known hosts entry for my git
+Hab ich aber per UI eingefügt!!!
+```
+ssh-keyscan git.sh4ke.rocks | argocd cert add-ssh --batch
+```
