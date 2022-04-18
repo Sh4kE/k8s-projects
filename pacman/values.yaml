@@ -12,3 +12,4 @@ ingress:
   # annotations: {}
   tls:
     enabled: true
+    secretName: pacman-k3s-sh4ke-rocks-tls
