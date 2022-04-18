@@ -1,15 +1,15 @@
+pacman:
+  service:
+    type: LoadBalancer
 
-service:
-  type: LoadBalancer
-
-## Ingress configuration.
-ingress:
-  create: true
-  class: nginx
-  host: "pacman.k3s.sh4ke.rocks"
-  # path: ""
-  # pathType: ""
-  # annotations: {}
-  tls:
-    enabled: true
-    secretName: pacman-k3s-sh4ke-rocks-tls
+  ## Ingress configuration.
+  ingress:
+    create: true
+    class: nginx
+    host: "pacman.k3s.sh4ke.rocks"
+    # path: ""
+    # pathType: ""
+    # annotations: {}
+    tls:
+      enabled: true
+      secretName: pacman-k3s-sh4ke-rocks-tls
