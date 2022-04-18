@@ -1,4 +1,4 @@
 ingress-nginx:
   controller:
     ingressClassResource:
-      default: false
+      default: true
