@@ -1,15 +1,13 @@
 pacman:
   service:
-    type: LoadBalancer
+    type: ClusterIP
 
-  ## Ingress configuration.
   ingress:
     create: true
     class: nginx
     host: "pacman.k3s.sh4ke.rocks"
-    # path: ""
-    # pathType: ""
-    # annotations: {}
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
     tls:
       enabled: true
       secretName: pacman-k3s-sh4ke-rocks-tls
