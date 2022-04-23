@@ -23,6 +23,6 @@ version: 1.2.0
 appVersion: "latest"
 
 dependencies:
-- name: openstack-cinder-csi/cinder-csi
+- name: openstack-cinder-csi
   version: 1.2.0
   repository: https://kubernetes.github.io/cloud-provider-openstack/
