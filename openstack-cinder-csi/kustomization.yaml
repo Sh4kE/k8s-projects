@@ -9,10 +9,3 @@ patches:
     target:
       kind: ClusterRole
       name: csi-nodeplugin-role
-patchesJson6902:
-  - path: kustomizations/controllerplugin-deployment.yaml
-    target:
-      kind: Deployment
-      version: apps/v1
-      name: openstack-cinder-csi-controllerplugin
-

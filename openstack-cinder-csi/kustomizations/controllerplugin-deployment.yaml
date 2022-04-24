@@ -1,5 +1,0 @@
-- op: add
-  path: "/metadata/name/spec/containers/6/env"
-  value:
-    name: OS_PASSWORD
-    value: '***REMOVED***'
