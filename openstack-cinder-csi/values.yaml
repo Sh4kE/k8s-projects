@@ -19,7 +19,6 @@ openstack-cinder-csi:
         tenant-name=mwittig
         tenant-domain-id=0fd4315f3f784ee2a37cfd9657385fe5
         region=de-nbg6-1
-        tls-insecure=true
 
   storageClass:
     enabled: true
