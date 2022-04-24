@@ -18,7 +18,7 @@ openstack-cinder-csi:
         tenant-id=8e3e72a2e75c44eba74be23856b02fa2
         tenant-domain-id=0fd4315f3f784ee2a37cfd9657385fe5
         region=de-nbg6-1
-        # ca-file=/etc/cacert/ca-bundle.crt
+        tls-insecure=true
 
   storageClass:
     enabled: true
