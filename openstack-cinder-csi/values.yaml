@@ -14,7 +14,7 @@ openstack-cinder-csi:
         auth-url=https://de-nbg6-1.noris.cloud:5000/v3
         username=mwittig
         user-domain-name=noris.de
-        password=***REMOVED***
+        password='***REMOVED***'
         tenant-id=8e3e72a2e75c44eba74be23856b02fa2
         tenant-domain-id=0fd4315f3f784ee2a37cfd9657385fe5
         region=de-nbg6-1
