@@ -23,6 +23,6 @@ version: v1.9.2
 appVersion: "v1.9.2"
 
 dependencies:
-- name: rook-operator
+- name: rook-ceph
   version: v1.9.2
   repository: https://charts.rook.io/release
