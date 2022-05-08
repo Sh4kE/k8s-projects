@@ -12,7 +12,7 @@ rook-ceph-cluster:
           proxy_ssl_verify off;
       host:
         name: ceph.k3s.sh4ke.rocks
-        path: "/ceph-dashboard(/|$)(.*)"
+        # path: "/ceph-dashboard(/|$)(.*)"
       tls:
         - hosts:
             - ceph.k3s.sh4ke.rocks
