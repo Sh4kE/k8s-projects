@@ -138,5 +138,5 @@ rook-ceph-cluster:
           #       - ReadWriteOnce
           # Scheduler name for OSD pod placement
           # schedulerName: osd-scheduler
-        # when onlyApplyOSDPlacement is false, will merge both placement.All() and storageClassDeviceSets.Placement.
-        onlyApplyOSDPlacement: false
+      # when onlyApplyOSDPlacement is false, will merge both placement.All() and storageClassDeviceSets.Placement.
+      onlyApplyOSDPlacement: false
