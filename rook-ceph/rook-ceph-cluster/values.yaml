@@ -52,7 +52,7 @@ rook-ceph-cluster:
           placement:
             topologySpreadConstraints:
               - maxSkew: 1
-                topologyKey: kubernetes.io/hostname
+                topologyKey: topology.cinder.csi.openstack.org/zone
                 whenUnsatisfiable: ScheduleAnyway
                 labelSelector:
                   matchExpressions:
@@ -75,7 +75,7 @@ rook-ceph-cluster:
                           operator: In
                           values:
                             - rook-ceph-osd-prepare
-                    topologyKey: kubernetes.io/hostname
+                    topologyKey: topology.cinder.csi.openstack.org/zone
             topologySpreadConstraints:
               - maxSkew: 1
                 # IMPORTANT: If you don't have zone labels, change this to another key such as kubernetes.io/hostname
