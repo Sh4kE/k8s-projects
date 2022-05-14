@@ -106,7 +106,7 @@ rook-ceph-cluster:
                   requests:
                     storage: 10Gi
                 # IMPORTANT: Change the storage class depending on your environment
-                storageClassName: csi-cinder-sc-delete
+                storageClassName: csi-cinder-sc-delete-all-zones
                 volumeMode: Block
                 accessModes:
                   - ReadWriteOnce
