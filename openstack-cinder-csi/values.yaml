@@ -28,4 +28,52 @@ openstack-cinder-csi:
     retain:
       isDefault: false
       allowVolumeExpansion: true
+    custom: |-
+      ---
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: csi-cinder-sc-delete-all-zones
+      provisioner: cinder.csi.openstack.org
+      volumeBindingMode: WaitForFirstConsumer
+      allowVolumeExpansion: true
+      ---
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: csi-cinder-sc-delete-a
+      provisioner: cinder.csi.openstack.org
+      volumeBindingMode: Immediate
+      allowedTopologies:
+      - matchLabelExpressions:
+        - key: topology.cinder.csi.openstack.org/zone
+          values:
+          - de-nbg6-1a
+      allowVolumeExpansion: true
+      ---
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: csi-cinder-sc-delete-b
+      provisioner: cinder.csi.openstack.org
+      volumeBindingMode: Immediate
+      allowedTopologies:
+      - matchLabelExpressions:
+        - key: topology.cinder.csi.openstack.org/zone
+          values:
+          - de-nbg6-1b
+      allowVolumeExpansion: true
+      ---
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: csi-cinder-sc-delete-c
+      provisioner: cinder.csi.openstack.org
+      volumeBindingMode: Immediate
+      allowedTopologies:
+      - matchLabelExpressions:
+        - key: topology.cinder.csi.openstack.org/zone
+          values:
+          - de-nbg6-1c
+      allowVolumeExpansion: true
 
