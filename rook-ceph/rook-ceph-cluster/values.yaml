@@ -22,7 +22,7 @@ rook-ceph-cluster:
     mon:
       volumeClaimTemplate:
         spec:
-          storageClassName: csi-cinder-sc-delete
+          storageClassName: csi-cinder-sc-delete-all-zones
           resources:
             requests:
               storage: 10Gi
