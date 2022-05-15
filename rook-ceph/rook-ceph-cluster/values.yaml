@@ -32,6 +32,8 @@ rook-ceph-cluster:
 #          resources:
 #            requests:
 #              storage: 10Gi
+    crashCollector:
+      disable: true
     storage:
       storageClassDeviceSets:
         - name: set1
