@@ -32,4 +32,13 @@ netdata:
             proc = yes
             idlejitter = yes
             diskspace = yes
+    claiming:
+      enabled: true
+      token: BBHNO9oI6dJQvBD90fxx7FtUc1SvDfAptvmQmFoMwmDkiOi7cZOQTplccAjaue7gWQYDgCHXS25A3BIyPFadZU-laA6BCZtJ9JhZNnzPnGOaWWqeCwa2Vn4_3HnWtJMSZqK_vis
+      rooms: 0b7b71f1-2140-433f-99d7-534d000f81c9
+  child:
+    claiming:
+      enabled: true
+      token: BBHNO9oI6dJQvBD90fxx7FtUc1SvDfAptvmQmFoMwmDkiOi7cZOQTplccAjaue7gWQYDgCHXS25A3BIyPFadZU-laA6BCZtJ9JhZNnzPnGOaWWqeCwa2Vn4_3HnWtJMSZqK_vis
+      rooms: 0b7b71f1-2140-433f-99d7-534d000f81c9
 
