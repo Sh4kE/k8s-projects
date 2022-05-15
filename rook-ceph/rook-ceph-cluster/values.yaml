@@ -1,15 +1,7 @@
 rook-ceph-cluster:
-#  configOverride: |
-#    [global]
-#    mon_allow_pool_delete = true
-#    osd_pool_default_size = 1
-#    osd_pool_default_min_size = 1
   ingress:
     dashboard:
       annotations:
-        # kubernetes.io/ingress.class: nginx
-        # external-dns.alpha.kubernetes.io/hostname: example.com
-        # nginx.ingress.kubernetes.io/rewrite-target: /ceph-dashboard/$2
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       # If the dashboard has ssl: true the following will make sure the NGINX Ingress controller can expose the dashboard correctly
         nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
@@ -17,23 +9,36 @@ rook-ceph-cluster:
           proxy_ssl_verify off;
       host:
         name: ceph.k3s.sh4ke.rocks
-        # path: "/ceph-dashboard(/|$)(.*)"
       tls:
         - hosts:
             - ceph.k3s.sh4ke.rocks
           secretName: ceph-k3s-sh4ke-rocks-tls
       ingressClassName: nginx
   cephClusterSpec:
-#    mon:
-#      count: 1
-#      volumeClaimTemplate:
-#        spec:
-#          storageClassName: csi-cinder-sc-delete-all-zones
-#          resources:
-#            requests:
-#              storage: 10Gi
     crashCollector:
       disable: true
+    resources:
+      mgr:
+        limits:
+          cpu: "500m"
+          memory: "512Mi"
+        requests:
+          cpu: "250m"
+          memory: "256Mi"
+      mon:
+        limits:
+          cpu: "1000m"
+          memory: "1Gi"
+        requests:
+          cpu: "500m"
+          memory: "512Mi"
+      osd:
+        limits:
+          cpu: "1000m"
+          memory: "4Gi"
+        requests:
+          cpu: "500m"
+          memory: "2Gi"
     storage:
       storageClassDeviceSets:
         - name: set1
