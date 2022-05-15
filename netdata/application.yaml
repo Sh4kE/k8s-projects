@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'shake@git.sh4ke.rocks:sh4ke/k8s-projects.git'
-    path: netdata/netdata
+    path: netdata
     targetRevision: HEAD
     helm:
       valueFiles:
