@@ -1,6 +1,6 @@
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: pacman-mongo-storage-claim
+  name: pacman2-mongo-storage-claim
 spec:
   storageClassName: ceph-block
