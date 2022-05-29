@@ -72,3 +72,4 @@ fabric.properties
 
 charts/
 pub-sealed-secrets.pem
+values.new.yaml
