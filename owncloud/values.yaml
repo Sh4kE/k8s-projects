@@ -24,10 +24,6 @@ owncloud:
     enabled: true
     hostname: owncloud.sh4ke.rocks
     tls: true
-    extraTls:
-      - hosts:
-          - owncloud.sh4ke.rocks
-        secretName: owncloud.sh4ke.rocks-tls
     annotations:
       kubernetes.io/ingress.class: "nginx"
       cert-manager.io/cluster-issuer: "letsencrypt-prod"
