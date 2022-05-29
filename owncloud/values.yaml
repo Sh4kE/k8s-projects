@@ -28,7 +28,3 @@ owncloud:
     annotations:
       kubernetes.io/ingress.class: "nginx"
       cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      nginx.ingress.kubernetes.io/configuration-snippet: |
-        location /remote.php/dav/files {
-          client_max_body_size 2G;
-        }
