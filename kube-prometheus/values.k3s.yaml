@@ -1,0 +1,81 @@
+kube-prometheus-stack:
+  alertmanager:
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - alertmanager.k3s.sh4ke.rocks
+      paths:
+        - /
+      tls:
+        - hosts:
+            - alertmanager.k3s.sh4ke.rocks
+          secretName: alertmanager-k3s-sh4ke-rocks-tls
+    alertmanagerSpec:
+      storage:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: csi-cinder-sc-delete-all-zones
+            accessModes: [ "ReadWriteOnce" ]
+            resources:
+              requests:
+                storage: 2Gi
+  grafana:
+    defaultDashboardsTimezone: "Europe/Berlin"
+    grafana.ini:
+      server:
+        root_url: https://grafana.k3s.sh4ke.rocks
+      smtp:
+        enabled: true
+        host: "in-v3.mailjet.com:587"
+        user: "72f7fc0111ac7842d08c8e1e464324dd"
+        password: "e9f800478ba1b1069511e0f8485e6fe8"
+        from_address: "noreply@sh4ke.rocks"
+    persistence:
+      type: pvc
+      enabled: true
+      storageClassName: csi-cinder-sc-delete-all-zones
+      accessModes:
+        - ReadWriteOnce
+      size: 5Gi
+      finalizers:
+        - kubernetes.io/pvc-protection
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - grafana.k3s.sh4ke.rocks
+      tls:
+        - hosts:
+            - grafana.k3s.sh4ke.rocks
+          secretName: grafana-k3s-sh4ke-rocks-tls
+  prometheus:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - prometheus.k3s.sh4ke.rocks
+      paths:
+        - /
+      pathType: ImplementationSpecific
+      tls:
+        - secretName: prometheus-k3s-sh4ke-rocks-tls
+          hosts:
+            - prometheus.k3s.sh4ke.rocks
+    prometheusSpec:
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: csi-cinder-sc-delete-all-zones
+            accessModes: [ "ReadWriteOnce" ]
+            resources:
+              requests:
+                storage: 2Gi
