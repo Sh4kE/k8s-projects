@@ -77,3 +77,6 @@ kube-prometheus-stack:
             resources:
               requests:
                 storage: 2Gi
+  prometheusOperator:
+    admissionWebhooks:
+      failurePolicy: Ignore
