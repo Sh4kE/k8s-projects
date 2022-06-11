@@ -2,8 +2,8 @@ kube-prometheus-stack:
   alertmanager:
     ingress:
       enabled: true
+      ingressClassName: nginx
       annotations:
-        kubernetes.io/ingress.class: "nginx"
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       hosts:
         - alertmanager.k3s.sh4ke.rocks
@@ -46,7 +46,6 @@ kube-prometheus-stack:
       enabled: true
       ingressClassName: nginx
       annotations:
-        kubernetes.io/ingress.class: "nginx"
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       hosts:
         - grafana.k3s.sh4ke.rocks
@@ -59,7 +58,6 @@ kube-prometheus-stack:
       enabled: true
       ingressClassName: nginx
       annotations:
-        kubernetes.io/ingress.class: "nginx"
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       hosts:
         - prometheus.k3s.sh4ke.rocks
