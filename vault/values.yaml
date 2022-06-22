@@ -14,12 +14,12 @@ vault:
             - vault.k3s.sh4ke.rocks
     dataStorage:
       storageClass: csi-cinder-sc-delete-all-zones
-      auditStorage:
-        enabled: true
-        storageClass: csi-cinder-sc-delete-all-zones
+    auditStorage:
+      enabled: true
+      storageClass: csi-cinder-sc-delete-all-zones
     ha:
       enabled: true
       raft:
-        enabled: false
+        enabled: true
   ui:
     enabled: false
