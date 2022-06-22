@@ -7,9 +7,7 @@ vault:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       hosts:
         - host: vault.k3s.sh4ke.rocks
-          paths:
-            - path: /
-              pathType: Prefix
+          paths: []
       tls:
         - secretName: vault-k3s-sh4ke-rocks
           hosts:
