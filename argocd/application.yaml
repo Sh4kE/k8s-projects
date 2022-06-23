@@ -12,6 +12,8 @@ spec:
     directory:
       recurse: true
       jsonnet: {}
+    plugin:
+      name: argocd-vault-plugin
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
