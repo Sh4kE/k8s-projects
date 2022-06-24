@@ -28,16 +28,14 @@ vaultwarden:
     config:
       enabled: true
       storageClass: csi-cinder-sc-delete-all-zones
-  postgresql:
+  mariadb:
     enabled: true
     commonAnnotations:
       avp.kubernetes.io/path: "kv/data/k3s/argocd/vaultwarden"
-    postgresqlUsername: "<username>"
-    postgresqlPassword: "<password>"
-    postgresqlDatabase: "<database>"
-    persistence:
-      enabled: true
-      storageClass: csi-cinder-sc-delete-all-zones
-      accessModes:
-        - ReadWriteOnce
-
+    auth:
+      username: "<username>"
+      password: "<password>"
+      database: "<database>"
+    primary:
+      persistence:
+        storageClass: csi-cinder-sc-delete-all-zones
