@@ -9592,7 +9592,7 @@ data:
         args: ["helm dependency build"]
       generate:
         command: ["sh", "-c"]
-        args: ["helm template $ARGOCD_APP_NAME ${helm_args} . --install-crds | argocd-vault-plugin generate -"]
+        args: ["helm template $ARGOCD_APP_NAME ${helm_args} . --include-crds | argocd-vault-plugin generate -"]
 
 ---
 apiVersion: v1
