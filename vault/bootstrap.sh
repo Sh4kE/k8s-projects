@@ -47,18 +47,3 @@ vault write auth/kubernetes/role/argocd \
     bound_service_account_namespaces=argocd \
     policies=argocd \
     ttl=24h
-
-#####
-
-vault auth enable approle
-
-vault write auth/approle/role/argocd \
-    bound_service_account_names="*" \
-    bound_service_account_namespaces=argocd \
-    token_policies=argocd \
-    secret_id_ttl=768h
-
-vault read auth/approle/role/argocd/role-id | grep role_id | tr -s ' ' | cut -d ' ' -f 2
-
-# Get a SecretID issued against the argocd AppRole
-vault write -f auth/approle/role/argocd/secret-id
