@@ -27,6 +27,7 @@ vaultwarden:
   persistence:
     config:
       enabled: true
+      storageClass: csi-cinder-sc-delete-all-zones
   postgresql:
     enabled: true
     commonAnnotations:
@@ -36,7 +37,7 @@ vaultwarden:
     postgresqlDatabase: "<database>"
     persistence:
       enabled: true
-      storageClass:
+      storageClass: csi-cinder-sc-delete-all-zones
       accessModes:
         - ReadWriteOnce
 
