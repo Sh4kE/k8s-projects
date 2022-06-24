@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vaultwarden
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'shake@git.sh4ke.rocks:sh4ke/k8s-projects.git'
+    path: vaultwarden
+    targetRevision: HEAD
+    plugin:
+      name: argocd-vault-plugin-helm
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: vaultwarden
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

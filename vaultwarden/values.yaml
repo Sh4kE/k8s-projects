@@ -1,0 +1,42 @@
+vaultwarden:
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - host: vaultwarden.k3s.sh4ke.rocks
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                port: http
+            - path: /notifications/hub/negotiate
+              pathType: Prefix
+              service:
+                port: http
+            - path: /notifications/hub
+              pathType: Prefix
+              service:
+                port: websocket
+      tls:
+        - secretName: vaultwarden-k3s-sh4ke-rocks-tls
+          hosts:
+            - vaultwarden.k3s.sh4ke.rocks
+  persistence:
+    config:
+      enabled: true
+  postgresql:
+    enabled: true
+    commonAnnotations:
+      avp.kubernetes.io/path: "kv/data/k3s/argocd/vaultwarden"
+    postgresqlUsername: "<username>"
+    postgresqlPassword: "<password>"
+    postgresqlDatabase: "<database>"
+    persistence:
+      enabled: true
+      storageClass:
+      accessModes:
+        - ReadWriteOnce
+
