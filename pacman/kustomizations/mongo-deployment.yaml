@@ -3,4 +3,4 @@ apiVersion: v1
 metadata:
   name: pacman-mongo-storage-claim
 spec:
-  storageClassName: ceph-block
+  storageClassName: csi-cinder-sc-delete-all-zones
