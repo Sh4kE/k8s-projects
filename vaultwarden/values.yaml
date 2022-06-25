@@ -13,6 +13,7 @@ vaultwarden:
     SMTP_PORT: 587          # Ports 587 (submission) and 25 (smtp) are standard without encryption and with encryption via STARTTLS (Explicit TLS). Port 465 is outdated and used with Implicit TLS.
     SMTP_USERNAME: <smtp-username>
     SMTP_PASSWORD: <smtp-password>
+    DATABASE_URL: mysql://<username>:<password>@vaultwarden-mariadb:3306/<database>
   ingress:
     main:
       enabled: true
