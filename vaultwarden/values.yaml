@@ -50,6 +50,7 @@ vaultwarden:
     auth:
       username: "<username>"
       password: "<password>"
+      rootPassword: "<rootPassword>"
       database: "<database>"
     primary:
       persistence:
