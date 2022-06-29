@@ -7,6 +7,6 @@ kubeinvaders:
       cert-manager.io/cluster-issuer: "letsencrypt-prod"
     hostName: "kubeinvaders.k3s.sh4ke.rocks"
     tls:
-      - secretName: kubeinvaders-k3s-sh4ke-rocks-tls
-        hosts:
+      - hosts:
           - kubeinvaders.k3s.sh4ke.rocks
+    secretName: kubeinvaders-k3s-sh4ke-rocks-tls
