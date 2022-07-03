@@ -41,7 +41,7 @@ paperless:
 
     PAPERLESS_ENABLE_UPDATE_CHECK: true
     PAPERLESS_SECRET_KEY: <secretKey>
-    PAPERLESS_URL: paperless.k3s.sh4ke.rocks
+    PAPERLESS_URL: https://paperless.k3s.sh4ke.rocks
 
     PAPERLESS_ADMIN_USER: <paperlessAdminUser>
     PAPERLESS_ADMIN_PASSWORD: <paperlessAdminPassword>
