@@ -78,9 +78,11 @@ postgresql:
     enabled: true
     commonAnnotations:
       avp.kubernetes.io/path: "kv/data/k3s/argocd/vaultwarden"
-    postgresqlUsername: "<username>"
-    postgresqlPassword: "<password>"
-    postgresqlDatabase: "<database>"
+
+    auth:
+      postgresqlUsername: "<username>"
+      postgresqlPassword: "<password>"
+      postgresqlDatabase: "<database>"
 
     primary:
       persistence:
