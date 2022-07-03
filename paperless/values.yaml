@@ -82,8 +82,9 @@ postgresql:
     postgresqlPassword: "<password>"
     postgresqlDatabase: "<database>"
 
-    persistence:
-      enabled: true
-      storageClass: csi-cinder-sc-delete-all-zones
-      accessModes:
-        - ReadWriteOnce
+    primary:
+      persistence:
+        enabled: true
+        storageClass: csi-cinder-sc-delete-all-zones
+        accessModes:
+          - ReadWriteOnce
