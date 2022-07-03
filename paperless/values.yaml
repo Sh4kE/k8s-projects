@@ -80,9 +80,11 @@ postgresql:
       avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
 
     auth:
-      postgresqlUsername: "<username>"
-      postgresqlPassword: "<password>"
-      postgresqlDatabase: "<database>"
+      postgresPassword: "<postgresPassword>"
+      username: "<username>"
+      password: "<password>"
+      database: "<database>"
+      replicationPassword: "<replicationPassword>"
 
     primary:
       persistence:
