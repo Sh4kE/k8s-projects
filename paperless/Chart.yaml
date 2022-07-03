@@ -26,16 +26,9 @@ dependencies:
 - name: paperless
   version: 9.0.0
   repository: https://k8s-at-home.com/charts/
-- name: postgresql
-  version: 11.6.12
-  repository: https://charts.bitnami.com/bitnami
-  condition: postgresql.enabled
 - name: gotenberg
   version: 5.0.0
   repository: https://kurt108.github.io/helm-charts
 - name: tika
   version: 2.2.1
   repository: https://apache.jfrog.io/artifactory/tika
-- name: redis
-  version: 16.13.1
-  repository: https://charts.bitnami.com/bitnami
