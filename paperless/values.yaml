@@ -5,13 +5,10 @@
 # https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
 #
 paperless:
-  image:
-    # -- image repository
-    repository: jonaswinkler/paperless-ng
-    # -- image pull policy
-    pullPolicy: IfNotPresent
-    # -- image tag
-    tag: 1.5.0
+  common:
+    controller:
+      annotations:
+        avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
 
   # -- See the following files for additional environment variables:
   # https://github.com/jonaswinkler/paperless-ng/tree/master/docker/compose/
@@ -29,107 +26,64 @@ paperless:
     PAPERLESS_TIME_ZONE: Europe/Berlin
     # -- Database
     PAPERLESS_DBHOST: paperless-ng-postgresql
-    PAPERLESS_DBNAME: paperless
-    PAPERLESS_DBUSER: paperless
-    PAPERLESS_DBPASS: paperless
+    PAPERLESS_DBNAME: <database>
+    PAPERLESS_DBUSER: <username>
+    PAPERLESS_DBPASS: <password>
     # Tika + Gotenberg
     PAPERLESS_TIKA_ENABLED: 1
     PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-ng-gotenberg:3000
     PAPERLESS_TIKA_ENDPOINT: http://paperless-ng-tika:9998
     # Handling inotify not working on NFS
-    PAPERLESS_CONSUMER_POLLING: 30
-    PAPERLESS_CONSUMER_RECURSIVE: 1
-
-
-  # -- Configures service settings for the chart.
-  # @default -- See values.yaml
-  service:
-    main:
-      ports:
-        http:
-          port: 8000
+    # PAPERLESS_CONSUMER_POLLING: 30
+    # PAPERLESS_CONSUMER_RECURSIVE: 1
 
   ingress:
-    # -- Enable and configure ingress settings for the chart under this key.
-    # @default -- See values.yaml
     main:
       enabled: true
       annotations:
         kubernetes.io/ingress.class: "nginx"
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       hosts:
-        - host: paperless.sh4ke.rocks
+        - host: paperless.k3s.sh4ke.rocks
           paths:
             - path: /
               pathType: Prefix
       tls:
-        - secretName: paperless-sh4ke-rocks-tls
+        - secretName: paperless-k3s-sh4ke-rocks-tls
           hosts:
-            - paperless.sh4ke.rocks
+            - paperless.k3s.sh4ke.rocks
 
   persistence:
-    # -- Configure persistence for data.
-    # @default -- See values.yaml
     data:
       enabled: true
-      mountPath: /usr/src/paperless/data
-      accessMode: ReadWriteOnce
-      storageClass: nfs-client
+      storageClass: csi-cinder-sc-delete-all-zones
       size: 1Gi
-      emptyDir:
-        enabled: false
-    # -- Configure persistence for media.
-    # @default -- See values.yaml
     media:
       enabled: true
-      mountPath: /usr/src/paperless/media
-      accessMode: ReadWriteOnce
-      storageClass: nfs-client
+      storageClass: csi-cinder-sc-delete-all-zones
       size: 1Gi
-      emptyDir:
-        enabled: false
-    # -- Configure volume to monitor for new documents.
-    # @default -- See values.yaml
     consume:
       enabled: true
-      mountPath: /usr/src/paperless/consume
-      accessMode: ReadWriteOnce
-      storageClass: nfs-client
+      storageClass: csi-cinder-sc-delete-all-zones
       size: 1Gi
-      emptyDir:
-        enabled: false
-    # -- Configure export volume.
-    # @default -- See values.yaml
     export:
       enabled: true
-      mountPath: /usr/src/paperless/export
-      accessMode: ReadWriteOnce
-      storageClass: nfs-client
+      storageClass: csi-cinder-sc-delete-all-zones
       size: 1Gi
-      emptyDir:
-        enabled: false
-
-  # -- Deploy local redis instance.
-  # @default -- See values.yaml
-  additionalContainers:
-    broker:
-      name: broker
-      image: redis:6.0
-      imagePullPolicy: IfNotPresent
 
 # -- Enable and configure postgresql database subchart under this key.
 #    For more options see [postgresql chart documentation](https://github.com/bitnami/charts/tree/master/bitnami/postgresql)
 # @default -- See values.yaml
 postgresql:
-  enabled: true
-  postgresqlUsername: paperless
-  postgresqlPassword: paperless
-  postgresqlDatabase: paperless
-
-  image:
-    tag: 13
-
-  persistence:
     enabled: true
-    storageClass: nfs-client
-    accessMode: ReadWriteOnce
+    commonAnnotations:
+      avp.kubernetes.io/path: "kv/data/k3s/argocd/vaultwarden"
+    postgresqlUsername: "<username>"
+    postgresqlPassword: "<password>"
+    postgresqlDatabase: "<database>"
+
+    persistence:
+      enabled: true
+      storageClass: csi-cinder-sc-delete-all-zones
+      accessModes:
+        - ReadWriteOnce
