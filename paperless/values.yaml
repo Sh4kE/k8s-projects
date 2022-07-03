@@ -77,7 +77,7 @@ paperless:
 postgresql:
     enabled: true
     commonAnnotations:
-      avp.kubernetes.io/path: "kv/data/k3s/argocd/vaultwarden"
+      avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
 
     auth:
       postgresqlUsername: "<username>"
