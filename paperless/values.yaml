@@ -21,21 +21,31 @@ paperless:
     PAPERLESS_REDIS: redis://paperless-ng-redis-master:6379
     # -- OCR languages to install
     PAPERLESS_OCR_LANGUAGE: deu
+    PAPERLESS_OCR_LANGUAGES: "deu eng"
     # USERMAP_UID: 1000
     # USERMAP_GID: 1000
     PAPERLESS_TIME_ZONE: Europe/Berlin
     # -- Database
     PAPERLESS_DBHOST: paperless-ng-postgresql
-    PAPERLESS_DBNAME: <database>
-    PAPERLESS_DBUSER: <username>
-    PAPERLESS_DBPASS: <password>
+    PAPERLESS_DBNAME: <dbname>
+    PAPERLESS_DBUSER: <dbusername>
+    PAPERLESS_DBPASS: <dbpassword>
     # Tika + Gotenberg
     PAPERLESS_TIKA_ENABLED: 1
     PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-ng-gotenberg:3000
     PAPERLESS_TIKA_ENDPOINT: http://paperless-ng-tika:9998
+
     # Handling inotify not working on NFS
     # PAPERLESS_CONSUMER_POLLING: 30
-    # PAPERLESS_CONSUMER_RECURSIVE: 1
+    PAPERLESS_CONSUMER_RECURSIVE: 1
+
+    PAPERLESS_ENABLE_UPDATE_CHECK: true
+    PAPERLESS_SECRET_KEY: <secretKey>
+    PAPERLESS_URL: paperless.k3s.sh4ke.rocks
+
+    PAPERLESS_ADMIN_USER: <paperlessAdminUser>
+    PAPERLESS_ADMIN_PASSWORD: <paperlessAdminPassword>
+    PAPERLESS_ADMIN_MAIL: <paperlessAdminMail>
 
   ingress:
     main:
@@ -88,9 +98,9 @@ paperless:
 
     auth:
       postgresPassword: "<postgresPassword>"
-      username: "<username>"
-      password: "<password>"
-      database: "<database>"
+      username: "<dbusername>"
+      password: "<dbpassword>"
+      database: "<dbname>"
       replicationPassword: "<replicationPassword>"
 
     primary:
