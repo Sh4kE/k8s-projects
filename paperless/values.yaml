@@ -86,10 +86,10 @@ paperless:
     enabled: true
     master:
       persistence:
-        storageClass: csi-cinder-sc-delete-all-zones
+        enabled: false
     replica:
       persistence:
-        storageClass: csi-cinder-sc-delete-all-zones
+        enabled: false
 
   postgresql:
     enabled: true
