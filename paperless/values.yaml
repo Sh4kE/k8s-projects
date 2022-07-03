@@ -18,7 +18,7 @@ paperless:
     # -- Project name
     COMPOSE_PROJECT_NAME: paperless
     # -- Redis to use
-    PAPERLESS_REDIS: redis://localhost:6379
+    PAPERLESS_REDIS: redis://paperless-ng-redis:6379
     # -- OCR languages to install
     PAPERLESS_OCR_LANGUAGE: deu
     # USERMAP_UID: 1000
@@ -92,3 +92,11 @@ postgresql:
         storageClass: csi-cinder-sc-delete-all-zones
         accessModes:
           - ReadWriteOnce
+
+redis:
+  master:
+    persistence:
+      storageClass: csi-cinder-sc-delete-all-zones
+  replica:
+    persistence:
+      storageClass: csi-cinder-sc-delete-all-zones

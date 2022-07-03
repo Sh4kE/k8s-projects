@@ -36,3 +36,6 @@ dependencies:
 - name: tika
   version: 2.2.1
   repository: https://apache.jfrog.io/artifactory/tika
+- name: redis
+  version: 16.13.1
+  repository: https://charts.bitnami.com/bitnami
