@@ -9,7 +9,9 @@ spec:
     repoURL: 'shake@git.sh4ke.rocks:sh4ke/k8s-projects.git'
     path: nfs-subdir-external-provisioner
     targetRevision: HEAD
-    values: 'values.yaml'
+    helm:
+      valueFiles:
+        - values.yaml
 #    plugin:
 #      name: argocd-vault-plugin-helm
   destination:
