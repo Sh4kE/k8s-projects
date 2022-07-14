@@ -1,0 +1,6 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pacman-mongo-storage-claim
+spec:
+  storageClassName: nfs-client

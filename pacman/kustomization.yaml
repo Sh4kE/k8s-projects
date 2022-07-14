@@ -1,7 +1,12 @@
 resources:
   - all.yaml
 patches:
-  - path: kustomizations/mongo-deployment.yaml
+  - path: kustomizations/mongo-pvc.yaml
     target:
       kind: PersistentVolumeClaim
       name: pacman-mongo-storage-claim
+
+  - path: kustomizations/mongo-deployment.yaml
+    target:
+      kind: Deployment
+      name: pacman-mongo-backend

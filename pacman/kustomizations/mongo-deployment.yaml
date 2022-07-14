@@ -1,6 +1,7 @@
-kind: PersistentVolumeClaim
+kind: Deployment
 apiVersion: v1
 metadata:
-  name: pacman-mongo-storage-claim
+  name: pacman-mongo-backend
 spec:
-  storageClassName: nfs-client
+  nodeSelector:
+    nfs-backup-enabled: "true"
