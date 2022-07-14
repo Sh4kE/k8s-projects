@@ -20,3 +20,8 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+  ignoreDifferences:
+    - group: "*"
+      kind: "MutatingWebhookConfiguration"
+      jsonPointers:
+        - /webhooks/0/clientConfig/caBundle
