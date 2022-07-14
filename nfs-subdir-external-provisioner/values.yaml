@@ -4,4 +4,4 @@ nfs-subdir-external-provisioner:
     path: /mnt/NAS/k3s_backup
 
   nodeSelector:
-    nfs-backup-enabled: true
+    nfs-backup-enabled: "true"
