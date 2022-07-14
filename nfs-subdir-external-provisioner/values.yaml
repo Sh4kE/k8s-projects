@@ -5,3 +5,7 @@ nfs-subdir-external-provisioner:
 
   nodeSelector:
     nfs-backup-enabled: "true"
+
+  storageClass:
+    archiveOnDelete: false
+    accessModes: ReadWriteMany
