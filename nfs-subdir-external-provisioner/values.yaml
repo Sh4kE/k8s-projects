@@ -2,3 +2,6 @@ nfs-subdir-external-provisioner:
   nfs:
     server: 192.168.178.55
     path: /mnt/NAS/k3s_backup
+
+  nodeSelector:
+    nfs-backup-enabled: true
