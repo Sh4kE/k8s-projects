@@ -11,6 +11,7 @@ parameters:
   # csi.storage.k8s.io/provisioner-secret-namespace: "default"
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
+allowVolumeExpansion: true
 # mountOptions:
 #   - nconnect=8  # only supported on linux kernel version >= 5.3
 #   - nfsvers=4.1
