@@ -1,12 +1,7 @@
 csi-driver-nfs:
-  ingress:
-    enabled: true
-    annotations:
-      nginx.ingress.kubernetes.io/ssl-redirect: "true"
-      kubernetes.io/ingress.class: "nginx"
-      cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    hostName: "csi-driver-nfs.k3s.sh4ke.rocks"
-    tls:
-      - hosts:
-          - csi-driver-nfs.k3s.sh4ke.rocks
-    secretName: csi-driver-nfs-k3s-sh4ke-rocks-tls
+  controller:
+    nodeSelector:
+      nfs-backup-enabled: "true"
+  node:
+    nodeSelector:
+      nfs-backup-enabled: "true"
