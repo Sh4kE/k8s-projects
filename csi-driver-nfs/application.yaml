@@ -9,8 +9,9 @@ spec:
     repoURL: 'shake@git.sh4ke.rocks:sh4ke/k8s-projects.git'
     path: csi-driver-nfs
     targetRevision: HEAD
-    plugin:
-      name: argocd-vault-plugin-helm
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: csi-driver-nfs
