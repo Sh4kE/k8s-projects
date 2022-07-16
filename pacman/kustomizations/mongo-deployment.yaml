@@ -3,5 +3,7 @@ apiVersion: v1
 metadata:
   name: pacman-mongo-backend
 spec:
-  nodeSelector:
-    nfs-backup-enabled: "true"
+  template:
+    spec:
+      nodeSelector:
+        nfs-backup-enabled: "true"
