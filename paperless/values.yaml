@@ -107,9 +107,9 @@ paperless:
       replicationPassword: "<replicationPassword>"
 
     primary:
-      pgHbaConfiguration: |
-        host    all      paperless    127.0.0.1/32     trust
-        host    all      paperless    ::1/128          trust
+      # pgHbaConfiguration: |
+      #   host    all      paperless    127.0.0.1/32     trust
+      #   host    all      paperless    ::1/128          trust
       persistence:
         enabled: true
         storageClass: csi-cinder-sc-delete-all-zones
