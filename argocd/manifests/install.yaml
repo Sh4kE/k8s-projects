@@ -10882,6 +10882,8 @@ spec:
         name: var-files
       - emptyDir: {}
         name: plugins
+      - name: custom-tools
+        emptyDir: {}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -11350,7 +11352,7 @@ metadata:
   name: argocd-redis-ha-server
 spec:
   podManagementPolicy: OrderedReady
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-redis-ha
