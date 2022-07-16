@@ -984,7 +984,7 @@ spec:
                               type: string
                             version:
                               description: Version is the Helm version to use for
-&                                templating ("3")
+                                templating ("3")
                               type: string
                           type: object
                         kustomize:
@@ -10657,6 +10657,7 @@ spec:
               matchLabels:
                 app.kubernetes.io/name: argocd-repo-server
             topologyKey: kubernetes.io/hostname
+      automountServiceAccountToken: true
       containers:
       - command:
         - entrypoint.sh
@@ -10849,7 +10850,6 @@ spec:
             name: custom-tools
 
       # Not strictly necessary, but required for passing AVP configuration from a secret and for using Kubernetes auth to Hashicorp Vault
-      automountServiceAccountToken: true
       serviceAccountName: argocd-repo-server
       volumes:
       - configMap:
