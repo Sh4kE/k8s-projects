@@ -10550,7 +10550,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
   name: argocd-redis-ha-haproxy
 spec:
-  replicas: 3
+  replicas: 1
   revisionHistoryLimit: 1
   selector:
     matchLabels:
@@ -10634,7 +10634,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
   name: argocd-repo-server
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-repo-server
@@ -10894,7 +10894,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
   name: argocd-server
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-server
