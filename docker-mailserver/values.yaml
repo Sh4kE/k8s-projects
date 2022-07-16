@@ -9,8 +9,8 @@ docker-mailserver:
     dnsname: mail.sh4ke.rocks
 
   domains:
-    - mail.sh4ke.rocks
     - rainloop.k3s.sh4ke.rocks
+    - mail.sh4ke.rocks
 
   pod:
     override_hostname: "mail.sh4ke.rocks"
