@@ -10634,7 +10634,7 @@ metadata:
     app.kubernetes.io/part-of: argocd
   name: argocd-repo-server
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app.kubernetes.io/name: argocd-repo-server
@@ -11191,6 +11191,10 @@ spec:
         - "10"
         - --redis
         - argocd-redis-ha-haproxy:6379
+        - --repo-server-timeout-seconds
+        - "420"
+        - --app-resync
+        - "600"
         env:
         - name: ARGOCD_CONTROLLER_REPLICAS
           value: "1"
