@@ -1,0 +1,4 @@
+mail._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; "
+	  "p=MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA1fWOOc1rXpvgFhUvfKS9wPfm6+wDWgFqsWW6wMqm+VeDgXgoZNyRz4+q5VNhZpbm/55fY3MS4TbaZ8kJmz4ETDUtYKg8WFe+R1zwVIW8evdD44gsppNhAp/R1/4Xhs5XPPWg7xkdyfpEYSrQJ886TFp3gc10Ozq+wgt9Mwv66sbXhgtkHqeQmjuf1wFIyH6sP8fMNMbZhqqIY/"
+	  "gDjvoPQMWEBWmV9RCZcydD7cUvVFGs3zAv69kTYo9vpRGe4HnNpWkxu652zxWqdxfZK67KppSq/FMvQK/tV1tEC4qt2Mio339cYSvLWE2c5GTrHwP2V1cxRu5XrqWKMkBSQiRy7IdGOqfG4WrF3PplKJzmShbIocOBAkTYGU3KUqhIGsUZgVAy+1kuHdh1fA5KduLy0IyPnVnqHTp0WR0pzf2bxtFFqyks60EoLsVVwP5wo01hSUtk0poj"
+	  "uDUMJ4tPYYNuozN1SSz/Y4j2+EbccZw+A8v8tpi1nOd0wa05H3Mp0GYICe/W0o9WpJ5ytHlNSMylycnSCCPGvLDgPy5U/5YtWcVmLtrUyJakWV4PXRHV/Ve57c2BsS/14ItUNu4V/BjGbv4tpAW7AJE+VdKemUem2m0lXrFMKgGl+CWW2zh/5xHWDtztAQeNsnS5QAxmhQYK9vwrqAkbN4vw+pRteFvua1sCAwEAAQ==" )  ; ----- DKIM key mail for mail.sh4ke.rocks
