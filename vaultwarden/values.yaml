@@ -55,3 +55,4 @@ vaultwarden:
     primary:
       persistence:
         storageClass: csi-cinder-sc-delete-all-zones
+        storageClassBackup: nfs-csi
