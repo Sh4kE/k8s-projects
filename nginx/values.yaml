@@ -2,5 +2,3 @@ ingress-nginx:
   controller:
     ingressClassResource:
       default: true
-    config:
-      client_max_body_size: 50M
