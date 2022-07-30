@@ -45,7 +45,7 @@ paperless:
 
     PAPERLESS_ADMIN_USER: <paperlessAdminUser>
     PAPERLESS_ADMIN_PASSWORD: <paperlessAdminPassword>
-    PAPERLESS_ADMIN_MAIL: <paperlessAdminMail>
+    PAPERLESS_ADMIN_MAIL: "michael.wittig@posteo.de"
 
   ingress:
     main:
