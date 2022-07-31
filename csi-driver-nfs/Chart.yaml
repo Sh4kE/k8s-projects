@@ -26,6 +26,3 @@ dependencies:
 - name: csi-driver-nfs
   version: v4.1.0
   repository: https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
-- name: external-snapshotter
-  version: v6.0.1
-  repository: https://github.com/kubernetes-csi/external-snapshotter/tree/v6.0.1/client/config/crd
