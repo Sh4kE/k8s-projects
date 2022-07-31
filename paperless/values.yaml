@@ -72,7 +72,7 @@ paperless:
     media:
       enabled: true
       storageClass: csi-cinder-sc-delete-all-zones
-      size: 1Gi
+      size: 8Gi
     consume:
       enabled: true
       storageClass: csi-cinder-sc-delete-all-zones
