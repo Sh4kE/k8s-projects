@@ -15,29 +15,29 @@ spec:
             command:
             - /bin/sh
             - -c
-            - date; echo Hello from the Kubernetes cluster
+            - document_exporter /usr/src/paperless/data-backup
             volumeMounts:
-              - mountPath: /usr/src/paperless/consume
-                name: consume
+              - mountPath: /usr/src/paperless/data-backup
+                name: data-backup
               - mountPath: /usr/src/paperless/data
                 name: data
-              - mountPath: /usr/src/paperless/export
-                name: export
+              - mountPath: /usr/src/paperless/media-backup
+                name: media-backup
               - mountPath: /usr/src/paperless/media
                 name: media
               - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
                 name: kube-api-access-cvgls
                 readOnly: true
           volumes:
-            - name: consume
+            - name: data-backup
               persistentVolumeClaim:
-                claimName: paperless-ng-consume
+                claimName: paperless-ng-data-backup
             - name: data
               persistentVolumeClaim:
                 claimName: paperless-ng-data
-            - name: export
+            - name: media-backup
               persistentVolumeClaim:
-                claimName: paperless-ng-export
+                claimName: paperless-ng-media-backup
             - name: media
               persistentVolumeClaim:
                 claimName: paperless-ng-media
