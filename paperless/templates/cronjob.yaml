@@ -28,37 +28,37 @@ spec:
               - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
                 name: kube-api-access-cvgls
                 readOnly: true
-            volumes:
-              - name: consume
-                persistentVolumeClaim:
-                  claimName: paperless-ng-consume
-              - name: data
-                persistentVolumeClaim:
-                  claimName: paperless-ng-data
-              - name: export
-                persistentVolumeClaim:
-                  claimName: paperless-ng-export
-              - name: media
-                persistentVolumeClaim:
-                  claimName: paperless-ng-media
-              - name: kube-api-access-cvgls
-                projected:
-                  defaultMode: 420
-                  sources:
-                    - serviceAccountToken:
-                        expirationSeconds: 3607
-                        path: token
-                    - configMap:
-                        items:
-                          - key: ca.crt
-                            path: ca.crt
-                        name: kube-root-ca.crt
-                    - downwardAPI:
-                        items:
-                          - fieldRef:
-                              apiVersion: v1
-                              fieldPath: metadata.namespace
-                            path: namespace
+          volumes:
+            - name: consume
+              persistentVolumeClaim:
+                claimName: paperless-ng-consume
+            - name: data
+              persistentVolumeClaim:
+                claimName: paperless-ng-data
+            - name: export
+              persistentVolumeClaim:
+                claimName: paperless-ng-export
+            - name: media
+              persistentVolumeClaim:
+                claimName: paperless-ng-media
+            - name: kube-api-access-cvgls
+              projected:
+                defaultMode: 420
+                sources:
+                  - serviceAccountToken:
+                      expirationSeconds: 3607
+                      path: token
+                  - configMap:
+                      items:
+                        - key: ca.crt
+                          path: ca.crt
+                      name: kube-root-ca.crt
+                  - downwardAPI:
+                      items:
+                        - fieldRef:
+                            apiVersion: v1
+                            fieldPath: metadata.namespace
+                          path: namespace
           restartPolicy: OnFailure
           serviceAccount: default
           serviceAccountName: default
