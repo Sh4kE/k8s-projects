@@ -10,5 +10,20 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
+      storage: {{ .values.paperless.persistence.data.size }}
+  storageClassName: nfs-csi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+  - kubernetes.io/pvc-protection
+  name: data-paperless-ng-postgresql-0-backup
+  namespace: paperless-ng
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .values.paperless.postgresql.primary.persistence.size }}
   storageClassName: nfs-csi
