@@ -25,5 +25,5 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .values.paperless.postgresql.primary.persistence.size }}
+      storage: 8Gi
   storageClassName: nfs-csi
