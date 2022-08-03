@@ -62,3 +62,5 @@ spec:
           restartPolicy: OnFailure
           serviceAccount: default
           serviceAccountName: default
+          nodeSelector:
+            nfs-backup-enabled: true
