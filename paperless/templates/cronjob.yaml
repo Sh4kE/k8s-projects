@@ -1,0 +1,64 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: paperless-backup
+spec:
+  schedule: "20 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: hello
+            image: ghcr.io/paperless-ngx/paperless-ngx:1.7.1
+            imagePullPolicy: IfNotPresent
+            command:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+            volumeMounts:
+              - mountPath: /usr/src/paperless/consume
+                name: consume
+              - mountPath: /usr/src/paperless/data
+                name: data
+              - mountPath: /usr/src/paperless/export
+                name: export
+              - mountPath: /usr/src/paperless/media
+                name: media
+              - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+                name: kube-api-access-cvgls
+                readOnly: true
+            volumes:
+              - name: consume
+                persistentVolumeClaim:
+                  claimName: paperless-ng-consume
+              - name: data
+                persistentVolumeClaim:
+                  claimName: paperless-ng-data
+              - name: export
+                persistentVolumeClaim:
+                  claimName: paperless-ng-export
+              - name: media
+                persistentVolumeClaim:
+                  claimName: paperless-ng-media
+              - name: kube-api-access-cvgls
+                projected:
+                  defaultMode: 420
+                  sources:
+                    - serviceAccountToken:
+                        expirationSeconds: 3607
+                        path: token
+                    - configMap:
+                        items:
+                          - key: ca.crt
+                            path: ca.crt
+                        name: kube-root-ca.crt
+                    - downwardAPI:
+                        items:
+                          - fieldRef:
+                              apiVersion: v1
+                              fieldPath: metadata.namespace
+                            path: namespace
+          restartPolicy: OnFailure
+          serviceAccount: default
+          serviceAccountName: default
