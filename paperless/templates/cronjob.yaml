@@ -63,4 +63,4 @@ spec:
           serviceAccount: default
           serviceAccountName: default
           nodeSelector:
-            nfs-backup-enabled: true
+            nfs-backup-enabled: "true"
