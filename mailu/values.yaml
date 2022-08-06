@@ -1,0 +1,50 @@
+mailu:
+  hostnames:
+    - mail.sh4ke.rocks
+    - sh4ke.rocks
+
+  domain: sh4ke.rocks
+
+  secretKey: <secret_key>
+
+  initialAccount:
+    username: admin
+    domain: sh4ke.rocks
+    password: <initial_admin_password>
+
+  database:
+    type: mysql
+    roundcubeType: mysql
+
+    mysql:
+      rootPassword: <mysql_root_password>
+
+      database: mailu
+      user: mailu
+      password: <mysql_password>
+
+      roundcubeDatabase: roundcube
+      roundcubeUser: roundcube
+      roundcubePassword: <roundcube_password>
+
+  persistence:
+    single_pvc: true
+    size: 10Gi
+    accessMode: ReadWriteOnce
+    storageClass: "csi-cinder-sc-delete-all-zones"
+
+  certmanager:
+    issuerName: letsencrypt-prod
+
+  ingress:
+    tlsFlavor: cert
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+
+  externalService:
+    enabled: true
+    type: LoadBalancer
+    loadBalancerIP: 213.95.155.192
+
+  webdav:
+    enabled: true
