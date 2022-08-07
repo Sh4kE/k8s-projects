@@ -30,7 +30,6 @@ mailu:
   persistence:
     single_pvc: true
     size: 10Gi
-    accessMode: ReadWriteOnce
     storageClass: "csi-cinder-sc-delete-all-zones"
 
   certmanager:
