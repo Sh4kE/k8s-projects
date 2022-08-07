@@ -7,6 +7,10 @@ mailu:
 
   secretKey: <secret_key>
 
+  admin:
+    podAnnotations:
+      avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
+
   initialAccount:
     username: admin
     domain: sh4ke.rocks
@@ -40,10 +44,11 @@ mailu:
     annotations:
       kubernetes.io/ingress.class: "nginx"
 
-  externalService:
-    enabled: true
-    type: LoadBalancer
-    loadBalancerIP: 213.95.155.192
+  front:
+    externalService:
+      enabled: true
+      type: LoadBalancer
+      loadBalancerIP: 213.95.155.192
 
   webdav:
     enabled: true
