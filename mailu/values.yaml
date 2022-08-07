@@ -9,7 +9,7 @@ mailu:
 
   admin:
     podAnnotations:
-      avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
+      avp.kubernetes.io/path: "kv/data/k3s/argocd/mailu"
 
   initialAccount:
     username: admin
