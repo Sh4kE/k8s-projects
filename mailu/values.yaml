@@ -7,10 +7,6 @@ mailu:
 
   secretKey: <secret_key>
 
-  admin:
-    podAnnotations:
-      avp.kubernetes.io/path: "kv/data/k3s/argocd/mailu"
-
   initialAccount:
     username: admin
     domain: sh4ke.rocks

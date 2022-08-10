@@ -1,0 +1,23 @@
+resources:
+  - all.yaml
+
+patches:
+  - path: kustomizations/admin-deployment.yaml
+    target:
+      kind: Deployment
+      name: mailu-admin
+
+  - path: kustomizations/mysql-deployment.yaml
+    target:
+      kind: Deployment
+      name: mailu-mysql
+
+  - path: kustomizations/roundcube-deployment.yaml
+    target:
+      kind: Deployment
+      name: mailu-roundcube
+
+  - path: kustomizations/dovecot-deployment.yaml
+    target:
+      kind: Deployment
+      name: mailu-dovecot

@@ -10,7 +10,7 @@ spec:
     path: mailu
     targetRevision: HEAD
     plugin:
-      name: argocd-vault-plugin-helm
+      name: argocd-vault-plugin-helm-kustomize
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mailu
