@@ -27,11 +27,6 @@ mailu:
       roundcubeUser: roundcube
       roundcubePassword: <roundcube_password>
 
-  persistence:
-    single_pvc: true
-    size: 10Gi
-    storageClass: "csi-cinder-sc-delete-all-zones"
-
   certmanager:
     issuerName: letsencrypt-prod
 
@@ -46,5 +41,48 @@ mailu:
       type: LoadBalancer
       loadBalancerIP: 213.95.155.192
 
+  admin:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  redis:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  postfix:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  dovecot:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  rspamd:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  clamav:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  roundcube:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
   webdav:
     enabled: true
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  mysql:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
