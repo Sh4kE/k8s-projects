@@ -36,6 +36,9 @@ mailu:
       kubernetes.io/ingress.class: "nginx"
 
   front:
+    hostPort:
+      enabled: false
+
     externalService:
       enabled: true
       type: LoadBalancer
