@@ -12,6 +12,11 @@ patches:
       kind: Deployment
       name: mailu-mysql
 
+  - path: kustomizations/mysql-cm.yaml
+    target:
+      kind: ConfigMap
+      name: mailu-mysql-init
+
   - path: kustomizations/roundcube-deployment.yaml
     target:
       kind: Deployment
