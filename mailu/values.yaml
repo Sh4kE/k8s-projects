@@ -44,6 +44,9 @@ mailu:
       type: LoadBalancer
       loadBalancerIP: 213.95.155.192
 
+  persistence:
+    single_pvc: false
+
   admin:
     persistence:
       size: 1Gi
