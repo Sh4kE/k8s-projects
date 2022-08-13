@@ -4957,8 +4957,7 @@ roleRef:
   kind: ClusterRole
   name: cert-manager-webhook:subjectaccessreviews
 subjects:
-- apiGroup: ""
-  kind: ServiceAccount
+- kind: ServiceAccount
   name: cert-manager-webhook
   namespace: cert-manager
 ---
@@ -5075,8 +5074,7 @@ roleRef:
   kind: Role
   name: cert-manager:leaderelection
 subjects:
-  - apiGroup: ""
-    kind: ServiceAccount
+  - kind: ServiceAccount
     name: cert-manager
     namespace: cert-manager
 ---
