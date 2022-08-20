@@ -9,8 +9,10 @@ spec:
     repoURL: 'shake@git.sh4ke.rocks:sh4ke/k8s-projects.git'
     path: openstack-cinder-csi
     targetRevision: HEAD
-    plugin:
-      name: kustomized-helm
+    helm:
+      valueFiles:
+        - values.yaml
+        - wavestack.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: openstack-cinder-csi
