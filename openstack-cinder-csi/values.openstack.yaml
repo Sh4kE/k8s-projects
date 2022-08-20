@@ -1,8 +1,5 @@
 openstack-cinder-csi:
   secret:
-    enabled: true
-    create: true
-    name: cinder-csi-cloud-config
     data:
       cloud-config: |-
         [Global]
