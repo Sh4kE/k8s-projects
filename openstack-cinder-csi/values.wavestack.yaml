@@ -6,7 +6,7 @@ openstack-cinder-csi:
         auth-url="https://api.wavestack.de:5000/v3"
         username="nn-mwittig"
         user-domain-name="noris.de"
-        password="***REMOVED***"
+        password=""
         tenant-id=d4a45e2b58204450933dbb25587dfc84
         tenant-name=nn-mwittig
         tenant-domain-id=736f42e6197e4805b707099acfbc28ac
