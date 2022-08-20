@@ -12,7 +12,7 @@ spec:
     helm:
       valueFiles:
         - values.yaml
-        - wavestack.yaml
+        - values.wavestack.yaml
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: openstack-cinder-csi
