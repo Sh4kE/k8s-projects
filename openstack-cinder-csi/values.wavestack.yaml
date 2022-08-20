@@ -1,7 +1,8 @@
 openstack-cinder-csi:
   secret:
     data:
-      cloud-config: |-
+      # TODO: replace cloud.conf with cloud-config in actual secret
+      cloud.conf: |-
         [Global]
         auth-url="https://api.wavestack.de:5000/v3"
         username="nn-mwittig"

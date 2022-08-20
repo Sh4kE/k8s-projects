@@ -1,7 +1,8 @@
 openstack-cinder-csi:
   secret:
     data:
-      cloud-config: |-
+      # TODO: replace cloud.conf with cloud-config in actual secret
+      cloud.conf: |-
         [Global]
         auth-url="https://de-nbg6-1.noris.cloud:5000/v3"
         username="mwittig"
