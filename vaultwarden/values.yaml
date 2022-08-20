@@ -6,13 +6,13 @@ vaultwarden:
   env:
     SIGNUPS_VERIFY: true
     ADMIN_TOKEN: <admin-token>
-    SMTP_HOST: <smtp-host>
-    SMTP_FROM: noreply@sh4ke.rocks
-    SMTP_FROM_NAME: Vaultwarden
-    SMTP_SECURITY: starttls # ("starttls", "force_tls", "off") Enable a secure connection. Default is "starttls" (Explicit - ports 587 or 25), "force_tls" (Implicit - port 465) or "off", no encryption (port 25)
-    SMTP_PORT: 587          # Ports 587 (submission) and 25 (smtp) are standard without encryption and with encryption via STARTTLS (Explicit TLS). Port 465 is outdated and used with Implicit TLS.
-    SMTP_USERNAME: <smtp-username>
-    SMTP_PASSWORD: <smtp-password>
+    # SMTP_HOST: <smtp-host>
+    # SMTP_FROM: noreply@sh4ke.rocks
+    # SMTP_FROM_NAME: Vaultwarden
+    # SMTP_SECURITY: starttls # ("starttls", "force_tls", "off") Enable a secure connection. Default is "starttls" (Explicit - ports 587 or 25), "force_tls" (Implicit - port 465) or "off", no encryption (port 25)
+    # SMTP_PORT: 587          # Ports 587 (submission) and 25 (smtp) are standard without encryption and with encryption via STARTTLS (Explicit TLS). Port 465 is outdated and used with Implicit TLS.
+    # SMTP_USERNAME: <smtp-username>
+    # SMTP_PASSWORD: <smtp-password>
     DATABASE_URL: mysql://<username>:<password>@vaultwarden-mariadb:3306/<database>
   ingress:
     main:
