@@ -5,13 +5,6 @@ vault:
       ingressClassName: nginx
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
-      hosts:
-        - host: vault.k3s.sh4ke.rocks
-          paths: []
-      tls:
-        - secretName: vault-k3s-sh4ke-rocks
-          hosts:
-            - vault.k3s.sh4ke.rocks
     dataStorage:
       storageClass: csi-cinder-sc-delete-all-zones
       size: 2Gi

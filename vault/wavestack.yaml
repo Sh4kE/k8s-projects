@@ -1,0 +1,10 @@
+vault:
+  server:
+    ingress:
+      hosts:
+        - host: vault.ws.sh4ke.rocks
+          paths: []
+      tls:
+        - secretName: vault-ws-sh4ke-rocks
+          hosts:
+            - vault.ws.sh4ke.rocks
