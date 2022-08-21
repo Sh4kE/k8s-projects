@@ -8,3 +8,5 @@ vault:
         - secretName: vault-ws-sh4ke-rocks
           hosts:
             - vault.ws.sh4ke.rocks
+    auditStorage:
+      enabled: true
