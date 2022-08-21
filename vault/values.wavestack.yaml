@@ -9,4 +9,4 @@ vault:
           hosts:
             - vault.ws.sh4ke.rocks
     auditStorage:
-      enabled: true
+      enabled: false
