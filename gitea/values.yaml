@@ -1,7 +1,7 @@
 gitea:
   service:
     ssh:
-      type: loadBalancer
+      type: LoadBalancer
       port: 2222
 
   ingress:
