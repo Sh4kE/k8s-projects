@@ -27,22 +27,22 @@ gitea:
       password: <giteaAdminPassword>
       email: "michael.wittig@posteo.de"
 
-  config:
-    APP_NAME: "Gitea: This Is Why We Don't Push To Production On Fridays"
-    RUN_MODE: prod
-    server:
-      SSH_PORT: 2222
-    picture:
-      DISABLE_GRAVATAR: true
-    security:
-      PASSWORD_COMPLEXITY: spec
-      MIN_PASSWORD_LENGTH: 8
-    service:
-      DISABLE_REGISTRATION: true
-      DEFAULT_KEEP_EMAIL_PRIVATE: true
-      DEFAULT_ORG_VISIBILITY: private
-      DEFAULT_USER_IS_RESTRICTED: true
-      REQUIRE_SIGNIN_VIEW: true
+    config:
+      APP_NAME: "Gitea: This Is Why We Don't Push To Production On Fridays"
+      RUN_MODE: prod
+      server:
+        SSH_PORT: 2222
+      picture:
+        DISABLE_GRAVATAR: true
+      security:
+        PASSWORD_COMPLEXITY: spec
+        MIN_PASSWORD_LENGTH: 8
+      service:
+        DISABLE_REGISTRATION: true
+        DEFAULT_KEEP_EMAIL_PRIVATE: true
+        DEFAULT_ORG_VISIBILITY: private
+        DEFAULT_USER_IS_RESTRICTED: true
+        REQUIRE_SIGNIN_VIEW: true
 
   postgresql:
     global:
