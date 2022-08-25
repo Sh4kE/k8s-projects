@@ -1,0 +1,15 @@
+gitea:
+  service:
+    ssh:
+      loadBalancerIP: 213.95.155.192
+
+  ingress:
+    hosts:
+      - host: gitea.k3s.sh4ke.rocks
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: gitea-k3s-sh4ke-rocks-tls
+        hosts:
+          - gitea.k3s.sh4ke.rocks
