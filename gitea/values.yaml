@@ -1,5 +1,6 @@
 gitea:
-  rootless: true
+  image:
+    rootless: true
 
   service:
     ssh:
