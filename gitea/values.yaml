@@ -1,4 +1,6 @@
 gitea:
+  rootless: true
+
   service:
     ssh:
       type: LoadBalancer
