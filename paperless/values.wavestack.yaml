@@ -22,21 +22,21 @@ paperless:
   persistence:
     data:
       enabled: true
-      storageClass: csi-cinder-sc-delete-all-zones
+      storageClass: nfs-csi
       size: 1Gi
     media:
       enabled: true
-      storageClass: csi-cinder-sc-delete-all-zones
+      storageClass: nfs-csi
       size: 8Gi
     consume:
       enabled: true
-      storageClass: csi-cinder-sc-delete-all-zones
+      storageClass: nfs-csi
       size: 1Gi
     export:
       enabled: true
-      storageClass: csi-cinder-sc-delete-all-zones
+      storageClass: nfs-csi
       size: 1Gi
 
     primary:
       persistence:
-        storageClass: csi-cinder-sc-delete-all-zones
+        storageClass: nfs-csi
