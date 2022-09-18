@@ -37,6 +37,7 @@ paperless:
       storageClass: nfs-csi
       size: 1Gi
 
+  postgresql:
     primary:
       persistence:
         storageClass: nfs-csi
