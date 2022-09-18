@@ -1,7 +1,7 @@
-csi-driver-nfs:
-  controller:
-    nodeSelector:
-      nfs-backup-enabled: "true"
-  node:
-    nodeSelector:
-      nfs-backup-enabled: "true"
+# csi-driver-nfs:
+#   controller:
+#     nodeSelector:
+#       nfs-backup-enabled: "true"
+#   node:
+#     nodeSelector:
+#       nfs-backup-enabled: "true"
