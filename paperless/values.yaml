@@ -80,3 +80,8 @@ paperless:
         enabled: true
         accessModes:
           - ReadWriteOnce
+
+      startupProbe:
+        enabled: true
+        failureThreshold: 30
+        periodSeconds: 10
