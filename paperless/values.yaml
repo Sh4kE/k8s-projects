@@ -37,9 +37,6 @@ paperless:
     PAPERLESS_TIME_ZONE: Europe/Berlin
     # -- Database
     PAPERLESS_DBHOST: paperless-ng-postgresql
-    # PAPERLESS_DBNAME: <dbname>
-    # PAPERLESS_DBUSER: <dbusername>
-    # PAPERLESS_DBPASS: <dbpassword>
     # Tika + Gotenberg
     PAPERLESS_TIKA_ENABLED: 1
     PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-ng-gotenberg:3000
@@ -50,13 +47,9 @@ paperless:
     PAPERLESS_CONSUMER_RECURSIVE: 1
 
     PAPERLESS_ENABLE_UPDATE_CHECK: true
-    # PAPERLESS_SECRET_KEY: <secretKey>
     PAPERLESS_URL: https://paperless.k3s.sh4ke.rocks
 
-    # PAPERLESS_ADMIN_USER: <paperlessAdminUser>
-    # PAPERLESS_ADMIN_PASSWORD: <paperlessAdminPassword>
     PAPERLESS_ADMIN_MAIL: "michael.wittig@posteo.de"
-
   redis:
     enabled: true
     master:
