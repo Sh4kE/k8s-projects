@@ -9,6 +9,8 @@ paperless:
     controller:
       annotations:
         avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
+    annotations:
+      avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
     secret:
       PAPERLESS_DBNAME: <dbname>
       PAPERLESS_DBUSER: <dbusername>
