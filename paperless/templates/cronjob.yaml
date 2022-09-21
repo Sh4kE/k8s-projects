@@ -25,6 +25,10 @@ spec:
                 name: media-backup
               - mountPath: /usr/src/paperless/media
                 name: media
+              - mountPath: /usr/src/paperless/consume
+                name: consume
+              - mountPath: /usr/src/paperless/export
+                name: export
               - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
                 name: kube-api-access-cvgls
                 readOnly: true
@@ -41,6 +45,12 @@ spec:
             - name: media
               persistentVolumeClaim:
                 claimName: paperless-ng-media
+            - name: consume
+              persistentVolumeClaim:
+                claimName: paperless-ng-consume
+            - name: export
+              persistentVolumeClaim:
+                claimName: paperless-ng-export
             - name: kube-api-access-cvgls
               projected:
                 defaultMode: 420
