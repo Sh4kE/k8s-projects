@@ -9,6 +9,13 @@ paperless:
     controller:
       annotations:
         avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
+    secret:
+      PAPERLESS_DBNAME: <dbname>
+      PAPERLESS_DBUSER: <dbusername>
+      PAPERLESS_DBPASS: <dbpassword>
+      PAPERLESS_SECRET_KEY: <secretKey>
+      PAPERLESS_ADMIN_USER: <paperlessAdminUser>
+      PAPERLESS_ADMIN_PASSWORD: <paperlessAdminPassword>
 
   # -- See the following files for additional environment variables:
   # https://github.com/jonaswinkler/paperless-ng/tree/master/docker/compose/
@@ -46,6 +53,8 @@ paperless:
     PAPERLESS_ADMIN_USER: <paperlessAdminUser>
     PAPERLESS_ADMIN_PASSWORD: <paperlessAdminPassword>
     PAPERLESS_ADMIN_MAIL: "michael.wittig@posteo.de"
+#  envFrom:
+#    PAPERLESS_DBPASS:
 
   redis:
     enabled: true
