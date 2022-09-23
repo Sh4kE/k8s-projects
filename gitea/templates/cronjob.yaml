@@ -44,4 +44,5 @@ spec:
             - name: data-gitea-backup
               persistentVolumeClaim:
                 claimName: data-gitea-0-backup
+          restartPolicy: OnFailure
 
