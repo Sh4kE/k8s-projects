@@ -8,6 +8,16 @@ spec:
     spec:
       template:
         spec:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+                - labelSelector:
+                    matchExpressions:
+                      - key: statefulset.kubernetes.io/pod-name
+                        operator: In
+                        values:
+                          - gitea-postgresql-0
+                  topologyKey: kubernetes.io/hostname
           containers:
           - name: gitea-backup
             env:
@@ -28,9 +38,9 @@ spec:
             image: gitea/gitea:1.16.8-rootless
             imagePullPolicy: IfNotPresent
             command:
-            - /bin/sh
-            - -c
-            - gitea dump -c /data/gitea/conf/app.ini
+              - /bin/sh
+              - -c
+              - gitea dump -c /data/gitea/conf/app.ini
             volumeMounts:
             - mountPath: /data
               readOnly: true
