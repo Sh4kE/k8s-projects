@@ -111,13 +111,10 @@ paperless:
     - mountPath: /usr/src/paperless/data
       name: data
     - mountPath: /usr/src/paperless/consume
-      readOnly: true
       name: consume
     - mountPath: /usr/src/paperless/export
-      readOnly: true
       name: export
     - mountPath: /usr/src/paperless/media
-      readOnly: true
       name: media
 
   postgresql:
