@@ -120,9 +120,6 @@ paperless:
     - mountPath: /usr/src/paperless/media
       readOnly: true
       name: media
-    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
-      readOnly: true
-      name: kube-api-access-kpfh9
 
   postgresql:
     enabled: true
