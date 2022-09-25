@@ -46,6 +46,8 @@ gitea:
         DEFAULT_ORG_VISIBILITY: private
         DEFAULT_USER_IS_RESTRICTED: true
         REQUIRE_SIGNIN_VIEW: true
+      log:
+        LEVEL: Critical
 
   postgresql:
     global:
