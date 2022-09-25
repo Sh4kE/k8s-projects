@@ -9,10 +9,6 @@ paperless:
     controller:
       annotations:
         avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
-      volumes:
-        - name: data-backup
-          persistentVolumeClaim:
-            claimName: paperless-ng-data-backup
     global:
       annotations:
         avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
@@ -63,6 +59,11 @@ paperless:
       replicaCount: 0
       persistence:
         enabled: false
+
+  persistence:
+    - name: data-backup
+      persistentVolumeClaim:
+        claimName: paperless-ng-data-backup
 
   additionalContainers: 
   - env:
