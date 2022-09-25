@@ -10,8 +10,9 @@ paperless:
       annotations:
         avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
       volumes:
-        - mountPath: /usr/src/paperless/data-backup
-          name: data-backup
+        - name: data-backup
+          persistentVolumeClaim:
+            claimName: paperless-ng-data-backup
     global:
       annotations:
         avp.kubernetes.io/path: "kv/data/k3s/argocd/paperless"
