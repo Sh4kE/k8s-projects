@@ -17,17 +17,10 @@ gitea:
   persistence:
     storageClass: csi-cinder-sc-delete-all-zones
 
-  commonAnnotations:
-    avp.kubernetes.io/path: "kv/data/k3s/argocd/gitea"
-
-  statefulset:
-    annotations:
-      avp.kubernetes.io/path: "kv/data/k3s/argocd/gitea"
-
   gitea:
     admin:
       username: gitea_admin
-      password: <giteaAdminPassword>
+      password: <kv/data/k3s/argocd/gitea:#giteaAdminPassword>
       email: "michael.wittig@posteo.de"
 
     config:
@@ -52,7 +45,7 @@ gitea:
   postgresql:
     global:
       postgresql:
-        postgresqlPassword: <giteaPostgresPassword>
+        postgresqlPassword: <kv/data/k3s/argocd/gitea:#giteaPostgresPassword>
 
     persistence:
       size: 1Gi
