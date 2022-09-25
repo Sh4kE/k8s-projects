@@ -98,7 +98,7 @@ paperless:
     envFrom:
     - secretRef:
         name: paperless-ng
-    image: ghcr.io/paperless-ngx/paperless-ngx:{{ $.Chart.Version }}
+    image: ghcr.io/paperless-ngx/paperless-ngx:1.7.1
     command: ["/bin/sh"]
     args: ["-c", "while true; do document_exporter /usr/src/paperless/data-backup; sleep 86400;done"]
     imagePullPolicy: IfNotPresent
