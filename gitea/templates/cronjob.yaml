@@ -16,7 +16,7 @@ spec:
                       - key: statefulset.kubernetes.io/pod-name
                         operator: In
                         values:
-                          - gitea-postgresql-0
+                          - gitea-0
                   topologyKey: kubernetes.io/hostname
           containers:
           - name: gitea-backup
