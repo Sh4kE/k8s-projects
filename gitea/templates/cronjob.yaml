@@ -40,7 +40,7 @@ spec:
             command:
               - /bin/sh
               - -c
-              - mkdir -p /tmp/gitea && gitea dump -c /data/gitea/conf/app.ini
+              - mkdir -p /tmp/gitea; gitea dump -c /data/gitea/conf/app.ini
             volumeMounts:
             - mountPath: /data
               readOnly: true
