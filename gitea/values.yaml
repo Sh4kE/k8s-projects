@@ -20,7 +20,7 @@ gitea:
   gitea:
     admin:
       username: gitea_admin
-      password: <path:kv/data/k3s/argocd/gitea:#giteaAdminPassword>
+      password: <path:kv/data/k3s/argocd/gitea#giteaAdminPassword>
       email: "michael.wittig@posteo.de"
 
     config:
@@ -45,7 +45,7 @@ gitea:
   postgresql:
     global:
       postgresql:
-        postgresqlPassword: <path:kv/data/k3s/argocd/gitea:#giteaPostgresPassword>
+        postgresqlPassword: <path:kv/data/k3s/argocd/gitea#giteaPostgresPassword>
 
     persistence:
       size: 1Gi
