@@ -61,9 +61,9 @@ paperless:
         enabled: false
 
   persistence:
-    - name: data-backup
-      persistentVolumeClaim:
-        claimName: paperless-ng-data-backup
+    data-backup:
+      enabled: true
+      existingClaim: paperless-ng-data-backup
 
   additionalContainers: 
   - env:
