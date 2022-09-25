@@ -109,7 +109,6 @@ paperless:
     - mountPath: /usr/src/paperless/data-backup
       name: data-backup
     - mountPath: /usr/src/paperless/data
-      readOnly: true
       name: data
     - mountPath: /usr/src/paperless/consume
       readOnly: true
