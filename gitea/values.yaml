@@ -50,3 +50,24 @@ gitea:
     persistence:
       size: 1Gi
       storageClass: csi-cinder-sc-delete-all-zones
+
+backup:
+  securityContext:
+    runAsUser: 1000
+  schedule: "0 6 * * *"
+  shellCommand: mkdir -p /tmp/gitea && gitea dump -c /data/gitea/conf/app.ini --type tar.gz -f /mnt/gitea-backup/gitea-os-$(date +%s)
+  volumeMounts:
+    - mountPath: /mnt/gitea-backup
+      name: data-gitea-0-backup
+    - mountPath: /data
+      name: gitea-data
+  permissions:
+    dirs: /mnt/gitea-backup
+    owner: "1000"
+    group: "1000"
+  matchExpressions:
+    - key: statefulset.kubernetes.io/pod-name
+      operator: In
+      values:
+        - gitea-0
+  image: gitea/gitea:1.16.8-rootless
