@@ -21,4 +21,4 @@ backup:
         claimName: data-gitea-0
     - name: data-gitea-0-backup
       persistentVolumeClaim:
-        claimName: data-gitea-0
+        claimName: data-gitea-0-backup

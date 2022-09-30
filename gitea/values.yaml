@@ -60,6 +60,7 @@ backup:
     - mountPath: /mnt/gitea-backup
       name: data-gitea-0-backup
     - mountPath: /data
+      readOnly: true
       name: gitea-data
   permissions:
     dirs: /mnt/gitea-backup
