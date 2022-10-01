@@ -71,4 +71,4 @@ backup:
       operator: In
       values:
         - gitea-0
-  image: gitea/gitea:1.16.8-rootless
+  image: gitea/gitea:1.17.2-rootless
