@@ -37,6 +37,7 @@ paperless:
       storageClass: csi-cinder-sc-delete-all-zones
       size: 1Gi
 
+  postgresql:
     primary:
       persistence:
         storageClass: csi-cinder-sc-delete-all-zones
