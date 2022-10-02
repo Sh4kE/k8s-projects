@@ -8,7 +8,7 @@ metadata:
   namespace: argocd
 spec:
   rules:
-  - host: argocd.k3s.sh4ke.rocks
+  - host: argocd.os.sh4ke.rocks
     http:
       paths:
       - backend:
@@ -20,5 +20,5 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
-    - argocd.k3s.sh4ke.rocks
-    secretName: argocd-k3s-sh4ke-rocks-tls
+    - argocd.os.sh4ke.rocks
+    secretName: argocd-os-sh4ke-rocks-tls
