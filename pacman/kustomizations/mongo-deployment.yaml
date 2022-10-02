@@ -1,9 +1,0 @@
-kind: Deployment
-apiVersion: v1
-metadata:
-  name: pacman-mongo-backend
-spec:
-  template:
-    spec:
-      nodeSelector:
-        nfs-backup-enabled: "true"
