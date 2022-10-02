@@ -1,6 +1,6 @@
 paperless:
   env:
-    PAPERLESS_URL: https://paperless.ws.sh4ke.rocks
+    PAPERLESS_URL: https://paperless.os.sh4ke.rocks
 
   ingress:
     main:
@@ -10,14 +10,14 @@ paperless:
         nginx.ingress.kubernetes.io/proxy-body-size: 50m
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
       hosts:
-        - host: paperless.k3s.sh4ke.rocks
+        - host: paperless.os.sh4ke.rocks
           paths:
             - path: /
               pathType: Prefix
       tls:
-        - secretName: paperless-k3s-sh4ke-rocks-tls
+        - secretName: paperless-os-sh4ke-rocks-tls
           hosts:
-            - paperless.k3s.sh4ke.rocks
+            - paperless.os.sh4ke.rocks
 
   persistence:
     data:
