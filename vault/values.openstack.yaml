@@ -2,9 +2,9 @@ vault:
   server:
     ingress:
       hosts:
-        - host: vault.k3s.sh4ke.rocks
+        - host: vault.os.sh4ke.rocks
           paths: []
       tls:
-        - secretName: vault-k3s-sh4ke-rocks
+        - secretName: vault-os-sh4ke-rocks
           hosts:
-            - vault.k3s.sh4ke.rocks
+            - vault.os.sh4ke.rocks
