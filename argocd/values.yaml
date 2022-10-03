@@ -5,9 +5,13 @@ argo-cd:
   controller:
     replicas: 1
 
+
   server:
     replicas: 2
     configEnabled: true
+    ingress:
+      annotations:
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     config:
       sshConfigs: |
         Host gitea.os.sh4ke.rocks
