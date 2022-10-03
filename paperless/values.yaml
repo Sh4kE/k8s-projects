@@ -6,7 +6,7 @@
 #
 paperless:
   image:
-    tag: 1.9.2
+    tag: {{ .Chart.appVersion }}
   common:
     controller:
       annotations:
@@ -100,7 +100,7 @@ paperless:
     envFrom:
     - secretRef:
         name: paperless-ng
-    image: ghcr.io/paperless-ngx/paperless-ngx:1.9.2
+    image: ghcr.io/paperless-ngx/paperless-ngx:{{ .Chart.appVersion }}
     command: ["/bin/sh"]
     args: ["-c", "while true; do document_exporter /usr/src/paperless/data-backup; sleep 86400;done"]
     imagePullPolicy: IfNotPresent
