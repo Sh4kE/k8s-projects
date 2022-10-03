@@ -1,0 +1,4 @@
+global:
+  tld: "sh4ke.rocks"
+  subdomain: "os"
+  vault_url: "https://vault.os.sh4ke.rocks"

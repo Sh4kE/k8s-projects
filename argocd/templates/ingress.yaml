@@ -8,7 +8,7 @@ metadata:
   namespace: argocd
 spec:
   rules:
-  - host: argocd.ws.sh4ke.rocks
+  - host: argocd.{{ .Values.global.subdomain }}.{{ .Values.global.tld }}
     http:
       paths:
       - backend:
@@ -20,5 +20,5 @@ spec:
         pathType: ImplementationSpecific
   tls:
   - hosts:
-    - argocd.ws.sh4ke.rocks
-    secretName: argocd-ws-sh4ke-rocks-tls
+    - argocd.{{ .Values.global.subdomain }}.{{ .Values.global.tld }}
+    secretName: argocd-{{ .Values.global.subdomain }}-{{ .Values.global.tld | replace "." "-" }}-tls
