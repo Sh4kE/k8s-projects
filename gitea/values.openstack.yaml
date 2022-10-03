@@ -5,11 +5,12 @@ gitea:
 
   ingress:
     hosts:
-      - host: gitea.k3s.sh4ke.rocks
+      - host: gitea.os.sh4ke.rocks
         paths:
           - path: /
             pathType: Prefix
     tls:
-      - secretName: gitea-k3s-sh4ke-rocks-tls
+      - secretName: gitea-os-sh4ke-rocks-tls
         hosts:
-          - gitea.k3s.sh4ke.rocks
+          - gitea.os.sh4ke.rocks
+

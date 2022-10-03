@@ -14,11 +14,3 @@ gitea:
         hosts:
           - gitea.ws.sh4ke.rocks
 
-backup:
-  volumes:
-    - name: gitea-data
-      persistentVolumeClaim:
-        claimName: data-gitea-0
-    - name: data-gitea-0-backup
-      persistentVolumeClaim:
-        claimName: data-gitea-0-backup
