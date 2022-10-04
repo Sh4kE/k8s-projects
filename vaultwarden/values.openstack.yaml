@@ -2,7 +2,7 @@ vaultwarden:
   ingress:
     main:
       hosts:
-        - host: vaultwarden.k3s.sh4ke.rocks
+        - host: vaultwarden.os.sh4ke.rocks
           paths:
             - path: /
               pathType: Prefix
@@ -17,6 +17,6 @@ vaultwarden:
               service:
                 port: 3012
       tls:
-        - secretName: vaultwarden-k3s-sh4ke-rocks-tls
+        - secretName: vaultwarden-os-sh4ke-rocks-tls
           hosts:
-            - vaultwarden.k3s.sh4ke.rocks
+            - vaultwarden.os.sh4ke.rocks
