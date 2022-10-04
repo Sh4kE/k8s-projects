@@ -66,6 +66,9 @@ paperless:
     data-backup:
       enabled: true
       existingClaim: paperless-ng-data-backup
+    consume-nfs:
+      enabled: true
+      existingClaim: paperless-ng-consume-nfs
 
   additionalContainers: 
   - env:
@@ -118,6 +121,18 @@ paperless:
       name: export
     - mountPath: /usr/src/paperless/media
       name: media
+  - image: eeacms/rsync:2.4
+    command: ["/bin/sh"]
+    args: ["-c", "while true; do sleep 86400;done"]
+    imagePullPolicy: IfNotPresent
+    name: paperless-ng-consume-nfs
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /usr/src/paperless/consume
+      name: consume
+    - mountPath: /usr/src/paperless/consume-nfs
+      name: consume-nfs
 
   postgresql:
     enabled: true

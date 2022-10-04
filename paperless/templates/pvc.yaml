@@ -12,3 +12,18 @@ spec:
     requests:
       storage: {{ .Values.paperless.persistence.data.size }}
   storageClassName: nfs-csi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  finalizers:
+  - kubernetes.io/pvc-protection
+  name: paperless-ng-consume-nfs
+  namespace: paperless-ng
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.paperless.persistence.data.size }}
+  storageClassName: nfs-csi
