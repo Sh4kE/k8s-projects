@@ -1,4 +1,5 @@
 global:
+  tld: "sh4ke.rocks"
   domain: "argocd.ws.sh4ke.rocks"
   vault_url: "https://vault.ws.sh4ke.rocks"
 
