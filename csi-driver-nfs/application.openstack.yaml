@@ -1,22 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd
+  name: csi-driver-nfs
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: 'shake@git.sh4ke.rocks:sh4ke/k8s-projects.git'
-    path: argocd/manifests
+    repoURL: 'ssh://git@gitea.ws.sh4ke.rocks:2222/sh4ke/k8s-projects.git'
+    path: csi-driver-nfs
     targetRevision: HEAD
-    directory:
-      recurse: true
-      jsonnet: {}
-    plugin:
-      name: argocd-vault-plugin
+    helm:
+      valueFiles:
+        - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: argocd
+    namespace: csi-driver-nfs
   syncPolicy:
     automated:
       selfHeal: true
