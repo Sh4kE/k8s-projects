@@ -1,0 +1,59 @@
+---
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ include "backup.fullname" . }}
+  labels:
+    {{- include "backup.labels" . | nindent 4 }}
+spec:
+  schedule: {{ .Values.schedule | quote }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          name: {{ include "backup.fullname" . }}
+        spec:
+          {{- if .Values.matchExpressions }}
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                    {{- toYaml .Values.matchExpressions | nindent 18 }}
+                topologyKey: kubernetes.io/hostname
+          {{- end }}
+          {{- if .Values.permissions }}
+          initContainers:
+          - name: fix-permissions
+            securityContext:
+              runAsUser: 0
+            image: busybox
+            command: ["sh", "-c", "chown {{ .Values.permissions.owner }}:{{ .Values.permissions.group }} {{ .Values.permissions.dirs }}"]
+            volumeMounts:
+              {{- toYaml .Values.volumeMounts | nindent 12 }}
+          {{- end }}
+          containers:
+          - name: {{ .Chart.Name }}
+            {{- if .Values.securityContext }}
+            securityContext:
+              {{- toYaml .Values.securityContext | nindent 14 }}
+            {{- end }}
+            {{- if .Values.env }}
+            env:
+              {{- toYaml .Values.env | nindent 14 }}
+            {{- end }}
+            {{- if .Values.envFrom }}
+            envFrom:
+              {{- toYaml .Values.envFrom | nindent 14 }}
+            {{- end }}
+            image: {{ .Values.image }}
+            command:
+            - sh
+            - -c
+            - {{ .Values.shellCommand | quote }}
+            volumeMounts:
+              {{- toYaml .Values.volumeMounts | nindent 12 }}
+          volumes:
+          {{- toYaml .Values.volumes | nindent 10 }}
+          restartPolicy: OnFailure
+          dnsPolicy: ClusterFirst
