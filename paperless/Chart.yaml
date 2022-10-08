@@ -32,3 +32,6 @@ dependencies:
 - name: tika
   version: 2.2.1
   repository: https://apache.jfrog.io/artifactory/tika
+- name: backup
+  version: 0.3.0
+  repository: https://gitea.os.sh4ke.rocks/api/packages/sh4ke/helm
