@@ -26,7 +26,7 @@ dependencies:
 - name: vaultwarden
   version: 5.3.2
   repository: https://k8s-at-home.com/charts/
-- name: backup-mariadb
+- name: backup
   version: 0.3.0
   repository: https://gitea.os.sh4ke.rocks/api/packages/sh4ke/helm
 # - name: backup-vaultwarden
