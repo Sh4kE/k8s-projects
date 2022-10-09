@@ -41,7 +41,10 @@ vaultwarden:
 backup-mariadb:
   schedule: "10 4 * * *"
   image: docker.io/bitnami/mariadb:10.6.8-debian-11-r9
-  shellCommand: mysqldump -u ${MARIADB_USER} -p${MARIADB_PASSWORD} -h vaultwarden-mariadb ${MARIADB_DATABASE} > /backup/vaultwarden_dump.$(date +"%d-%m-%Y").sql
+  shellCommand: | 
+    mysqldump -u ${MARIADB_USER} -p${MARIADB_PASSWORD} -h vaultwarden-mariadb ${MARIADB_DATABASE} > /backup/vaultwarden_dump.$(date +"%d-%m-%Y-%H-%M").sql
+    cd /backup
+    ls -tr | head -n -7 | xargs -r rm -f
   env:
     - name: MARIADB_ROOT_PASSWORD
       valueFrom:
