@@ -30,6 +30,6 @@ dependencies:
   alias: backup-mariadb
   version: 0.3.0
   repository: https://gitea.os.sh4ke.rocks/api/packages/sh4ke/helm
-# - name: backup-vaultwarden
-#   version: 0.3.0
-#   repository: https://gitea.os.sh4ke.rocks/api/packages/sh4ke/helm
+- name: backup-vaultwarden
+  version: 0.3.0
+  repository: https://gitea.os.sh4ke.rocks/api/packages/sh4ke/helm

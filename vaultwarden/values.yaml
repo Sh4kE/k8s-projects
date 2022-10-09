@@ -44,7 +44,7 @@ backup-mariadb:
   shellCommand: | 
     mysqldump -u ${MARIADB_USER} -p${MARIADB_PASSWORD} -h vaultwarden-mariadb ${MARIADB_DATABASE} > /backup/vaultwarden_dump.$(date +"%d-%m-%Y-%H-%M").sql
     cd /backup
-    ls -tr | head -n -7 | xargs -r rm -f
+    ls -tr vaultwarden_dump.* | head -n -7 | xargs -r rm -f
   env:
     - name: MARIADB_ROOT_PASSWORD
       valueFrom:
@@ -88,3 +88,28 @@ backup-mariadb:
     dirs: /backup
     owner: "1001"
     group: "1001"
+
+backup-vaultwarden:
+  schedule: "10 4 * * *"
+  image: alpine:latest
+  shellCommand: | 
+    tar czf /backup/vaultwarden_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /config 
+    cd /backup
+    ls -tr vaultwarden_data.* | head -n -7 | xargs -r rm -f
+  volumeMounts:
+    - mountPath: /config
+      name: config
+    - mountPath: /backup
+      name: mariadb-backup
+  volumes:
+    - name: config
+      persistentVolumeClaim:
+        claimName: vaultwarden-config
+    - name: mariadb-backup
+      persistentVolumeClaim:
+        claimName: mariadb-backup
+  matchExpressions:
+    - key: app.kubernetes.io/name
+      operator: In
+      values:
+        - vaultwarden 
