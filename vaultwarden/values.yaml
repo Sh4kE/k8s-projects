@@ -55,6 +55,8 @@ backup-mariadb:
         secretKeyRef:
           key: mariadb-password
           name: vaultwarden-mariadb
+    - name: MARIADB_DATABASE
+      value: whioslwdovhmdfzy
   volumeMounts:
     - mountPath: /bitnami/mariadb
       name: data
