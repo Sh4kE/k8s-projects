@@ -37,3 +37,49 @@ vaultwarden:
       persistence:
         storageClass: csi-cinder-sc-delete-all-zones
         storageClassBackup: nfs-csi
+
+backup-mariadb:
+  schedule: "10 4 * * *"
+  image: docker.io/bitnami/mariadb:10.6.8-debian-11-r9
+  shellCommand: mysqldump -u ${MARIADB_USER} -p${MARIADB_PASSWORD} ${MARIADB_DATABASE} > /backup/vaultwarden_dump.$(date +"%d-%m-%Y").sql
+  env:
+    - name: MARIADB_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: mariadb-root-password
+          name: vaultwarden-mariadb
+    - name: MARIADB_USER
+      value: tjllrhhdxmpgxxee
+    - name: MARIADB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: mariadb-password
+          name: vaultwarden-mariadb
+  volumeMounts:
+    - mountPath: /bitnami/mariadb
+      name: data
+    - mountPath: /backup
+      name: mariadb-backup
+    - mountPath: /opt/bitnami/mariadb/conf/my.cnf
+      name: config
+      subPath: my.cnf
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: data-vaultwarden-mariadb-0
+    - name: mariadb-backup
+      persistentVolumeClaim:
+        claimName: mariadb-backup
+    - configMap:
+        defaultMode: 420
+        name: vaultwarden-mariadb
+      name: config
+  matchExpressions:
+    - key: app.kubernetes.io/name
+      operator: In
+      values:
+        - mariadb
+  permissions:
+    dirs: /backup
+    owner: "1001"
+    group: "1001"
