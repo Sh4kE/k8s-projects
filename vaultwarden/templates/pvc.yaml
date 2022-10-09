@@ -9,9 +9,9 @@ metadata:
     app.kubernetes.io/name: mariadb
   name: mariadb-backup
 spec:
-  accessModes: {{ .Values.mariadb.primary.persistence.accessModes }}
+  accessModes: {{ .Values.vaultwarden.mariadb.primary.persistence.accessModes }}
   volumeMode: Filesystem
-  storageClassName: {{ .Values.mariadb.primary.persistence.storageClassBackup }}
+  storageClassName: {{ .Values.vaultwarden.mariadb.primary.persistence.storageClassBackup }}
   resources:
     requests:
-      storage: {{ .Values.mariadb.primary.persistence.size }}
+      storage: {{ .Values.vaultwarden.mariadb.primary.persistence.size }}
