@@ -38,7 +38,7 @@ vaultwarden:
         storageClass: csi-cinder-sc-delete-all-zones
         storageClassBackup: nfs-csi
 
-backup:
+backup-mariadb:
   schedule: "10 4 * * *"
   image: docker.io/bitnami/mariadb:10.6.8-debian-11-r9
   shellCommand: mysqldump -u ${MARIADB_USER} -p${MARIADB_PASSWORD} ${MARIADB_DATABASE} > /backup/vaultwarden_dump.$(date +"%d-%m-%Y").sql
