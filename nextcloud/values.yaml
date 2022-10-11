@@ -32,25 +32,20 @@ nextcloud:
     primary:
       persistence:
         enabled: true
-        storageClass: csi-cinder-sc-delete-all-zones
 
   redis:
     enabled: true
     auth:
       password: <redis_password>
-    global:
-      storageClass: csi-cinder-sc-delete-all-zones
 
   cronjob:
     enabled: true
 
   persistence:
     enabled: true
-    storageClass: csi-cinder-sc-delete-all-zones
 
     nextcloudData:
       enabled: true
-      storageClass: nfs-csi
 
   rbac:
     enabled: true

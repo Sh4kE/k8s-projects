@@ -6,3 +6,18 @@ nextcloud:
           - nextcloud.os.sh4ke.rocks
   nextcloud:
     host: nextcloud.os.sh4ke.rocks
+
+  mariadb:
+    primary:
+      persistence:
+        storageClass: csi-cinder-sc-delete-all-zones
+
+  redis:
+    global:
+      storageClass: csi-cinder-sc-delete-all-zones
+
+  persistence:
+    storageClass: csi-cinder-sc-delete-all-zones
+
+    nextcloudData:
+      storageClass: nfs-csi
