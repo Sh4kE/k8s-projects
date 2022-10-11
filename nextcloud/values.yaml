@@ -38,6 +38,8 @@ nextcloud:
     enabled: true
     auth:
       password: <redis_password>
+    global:
+      storageClass: csi-cinder-sc-delete-all-zones
 
   cronjob:
     enabled: true
