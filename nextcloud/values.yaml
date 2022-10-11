@@ -28,6 +28,9 @@ nextcloud:
 
   mariadb:
     enabled: true
+    auth:
+      username: <path:kv/data/k3s/argocd/nextcloud#mysql_username>
+      username: <path:kv/data/k3s/argocd/nextcloud#mysql_password>
     architecture: standalone
     primary:
       persistence:
