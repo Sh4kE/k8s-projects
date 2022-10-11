@@ -1,0 +1,8 @@
+nextcloud:
+  ingress:
+    tls:
+      - secretName: nextcloud-os-sh4ke-rocks-tls
+        hosts:
+          - nextcloud.os.sh4ke.rocks
+  nextcloud:
+    host: nextcloud.os.sh4ke.rocks

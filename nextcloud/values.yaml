@@ -1,0 +1,56 @@
+nextcloud:
+  deploymentAnnotations:
+    avp.kubernetes.io/path: kv/data/k3s/argocd/nextcloud
+
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+      nginx.ingress.kubernetes.io/proxy-body-size: 4G
+
+  nextcloud:
+    existingSecret:
+      enabled: true
+      secretName: nextcloud-secrets
+      usernameKey: username
+      passwordKey: password
+      tokenKey: serverinfo_token
+
+  externalDatabase:
+    enabled: true
+    type: mysql
+    existingSecret:
+      enabled: true
+      secretName: nextcloud-secrets
+      usernameKey: mysql_username
+      passwordKey: mysql_password
+
+  mariadb:
+    enabled: true
+    architecture: standalone
+    primary:
+      persistence:
+        enabled: true
+        storageClass: csi-cinder-sc-delete-all-zones
+
+  redis:
+    enabled: true
+    auth:
+      password: <redis_password>
+
+  cronjob:
+    enabled: true
+
+  persistence:
+    enabled: true
+    annotations:
+      storageClass: csi-cinder-sc-delete-all-zones
+
+    nextcloudData:
+      enabled: true
+      annotations:
+        storageClass: nfs-csi
+
+  rbac:
+    enabled: true

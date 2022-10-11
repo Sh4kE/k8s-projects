@@ -1,0 +1,8 @@
+nextcloud:
+  ingress:
+    tls:
+      - secretName: nextcloud-ws-sh4ke-rocks-tls
+        hosts:
+          - nextcloud.ws.sh4ke.rocks
+  nextcloud:
+    host: nextcloud.ws.sh4ke.rocks
