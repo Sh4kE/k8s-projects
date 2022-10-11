@@ -17,6 +17,9 @@ nextcloud:
       passwordKey: password
       tokenKey: serverinfo_token
 
+  internalDatabase:
+    enabled: false
+
   externalDatabase:
     enabled: true
     type: mysql
