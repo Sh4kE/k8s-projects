@@ -44,13 +44,11 @@ nextcloud:
 
   persistence:
     enabled: true
-    annotations:
-      storageClass: csi-cinder-sc-delete-all-zones
+    storageClass: csi-cinder-sc-delete-all-zones
 
     nextcloudData:
       enabled: true
-      annotations:
-        storageClass: nfs-csi
+      storageClass: nfs-csi
 
   rbac:
     enabled: true
