@@ -42,7 +42,7 @@ nextcloud:
   redis:
     enabled: true
     auth:
-      password: <redis_password>
+      password: <path:kv/data/k3s/argocd/nextcloud#redis_password>
 
   cronjob:
     enabled: true
