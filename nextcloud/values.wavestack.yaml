@@ -13,6 +13,7 @@ nextcloud:
         storageClass: csi-cinder-sc-delete-all-zones
 
   redis:
+    enabled: false
     global:
       storageClass: nfs-csi
 
