@@ -40,7 +40,7 @@ nextcloud:
         enabled: true
 
   redis:
-    enabled: true
+    enabled: false
     auth:
       password: <path:kv/data/k3s/argocd/nextcloud#redis_password>
 
