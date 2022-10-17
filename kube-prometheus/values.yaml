@@ -2,6 +2,8 @@ kube-prometheus-stack:
   alertmanager:
     ingress:
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
     alertmanagerSpec:
       storage:
         volumeClaimTemplate:
@@ -16,10 +18,14 @@ kube-prometheus-stack:
     adminPassword: <path:kv/data/k3s/argocd/kube-prometheus#grafanaAdminPassword>
     ingress:
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
 
   prometheus:
     ingress:
       enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
     prometheusSpec:
       storage:
         volumeClaimTemplate:
