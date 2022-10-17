@@ -23,6 +23,6 @@ version: 0.0.1
 appVersion: "0.22.0"
 
 dependencies:
-- name: operator-lifecycle-manager
+- name: olm 
   version: 0.22.0
   repository: https://gitea.os.sh4ke.rocks/api/packages/sh4ke/helm

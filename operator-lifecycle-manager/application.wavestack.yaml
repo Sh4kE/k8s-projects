@@ -14,7 +14,7 @@ spec:
         - values.yaml
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: operator-lifecycle-manager
+    namespace: olm
   syncPolicy:
     automated:
       selfHeal: true
