@@ -1,0 +1,34 @@
+kube-prometheus-stack:
+  alertmanager:
+    ingress:
+      hosts:
+        - alertmanager.ws.sh4ke.rocks
+      paths:
+        - /
+      tls:
+        - secretName: alertmanager-ws-sh4ke-rocks-tls
+          hosts:
+          - alertmanager.ws.sh4ke.rocks 
+
+  grafana:
+    ingress:
+      hosts:
+        - grafana.ws.sh4ke.rocks
+      paths:
+        - /
+      tls:
+        - secretName: grafana-ws-sh4ke-rocks-tls
+          hosts:
+          - grafana.ws.sh4ke.rocks 
+
+  prometheus:
+    ingress:
+      hosts:
+        - prometheus.ws.sh4ke.rocks
+      paths:
+        - /
+      tls:
+        - secretName: prometheus-ws-sh4ke-rocks-tls
+          hosts:
+          - prometheus.ws.sh4ke.rocks 
+

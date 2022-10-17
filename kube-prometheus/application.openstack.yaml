@@ -1,17 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prometheus
+  name: gitea
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: 'shake@git.sh4ke.rocks:sh4ke/k8s-projects.git'
+    repoURL: 'ssh://git@gitea.ws.sh4ke.rocks:2222/sh4ke/k8s-projects.git'
     path: kube-prometheus
     targetRevision: HEAD
-    helm:
-      valueFiles:
-        - values.k3s.yaml
+    plugin:
+      name: argocd-vault-plugin-helm
+      env:
+        - name: PLUGIN_PARAMS
+          value: "-f values.yaml -f values.openstack.yaml"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kube-prometheus
@@ -20,4 +22,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - Replace=true    # https://github.com/prometheus-community/helm-charts/issues/1500#issuecomment-968892923

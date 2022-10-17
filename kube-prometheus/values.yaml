@@ -1,0 +1,33 @@
+kube-prometheus-stack:
+  alertmanager:
+    ingress:
+      enabled: true
+    alertmanagerSpec:
+      storage:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: csi-cinder-sc-delete-all-zones
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 2Gi
+            selector: {}
+
+  grafana:
+    adminPassword: <path:kv/data/k3s/argocd/kube-prometheus#grafanaAdminPassword>
+    ingress:
+      enabled: true
+
+  prometheus:
+    ingress:
+      enabled: true
+    prometheusSpec:
+      storage:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: csi-cinder-sc-delete-all-zones
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 2Gi
+            selector: {}
