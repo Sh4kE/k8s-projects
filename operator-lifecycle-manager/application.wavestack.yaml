@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: operator-lifecycle-manager
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'ssh://git@gitea.os.sh4ke.rocks:2222/sh4ke/k8s-projects.git'
+    path: operator-lifecycle-manager
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: operator-lifecycle-manager
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
