@@ -16,6 +16,12 @@ kube-prometheus-stack:
       alertmanagerConfigNamespaceSelector:
         matchLabels:
           alertmanagerconfig: enabled
+      serviceMonitorNamespaceSelector:
+        matchLabels:
+          alertmanagerconfig: enabled
+      podMonitorNamespaceSelector:
+        matchLabels:
+          alertmanagerconfig: enabled
 
   grafana:
     adminPassword: <path:kv/data/k3s/argocd/kube-prometheus#grafanaAdminPassword>
