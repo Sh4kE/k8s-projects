@@ -13,6 +13,9 @@ kube-prometheus-stack:
             resources:
               requests:
                 storage: 2Gi
+      alertmanagerConfigNamespaceSelector:
+        matchLabels:
+          alertmanagerconfig: enabled
 
   grafana:
     adminPassword: <path:kv/data/k3s/argocd/kube-prometheus#grafanaAdminPassword>
