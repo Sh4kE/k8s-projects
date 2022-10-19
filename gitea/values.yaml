@@ -22,6 +22,10 @@ gitea:
       username: gitea_admin
       password: <path:kv/data/k3s/argocd/gitea#giteaAdminPassword>
       email: "michael.wittig@posteo.de"
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true 
 
     config:
       APP_NAME: "Gitea: This Is Why We Don't Push To Production On Fridays"
