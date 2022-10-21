@@ -18,6 +18,7 @@ kube-prometheus-stack:
           alertmanagerconfig: enabled
 
   grafana:
+    defaultDashboardsTimezone: "Europe/Berlin"
     adminPassword: <path:kv/data/k3s/argocd/kube-prometheus#grafanaAdminPassword>
     ingress:
       enabled: true
