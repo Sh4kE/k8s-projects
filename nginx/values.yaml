@@ -10,5 +10,3 @@ ingress-nginx:
           prometheus.io/port: "10254"
       serviceMonitor:
         enabled: true
-      prometheusRule:
-        enabled: true
