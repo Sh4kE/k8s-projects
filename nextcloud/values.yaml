@@ -55,3 +55,8 @@ nextcloud:
 
   rbac:
     enabled: true
+
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
