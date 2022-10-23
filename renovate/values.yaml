@@ -1,0 +1,12 @@
+renovate:
+  config: |
+    {
+      "platform": "gitea",
+      "endpoint": "https://gitea.os.sh4ke.rocks/api/v1",
+      "token": "c733c6854b323fe4b5e6665af5030297deaa3aca",
+      "autodiscover": "true",
+      "printConfig": true,
+      "redisUrl": "redis"
+    }
+  redis:
+    enabled: true
