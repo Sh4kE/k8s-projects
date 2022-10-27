@@ -1,0 +1,28 @@
+---
+drone:
+  env:
+    DRONE_SERVER_HOST: drone.os.sh4ke.rocks
+    DRONE_GITEA_SERVER: https://gitea.os.sh4ke.rocks
+
+  ingress:
+    hosts:
+      - host: drone.os.sh4ke.rocks
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: drone-os-sh4ke-rocks-tls
+        hosts:
+          - drone.os.sh4ke.rocks
+
+drone-runner-kube:
+  ingress:
+    hosts:
+      - host: drone-runner.os.sh4ke.rocks
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: drone-runner-os-sh4ke-rocks-tls
+        hosts:
+          - drone-runner.os.sh4ke.rocks
