@@ -15,14 +15,3 @@ drone:
         hosts:
           - drone.os.sh4ke.rocks
 
-drone-runner-kube:
-  ingress:
-    hosts:
-      - host: drone-runner.os.sh4ke.rocks
-        paths:
-          - path: /
-            pathType: Prefix
-    tls:
-      - secretName: drone-runner-os-sh4ke-rocks-tls
-        hosts:
-          - drone-runner.os.sh4ke.rocks

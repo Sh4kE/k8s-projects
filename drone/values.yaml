@@ -31,12 +31,6 @@ drone-runner-kube:
     DRONE_NAMESPACE_DEFAULT: drone
     DRONE_RPC_HOST: drone:8080
 
-  ingress:
-    enabled: true
-    className: nginx
-    annotations:
-      "cert-manager.io/cluster-issuer": "letsencrypt-prod"
-
 postgresql:
   auth:
     postgresPassword: <path:kv/data/k3s/argocd/drone#postgres_postgres_password>
