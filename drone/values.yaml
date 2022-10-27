@@ -43,7 +43,6 @@ postgresql:
     username: drone
     password: <path:kv/data/k3s/argocd/drone#postgres_password>
     database: drone
-    replicationPassword: <path:kv/data/k3s/argocd/drone#postgres_replication_password>
   primary:
     persistence:
       storageClass: csi-cinder-sc-delete-all-zones
