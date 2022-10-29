@@ -25,5 +25,5 @@ appVersion: "v1.34.1"
 
 dependencies:
 - name: netdata
-  version: 3.7.17
+  version: 3.7.33
   repository: https://netdata.github.io/helmchart
