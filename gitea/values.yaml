@@ -44,7 +44,7 @@ gitea:
         DEFAULT_USER_IS_RESTRICTED: true
         REQUIRE_SIGNIN_VIEW: true
       log:
-        LEVEL: Critical
+        LEVEL: Debug 
 
   postgresql:
     global:
