@@ -24,5 +24,5 @@ appVersion: "33.0.0"
 
 dependencies:
 - name: renovate
-  version: 33.0.0
+  version: 34.9.1
   repository: https://docs.renovatebot.com/helm-charts
