@@ -2,11 +2,11 @@
 apiVersion: v1
 kind: Endpoints
 metadata:
-  name: paperless
+  name: nextcloud
 subsets:
 - addresses:
-  - ip: {{ .Values.paperless.ip }}
+  - ip: {{ .Values.nextcloud.ip }}
   ports:
-  - name: paperless
-    port: {{ .Values.paperless.port }}
+  - name: nextcloud 
+    port: {{ .Values.nextcloud.port }}
     protocol: TCP
