@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: paperless-ngx
+  name: nextcloud
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: 'ssh://git@gitea.os.sh4ke.rocks:2222/sh4ke/k8s-projects.git'
-    path: paperless-wireguard
+    path: nextcloud-proxy 
     targetRevision: HEAD
     helm:
       valueFiles:
