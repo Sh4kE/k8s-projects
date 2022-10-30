@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: paperless-ngx
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'ssh://git@gitea.ws.sh4ke.rocks:2222/sh4ke/k8s-projects.git'
+    path: paperless-wireguard
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+        - values.openstack.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: paperless
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

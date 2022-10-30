@@ -1,0 +1,23 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paperless
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+  - host: {{ .Values.paperless.domain }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: paperless 
+            port:
+              number: {{ .Values.paperless.port }}
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - {{ .Values.paperless.domain }}
+    secretName: {{ .Values.paperless.domain | replace "." "-" }}-tls
