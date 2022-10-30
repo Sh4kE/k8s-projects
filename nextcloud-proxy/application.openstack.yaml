@@ -15,7 +15,7 @@ spec:
         - values.openstack.yaml
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: paperless
+    namespace: nextcloud
   syncPolicy:
     automated:
       selfHeal: true
