@@ -27,5 +27,5 @@ dependencies:
   version: 6.0.3
   repository: https://dl.gitea.io/charts
 - name: backup
-  version: 0.3.0
+  version: 1.0.0
   repository: https://gitea.os.sh4ke.rocks/api/packages/sh4ke/helm
