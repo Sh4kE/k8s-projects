@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'ssh://git@gitea.os.sh4ke.rocks:2222/sh4ke/k8s-projects.git'
+    repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
     path: csi-driver-nfs
     targetRevision: HEAD
     helm:
