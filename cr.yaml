@@ -1,0 +1,5 @@
+owner: Sh4kE
+git-repo: k8s-projects
+package-path: .deploy
+git-base-url: https://api.github.com/
+git-upload-url: https://uploads.github.com/
