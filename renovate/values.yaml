@@ -15,4 +15,4 @@ renovate:
     enabled: true
 
   secrets:
-    GITHUB_COM_TOKEN: "<path:kv/data/k3s/argocd/renovate#github_token>",
+    GITHUB_COM_TOKEN: "<path:kv/data/k3s/argocd/renovate#github_token>"
