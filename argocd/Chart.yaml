@@ -22,6 +22,6 @@ version: 0.0.5
 # follow Semantic Versioning. They should reflect the version the application is using.
 dependencies:
   - name: argo-cd
-    version: 5.13.0
+    version: 5.13.2
     repository: https://argoproj.github.io/argo-helm
 
