@@ -13,3 +13,6 @@ renovate:
       }
   redis:
     enabled: true
+
+  secrets:
+    GITHUB_COM_TOKEN: "<path:kv/data/k3s/argocd/renovate#github_token>",
