@@ -3,7 +3,7 @@ entries:
   backup:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2022-11-05T10:39:04.926620498+01:00"
+    created: "2022-11-05T10:40:39.060195491+01:00"
     description: A Helm chart for Kubernetes
     digest: ae2a42d25fed9a37d98976e64bf1c38cf37698d31a6496fa1d1f2dd88a1dc27d
     name: backup
@@ -11,4 +11,4 @@ entries:
     urls:
     - https://github.com/Sh4kE/k8s-projects/releases/download/backup-1.0.0/backup-1.0.0.tgz
     version: 1.0.0
-generated: "2022-11-05T10:39:04.926625979+01:00"
+generated: "2022-11-05T10:40:39.060199048+01:00"
