@@ -15,7 +15,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 5.3.2
+version: 5.3.3
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
@@ -29,8 +29,8 @@ dependencies:
 - name: backup
   alias: backup-mariadb
   version: 1.0.0
-  repository: https://gitea.os.sh4ke.rocks/api/packages/sh4ke/helm
+  repository: https://raw.githubusercontent.com/Sh4kE/k8s-projects/gh-pages/
 - name: backup
   alias: backup-vaultwarden
   version: 1.0.0
-  repository: https://gitea.os.sh4ke.rocks/api/packages/sh4ke/helm
+  repository: https://raw.githubusercontent.com/Sh4kE/k8s-projects/gh-pages/
