@@ -75,3 +75,6 @@ pub-sealed-secrets.pem
 k3s-pub-sealed-secrets.pem
 values.new.yaml
 Chart.lock
+
+# Chart Releaser
+.cr-release-packages
