@@ -6,7 +6,7 @@ renovate:
       {
         "platform": "gitea",
         "endpoint": "https://gitea.os.sh4ke.rocks/api/v1",
-        "token": "<path:kv/data/k3s/argocd/revovate#gitea_token>",
+        "token": "<path:kv/data/k3s/argocd/renovate#gitea_token>",
         "autodiscover": "true",
         "printConfig": true,
         "redisUrl": "redis"
