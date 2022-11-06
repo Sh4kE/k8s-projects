@@ -1,2 +1,3 @@
 nextcloud:
   domain: nextcloud.os.sh4ke.rocks
+  general_domain: nextcloud.sh4ke.rocks

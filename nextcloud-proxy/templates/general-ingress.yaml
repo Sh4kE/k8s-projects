@@ -1,0 +1,25 @@
+{{- if .Values.nextcloud.general_domain -}}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: general-nextcloud
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+  - host: {{ .Values.nextcloud.general_domain }}
+    http:
+      paths:
+      - backend:
+          service:
+            name: nextcloud
+            port:
+              number: {{ .Values.nextcloud.port }}
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - {{ .Values.nextcloud.general_domain }}
+    secretName: {{ .Values.nextcloud.general_domain | replace "." "-" }}-tls
+{{- end -}}
