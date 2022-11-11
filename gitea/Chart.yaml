@@ -28,4 +28,4 @@ dependencies:
   repository: https://dl.gitea.io/charts
 - name: backup
   version: 1.0.0
-  repository: https://gitea.os.sh4ke.rocks/api/packages/sh4ke/helm
+  repository: https://raw.githubusercontent.com/Sh4kE/k8s-projects/gh-pages/
