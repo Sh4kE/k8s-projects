@@ -23,9 +23,9 @@ gitea:
       password: <path:kv/data/k3s/argocd/gitea#giteaAdminPassword>
       email: "michael.wittig@posteo.de"
     metrics:
-      enabled: true
+      enabled: false
       serviceMonitor:
-        enabled: true 
+        enabled: false
 
     config:
       APP_NAME: "Gitea: This Is Why We Don't Push To Production On Fridays"
@@ -44,7 +44,7 @@ gitea:
         DEFAULT_USER_IS_RESTRICTED: true
         REQUIRE_SIGNIN_VIEW: true
       log:
-        LEVEL: Debug 
+        LEVEL: Debug
 
   postgresql:
     global:
