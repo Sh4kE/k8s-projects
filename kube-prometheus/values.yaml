@@ -4,6 +4,14 @@ kube-prometheus-stack:
       enabled: true
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
+
+    config:
+      receivers:
+        - name: telegram
+          telegram_configs:
+            - bot_token: <path:kv/data/k3s/argocd/kube-prometheus#telegramApiToken>
+              chat_id: "-607359513"
+
     alertmanagerSpec:
       storage:
         volumeClaimTemplate:
