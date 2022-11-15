@@ -10,7 +10,7 @@ kube-prometheus-stack:
         - name: telegram
           telegram_configs:
             - bot_token: <path:kv/data/k3s/argocd/kube-prometheus#telegramApiToken>
-              chat_id: "-607359513"
+              chat_id: "247311808"
 
     alertmanagerSpec:
       storage:
