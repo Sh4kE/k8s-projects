@@ -41,7 +41,7 @@ vaultwarden:
 backup-mariadb:
   schedule: "10 4 * * *"
   image: docker.io/bitnami/mariadb:10.9.3-debian-11-r9
-  shellCommand: | 
+  shellCommand: |
     mysqldump -u ${MARIADB_USER} -p${MARIADB_PASSWORD} -h vaultwarden-mariadb ${MARIADB_DATABASE} > /backup/vaultwarden_dump.$(date +"%d-%m-%Y-%H-%M").sql
     cd /backup
     ls -tr vaultwarden_dump.* | head -n -7 | xargs -r rm -f
@@ -52,14 +52,14 @@ backup-mariadb:
           key: mariadb-root-password
           name: vaultwarden-mariadb
     - name: MARIADB_USER
-      value: tjllrhhdxmpgxxee
+      value: "<path:kv/data/k3s/argocd/vaultwarden#username>"
     - name: MARIADB_PASSWORD
       valueFrom:
         secretKeyRef:
           key: mariadb-password
           name: vaultwarden-mariadb
     - name: MARIADB_DATABASE
-      value: whioslwdovhmdfzy
+      value: "<path:kv/data/k3s/argocd/vaultwarden#database>"
   volumeMounts:
     - mountPath: /bitnami/mariadb
       name: data
@@ -92,8 +92,8 @@ backup-mariadb:
 backup-vaultwarden:
   schedule: "10 4 * * *"
   image: alpine:latest
-  shellCommand: | 
-    tar czf /backup/vaultwarden_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /config 
+  shellCommand: |
+    tar czf /backup/vaultwarden_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /config
     cd /backup
     ls -tr vaultwarden_data.* | head -n -7 | xargs -r rm -f
   volumeMounts:
@@ -112,4 +112,4 @@ backup-vaultwarden:
     - key: app.kubernetes.io/name
       operator: In
       values:
-        - vaultwarden 
+        - vaultwarden
