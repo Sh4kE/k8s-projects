@@ -16,7 +16,6 @@ kube-prometheus-stack:
         - receiver: 'telegram'
           matchers:
             - alertname !~ "InfoInhibitor|Watchdog"
-            # - alertname !~ "InfoInhibitor|Watchdog|KubeControllerManagerDown|KubeProxyDown|KubeSchedulerDown"
         - receiver: 'null'
           matchers:
             - alertname =~ "InfoInhibitor|Watchdog"
