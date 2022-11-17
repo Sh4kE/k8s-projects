@@ -1,0 +1,122 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: vaultwarden-restore-mariadb
+  namespace: vaultwarden
+spec:
+  backoffLimit: 1
+  completionMode: NonIndexed
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      name: vaultwarden-restore-mariadb
+    spec:
+      affinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                - mariadb
+            topologyKey: kubernetes.io/hostname
+      containers:
+        - command:
+            - sh
+            - -c
+            - cd "/backup/" || exit 1;
+              file=$(ls -tr vaultwarden_dump.*.sql | tail -1);
+              echo "Dropping DB ${MARIADB_DATABASE}";
+              mysql -u ${MARIADB_USER} -p${MARIADB_PASSWORD} -h vaultwarden-mariadb --execute="DROP DATABASE ${MARIADB_DATABASE};";
+              echo "Creating new DB ${MARIADB_DATABASE}";
+              mysql -u ${MARIADB_USER} -p${MARIADB_PASSWORD} -h vaultwarden-mariadb --execute="CREATE DATABASE ${MARIADB_DATABASE};";
+              echo "Importing dump $file";
+              mysql -u ${MARIADB_USER} -p${MARIADB_PASSWORD} -h vaultwarden-mariadb ${MARIADB_DATABASE} < $file
+          image: docker.io/bitnami/mariadb:10.9.3-debian-11-r9
+          imagePullPolicy: IfNotPresent
+          name: restore-db
+          volumeMounts:
+            - mountPath: /restore
+              name: vaultwarden-restore
+            - mountPath: /bitnami/mariadb
+              name: data
+            - mountPath: /backup
+              name: mariadb-backup
+            - mountPath: /opt/bitnami/mariadb/conf/my.cnf
+              name: mariadb-config
+              subPath: my.cnf
+          env:
+            - name: MARIADB_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: mariadb-root-password
+                  name: vaultwarden-mariadb
+            - name: MARIADB_USER
+              value: gncbzujcnpgnvklf
+            - name: MARIADB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: mariadb-password
+                  name: vaultwarden-mariadb
+            - name: MARIADB_DATABASE
+              value: onnsgbllecbgowtn
+      restartPolicy: Never
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: data-vaultwarden-mariadb-0
+        - name: vaultwarden-restore
+          emptyDir: {}
+        - configMap:
+            defaultMode: 420
+            name: vaultwarden-mariadb
+          name: mariadb-config
+        - name: mariadb-backup
+          persistentVolumeClaim:
+            claimName: mariadb-backup
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: vaultwarden-restore-data
+  namespace: vaultwarden
+spec:
+  backoffLimit: 1
+  completionMode: NonIndexed
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      name: vaultwarden-restore-data
+    spec:
+      containers:
+        - command:
+            - sh
+            - -c
+            - cd "/backup/" || exit 1;
+              file=$(ls -tr vaultwarden_data*.tar.gz | tail -1);
+              echo "truncation /config";
+              rm -rf /config/* || true;
+              rm -rf /config/.* || true;
+              echo "restoring backup to /config";
+              tar xzf $file --directory=/;
+              ls -al /config;
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          name: restore-data
+          volumeMounts:
+            - mountPath: /config
+              name: vaultwarden-config
+            - mountPath: /backup
+              name: mariadb-backup
+      restartPolicy: Never
+      volumes:
+        - name: vaultwarden-config
+          persistentVolumeClaim:
+            claimName: vaultwarden-config
+        - name: mariadb-backup
+          persistentVolumeClaim:
+            claimName: mariadb-backup
+
