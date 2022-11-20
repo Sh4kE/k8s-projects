@@ -24,7 +24,7 @@ appVersion: "2.12.1"
 
 dependencies:
 - name: drone
-  version: 0.6.3
+  version: 0.6.4
   repository: https://charts.drone.io
 - name: drone-runner-kube
   version: 0.1.10
