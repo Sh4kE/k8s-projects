@@ -8,7 +8,7 @@ kube-prometheus-stack:
       tls:
         - secretName: alertmanager-ws-sh4ke-rocks-tls
           hosts:
-          - alertmanager.ws.sh4ke.rocks 
+          - alertmanager.ws.sh4ke.rocks
 
   grafana:
     ingress:
@@ -19,7 +19,7 @@ kube-prometheus-stack:
       tls:
         - secretName: grafana-ws-sh4ke-rocks-tls
           hosts:
-          - grafana.ws.sh4ke.rocks 
+          - grafana.ws.sh4ke.rocks
 
   prometheus:
     ingress:
@@ -30,5 +30,10 @@ kube-prometheus-stack:
       tls:
         - secretName: prometheus-ws-sh4ke-rocks-tls
           hosts:
-          - prometheus.ws.sh4ke.rocks 
+          - prometheus.ws.sh4ke.rocks
 
+  prometheusOperator:
+    admissionWebhooks:
+      enabled: false
+      patch:
+        enabled: false
