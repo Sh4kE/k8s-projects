@@ -14,3 +14,5 @@ gitea:
         hosts:
           - gitea.os.sh4ke.rocks
 
+backup:
+  shellCommand: mkdir -p /tmp/gitea && gitea dump -c /data/gitea/conf/app.ini --type tar.gz -f /mnt/gitea-backup/gitea-os-$(date +%s)

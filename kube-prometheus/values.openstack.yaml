@@ -8,7 +8,17 @@ kube-prometheus-stack:
       tls:
         - secretName: alertmanager-os-sh4ke-rocks-tls
           hosts:
-          - alertmanager.os.sh4ke.rocks 
+          - alertmanager.os.sh4ke.rocks
+
+    config:
+      receivers:
+        - name: 'null'
+        - name: telegram
+          telegram_configs:
+            - bot_token: <path:kv/data/k3s/argocd/kube-prometheus#telegramApiToken>
+              api_url: "https://api.telegram.org"
+              chat_id: 247311808
+              parse_mode: "HTML"
 
   grafana:
     ingress:
@@ -19,7 +29,7 @@ kube-prometheus-stack:
       tls:
         - secretName: grafana-os-sh4ke-rocks-tls
           hosts:
-          - grafana.os.sh4ke.rocks 
+          - grafana.os.sh4ke.rocks
 
   prometheus:
     ingress:
@@ -30,4 +40,4 @@ kube-prometheus-stack:
       tls:
         - secretName: prometheus-os-sh4ke-rocks-tls
           hosts:
-          - prometheus.os.sh4ke.rocks 
+          - prometheus.os.sh4ke.rocks
