@@ -19,14 +19,6 @@ kube-prometheus-stack:
         - receiver: 'null'
           matchers:
             - alertname =~ "InfoInhibitor|Watchdog"
-      receivers:
-        - name: 'null'
-        - name: telegram
-          telegram_configs:
-            - bot_token: <path:kv/data/k3s/argocd/kube-prometheus#telegramApiToken>
-              api_url: "https://api.telegram.org"
-              chat_id: 247311808
-              parse_mode: "HTML"
 
     alertmanagerSpec:
       storage:

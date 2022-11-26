@@ -10,6 +10,16 @@ kube-prometheus-stack:
           hosts:
           - alertmanager.ws.sh4ke.rocks
 
+    config:
+      receivers:
+        - name: 'null'
+        - name: telegram
+          telegram_configs:
+            - bot_token: <path:kv/data/k3s/argocd/kube-prometheus#telegramApiToken>
+              api_url: "https://api.telegram.org"
+              chat_id: 833373832
+              parse_mode: "HTML"
+
   grafana:
     ingress:
       hosts:
