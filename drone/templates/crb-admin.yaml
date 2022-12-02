@@ -10,5 +10,5 @@ roleRef:
   name: cluster-admin
 subjects:
   - kind: ServiceAccount
-    name: drone
+    name: default
     namespace: drone
