@@ -1,0 +1,7 @@
+harbor:
+  externalURL: https://core.harbor.os.sh4ke.rocks
+  ingress:
+    core:
+      hostname: core.harbor.os.sh4ke.rocks
+    notary:
+      hostname: notary.harbor.os.sh4ke.rocks

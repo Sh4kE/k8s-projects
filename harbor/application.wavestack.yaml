@@ -6,12 +6,14 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'shake@git.sh4ke.rocks:sh4ke/k8s-projects.git'
+    repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
     path: harbor
     targetRevision: HEAD
-    helm:
-      valueFiles:
-        - values.yaml
+    plugin:
+      name: argocd-vault-plugin-helm
+      env:
+        - name: PLUGIN_PARAMS
+          value: "-f values.yaml -f values.wavestack.yaml"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: harbor

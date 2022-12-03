@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: harbor
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
+    path: harbor
+    targetRevision: HEAD
+    plugin:
+      name: argocd-vault-plugin-helm
+      env:
+        - name: PLUGIN_PARAMS
+          value: "-f values.yaml -f values.openstack.yaml"
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: harbor
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
