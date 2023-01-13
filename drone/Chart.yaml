@@ -30,6 +30,6 @@ dependencies:
   version: 0.1.10
   repository: https://charts.drone.io
 - name: postgresql
-  version: 12.1.2
+  version: 12.1.9
   repository: https://charts.bitnami.com/bitnami
 
