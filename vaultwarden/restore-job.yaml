@@ -54,14 +54,14 @@ spec:
                   key: mariadb-root-password
                   name: vaultwarden-mariadb
             - name: MARIADB_USER
-              value: gncbzujcnpgnvklf
+              value: vqeqgzxtkfhizkvr
             - name: MARIADB_PASSWORD
               valueFrom:
                 secretKeyRef:
                   key: mariadb-password
                   name: vaultwarden-mariadb
             - name: MARIADB_DATABASE
-              value: onnsgbllecbgowtn
+              value: cxrqtoqvahlcwagm
       restartPolicy: Never
       volumes:
         - name: data
