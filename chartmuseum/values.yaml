@@ -4,9 +4,7 @@ chartmuseum:
       AUTH_ANONYMOUS_GET: true
       DISABLE_API: false
     secret:
-      # username for basic http authentication
       BASIC_AUTH_USER: "Sh4kE"
-      # password for basic http authentication
       BASIC_AUTH_PASS: <path:kv/data/k3s/argocd/chartmuseum#password>
 
   persistence:

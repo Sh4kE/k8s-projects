@@ -3,8 +3,5 @@ chartmuseum:
     hosts:
      - name: chartmuseum.ws.sh4ke.rocks
        path: /
-       ## Set this to true in order to enable TLS on the ingress record
        tls: true
-       ## If TLS is set to true, you must declare what secret will store the key/certificate for TLS
-       ## Secrets must be added manually to the namespace
        tlsSecret: chartmuseum.ws.sh4ke.rocks-tls
