@@ -69,7 +69,7 @@ argo-cd:
     extraContainers:
       - name: avp-helm
         command: [/var/run/argocd/argocd-cmp-server]
-        image: sh4ke/argocd-plugin
+        image: sh4ke/argocd-plugins
         securityContext:
           runAsNonRoot: true
           runAsUser: 999
