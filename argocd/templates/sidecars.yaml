@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cmp-plugin
+  name: cmp-plugin-avp-helm
 data:
   plugin.yaml: |
     ---
@@ -25,7 +25,13 @@ data:
         command: ["sh", "-c"]
         args: ["helm template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE ${helm_args} ${ARGOCD_ENV_PLUGIN_PARAMS} . --include-crds | argocd-vault-plugin generate -"]
       lockRepo: false
-    ---
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cmp-plugin-avp-helm-kustomize
+data:
+  plugin.yaml: |
     apiVersion: argoproj.io/v1alpha1
     kind: ConfigManagementPlugin
     metadata:
