@@ -8,6 +8,10 @@
       "automerge": true
     },
     {
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
+    {
       "matchDepTypes": ["devDependencies"],
       "automerge": true
     }
