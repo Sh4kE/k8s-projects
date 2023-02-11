@@ -43,8 +43,10 @@ gitea:
         DEFAULT_ORG_VISIBILITY: private
         DEFAULT_USER_IS_RESTRICTED: true
         REQUIRE_SIGNIN_VIEW: true
+      webhook:
+        ALLOWED_HOST_LIST: "*"
       log:
-        LEVEL: Debug
+        LEVEL: Error
 
   postgresql:
     global:
