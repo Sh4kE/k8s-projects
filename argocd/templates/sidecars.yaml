@@ -20,7 +20,7 @@ data:
             - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
       init:
         command: ["sh", "-c"]
-        args: ["pwd && ls -al && helm dependency build"]
+        args: ["helm dependency build"]
       generate:
         command: ["sh", "-c"]
         args: ["helm template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE ${helm_args} ${ARGOCD_ENV_PLUGIN_PARAMS} . --include-crds | argocd-vault-plugin generate -"]
@@ -46,7 +46,7 @@ data:
             - "find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
       init:
         command: ["sh", "-c"]
-        args: ["pwd && ls -al && helm dependency build"]
+        args: ["helm dependency build"]
       generate:
         command: ["sh", "-c"]
         args: ["helm template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE ${helm_args} ${ARGOCD_ENV_PLUGIN_PARAMS} . --include-crds > all.yaml && kustomize build | argocd-vault-plugin generate -"]

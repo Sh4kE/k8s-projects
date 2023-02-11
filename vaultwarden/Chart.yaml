@@ -29,8 +29,8 @@ dependencies:
 - name: backup
   alias: backup-mariadb
   version: 1.0.0
-  repository: https://raw.githubusercontent.com/Sh4kE/k8s-projects/gh-pages/
+  repository: https://chartmuseum.os.sh4ke.rocks
 - name: backup
   alias: backup-vaultwarden
   version: 1.0.0
-  repository: https://raw.githubusercontent.com/Sh4kE/k8s-projects/gh-pages/
+  repository: https://chartmuseum.os.sh4ke.rocks

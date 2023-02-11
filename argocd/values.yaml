@@ -84,8 +84,6 @@ argo-cd:
           # Remove this volumeMount if you've chosen to bake the config file into the sidecar image.
           - mountPath: /home/argocd/cmp-server/config/
             name: cmp-plugin-avp-helm
-          # Starting with v2.4, do NOT mount the same tmp volume as the repo-server container. The filesystem separation helps
-          # mitigate path traversal attacks.
           - mountPath: /tmp
             name: cmp-plugin-avp-helm-tmp
       - name: avp-helm-kustomize
@@ -132,5 +130,5 @@ argo-cd:
           name: argocd-vault-plugin-credentials
 
     applicationSet:
-      replicas: 2
+      replicaCount: 2
 
