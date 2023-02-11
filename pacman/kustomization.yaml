@@ -1,7 +1,0 @@
-resources:
-  - all.yaml
-patches:
-  - path: kustomizations/mongo-pvc.yaml
-    target:
-      kind: PersistentVolumeClaim
-      name: pacman-mongo-storage-claim
