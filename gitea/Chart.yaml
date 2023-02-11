@@ -28,4 +28,4 @@ dependencies:
   repository: https://dl.gitea.io/charts
 - name: backup
   version: 1.0.0
-  repository: https://raw.githubusercontent.com/Sh4kE/k8s-projects/gh-pages/
+  repository: https://chartmuseum.os.sh4ke.rocks
