@@ -13,6 +13,8 @@ renovate:
       }
   redis:
     enabled: true
+    global:
+      storageClass: csi-cinder-sc-delete-all-zones
 
   secrets:
     GITHUB_COM_TOKEN: "<path:kv/data/k3s/argocd/renovate#github_token>"
