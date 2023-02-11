@@ -2,6 +2,7 @@ chartmuseum:
   env:
     open:
       AUTH_ANONYMOUS_GET: true
+      DISABLE_API: false
     secret:
       # username for basic http authentication
       BASIC_AUTH_USER: "Sh4kE"
