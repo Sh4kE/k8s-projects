@@ -38,52 +38,58 @@ argo-cd:
             KexAlgorithms ecdh-sha2-nistp521
             PubkeyAcceptedAlgorithms +ssh-rsa
       configManagementPlugins: |
-        - name: kustomized-helm
-          init:
-            command: ["/bin/sh", "-c"]
-            args: ["helm dependency build || true"]
-          generate:
-            command: ["/bin/sh", "-c"]
-            args: ["helm template . --name-template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE -f values.yaml --include-crds > all.yaml && kustomize build"]
-        - name: argocd-vault-plugin
-          generate:
-            command: ["argocd-vault-plugin"]
-            args: ["generate", "./"]
-        - name: argocd-vault-plugin-helm
-          init:
-            command: [sh, -c]
-            args: ["helm dependency build"]
-          generate:
-            command: ["sh", "-c"]
-            args: ["helm template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE ${helm_args} ${ARGOCD_ENV_PLUGIN_PARAMS} . --include-crds | argocd-vault-plugin generate -"]
-        - name: argocd-vault-plugin-helm-kustomize
-          init:
-            command: [sh, -c]
-            args: ["helm dependency build"]
-          generate:
-            command: ["sh", "-c"]
-            args: ["helm template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE ${helm_args} ${ARGOCD_ENV_PLUGIN_PARAMS} . --include-crds > all.yaml && kustomize build | argocd-vault-plugin generate -"]
+        # - name: kustomized-helm
+        #   init:
+        #     command: ["/bin/sh", "-c"]
+        #     args: ["helm dependency build || true"]
+        #   generate:
+        #     command: ["/bin/sh", "-c"]
+        #     args: ["helm template . --name-template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE -f values.yaml --include-crds > all.yaml && kustomize build"]
+        # - name: argocd-vault-plugin
+        #   generate:
+        #     command: ["argocd-vault-plugin"]
+        #     args: ["generate", "./"]
+        # - name: argocd-vault-plugin-helm
+        #   init:
+        #     command: [sh, -c]
+        #     args: ["helm dependency build"]
+        #   generate:
+        #     command: ["sh", "-c"]
+        #     args: ["helm template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE ${helm_args} ${ARGOCD_ENV_PLUGIN_PARAMS} . --include-crds | argocd-vault-plugin generate -"]
+        # - name: argocd-vault-plugin-helm-kustomize
+        #   init:
+        #     command: [sh, -c]
+        #     args: ["helm dependency build"]
+        #   generate:
+        #     command: ["sh", "-c"]
+        #     args: ["helm template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE ${helm_args} ${ARGOCD_ENV_PLUGIN_PARAMS} . --include-crds > all.yaml && kustomize build | argocd-vault-plugin generate -"]
 
   repoServer:
     replicas: 2
-    initContainers:
-      - name: download-tools
-        image: busybox:latest
-        command: [sh, -c]
-        env:
-          - name: AVP_VERSION
-            value: "1.12.0"
-        args:
-          - >-
-            wget -O argocd-vault-plugin
-            https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v${AVP_VERSION}/argocd-vault-plugin_${AVP_VERSION}_linux_amd64 &&
-            chmod +x argocd-vault-plugin &&
-            mv argocd-vault-plugin /custom-tools/
+    extraContainers:
+      - name: avp-helm
+        command: [/var/run/argocd/argocd-cmp-server]
+        image: sh4ke/argocd-plugin
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 999
         volumeMounts:
-          - mountPath: /custom-tools
-            name: custom-tools
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          # Remove this volumeMount if you've chosen to bake the config file into the sidecar image.
+          - mountPath: /home/argocd/cmp-server/config/
+            name: cmp-plugin
+          # Starting with v2.4, do NOT mount the same tmp volume as the repo-server container. The filesystem separation helps
+          # mitigate path traversal attacks.
+          - mountPath: /tmp
+            name: cmp-tmp
     volumes:
-      - name: custom-tools
+      - name: cmp-plugin
+        configMap:
+          name: cmp-plugin
+      - name: cmp-tmp
         emptyDir: {}
       - name: ssh-configs
         configMap:
@@ -92,9 +98,6 @@ argo-cd:
             - key: sshConfigs
               path: config
     volumeMounts:
-      - name: custom-tools
-        mountPath: /usr/local/bin/argocd-vault-plugin
-        subPath: argocd-vault-plugin
       - name: ssh-configs
         mountPath: /home/argocd/.ssh/
     envFrom:
