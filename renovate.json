@@ -1,7 +1,9 @@
 {
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
   ],
+  "additionalBranchPrefix": "{{parentDir}}-",
   "packageRules": [
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
@@ -15,6 +17,5 @@
       "matchDepTypes": ["devDependencies"],
       "automerge": true
     }
-  ],
-  "platformAutomerge": true
+  ]
 }
