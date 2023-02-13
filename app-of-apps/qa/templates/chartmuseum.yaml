@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
-    path: chartmuseum
+    path: chartmuseum/qa
     targetRevision: HEAD
     plugin:
       name: argocd-vault-plugin-helm
