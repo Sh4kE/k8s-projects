@@ -1,6 +1,0 @@
-kind: Deployment
-apiVersion: v1
-metadata:
-  name: mailu-mysql
-  annotations:
-    avp.kubernetes.io/path: kv/data/k3s/argocd/mailu

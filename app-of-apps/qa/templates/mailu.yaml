@@ -6,11 +6,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'shake@git.sh4ke.rocks:sh4ke/k8s-projects.git'
-    path: mailu
+    repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
+    path: mailu/qa
     targetRevision: HEAD
     plugin:
-      name: argocd-vault-plugin-helm-kustomize
+      name: argocd-vault-plugin-helm
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mailu

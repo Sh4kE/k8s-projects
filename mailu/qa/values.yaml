@@ -5,27 +5,27 @@ mailu:
 
   domain: sh4ke.rocks
 
-  secretKey: <secret_key>
+  secretKey: <path:kv/data/k3s/argocd/mailu#secret_key>
 
   initialAccount:
     username: admin
     domain: sh4ke.rocks
-    password: <initial_admin_password>
+    password: <path:kv/data/k3s/argocd/mailu#initial_admin_password>
 
   database:
     type: mysql
     roundcubeType: mysql
 
     mysql:
-      rootPassword: <mysql_root_password>
+      rootPassword: <path:kv/data/k3s/argocd/mailu#mysql_root_password>
 
       database: mailu
       user: mailu
-      password: <mysql_password>
+      password: <path:kv/data/k3s/argocd/mailu#mysql_password>
 
       roundcubeDatabase: roundcube
       roundcubeUser: roundcube
-      roundcubePassword: <roundcube_password>
+      roundcubePassword: <path:kv/data/k3s/argocd/mailu#roundcube_password>
 
   certmanager:
     issuerName: letsencrypt-prod
