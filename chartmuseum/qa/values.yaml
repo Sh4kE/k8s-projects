@@ -16,3 +16,8 @@ chartmuseum:
     annotations:
       cert-manager.io/cluster-issuer: "letsencrypt-prod"
     ingressClassName: nginx
+    hosts:
+     - name: chartmuseum.ws.sh4ke.rocks
+       path: /
+       tls: true
+       tlsSecret: chartmuseum.ws.sh4ke.rocks-tls
