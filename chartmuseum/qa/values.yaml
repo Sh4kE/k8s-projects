@@ -1,18 +1,1 @@
-chartmuseum:
-  env:
-    open:
-      AUTH_ANONYMOUS_GET: true
-      DISABLE_API: false
-    secret:
-      BASIC_AUTH_USER: "Sh4kE"
-      BASIC_AUTH_PASS: <path:kv/data/k3s/argocd/chartmuseum#password>
-
-  persistence:
-    enabled: true
-    storageClass: "csi-cinder-sc-delete-all-zones"
-
-  ingress:
-    enabled: true
-    annotations:
-      cert-manager.io/cluster-issuer: "letsencrypt-prod"
-    ingressClassName: nginx
+../values.yaml
