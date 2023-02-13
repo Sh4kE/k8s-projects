@@ -1,9 +1,8 @@
 mailu:
   hostnames:
-    - mail.sh4ke.rocks
-    - sh4ke.rocks
+    - mail.ws.sh4ke.rocks
 
-  domain: sh4ke.rocks
+  domain: mail.ws.sh4ke.rocks
 
   secretKey: <path:kv/data/k3s/argocd/mailu#secret_key>
 
