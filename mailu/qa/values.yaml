@@ -1,4 +1,5 @@
 mailu:
+  mailuVersion: 1.9
   hostnames:
     - mail.ws.sh4ke.rocks
 
