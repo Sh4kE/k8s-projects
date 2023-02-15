@@ -42,7 +42,7 @@ mailu:
     externalService:
       enabled: true
       type: LoadBalancer
-      loadBalancerIP: 213.95.155.192
+      loadBalancerIP: 31.172.117.49
 
   persistence:
     single_pvc: false
