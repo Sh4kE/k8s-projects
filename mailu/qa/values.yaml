@@ -71,6 +71,10 @@ mailu:
     persistence:
       size: 1Gi
       storageClass: "csi-cinder-sc-delete-all-zones"
+    startupProbe: # give it 15 minutes for initial rule compilation
+      periodSeconds: 20
+      failureThreshold: 300
+      timeoutSeconds: 10
 
   clamav:
     persistence:
