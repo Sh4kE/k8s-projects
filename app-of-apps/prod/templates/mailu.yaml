@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mailu
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
+    path: mailu/qa
+    targetRevision: HEAD
+    plugin:
+      name: argocd-vault-plugin-helm
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: mailu
+  syncPolicy:
+    automated:
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

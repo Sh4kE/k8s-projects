@@ -1,0 +1,98 @@
+mailu:
+  mailuVersion: 1.9
+  hostnames:
+    - mail.os.sh4ke.rocks
+
+  domain: mail.os.sh4ke.rocks
+
+  secretKey: <path:kv/data/k3s/argocd/mailu#secret_key>
+
+  initialAccount:
+    username: admin
+    domain: os.sh4ke.rocks
+    password: <path:kv/data/k3s/argocd/mailu#initial_admin_password>
+
+  database:
+    type: mysql
+    roundcubeType: mysql
+
+    mysql:
+      rootPassword: <path:kv/data/k3s/argocd/mailu#mysql_root_password>
+
+      database: mailu
+      user: mailu
+      password: <path:kv/data/k3s/argocd/mailu#mysql_password>
+
+      roundcubeDatabase: roundcube
+      roundcubeUser: roundcube
+      roundcubePassword: <path:kv/data/k3s/argocd/mailu#roundcube_password>
+
+  certmanager:
+    issuerName: letsencrypt-prod
+
+  ingress:
+    tlsFlavor: cert
+    annotations:
+      kubernetes.io/ingress.class: "nginx"
+
+  front:
+    hostPort:
+      enabled: false
+
+    externalService:
+      enabled: true
+      type: LoadBalancer
+      loadBalancerIP: 213.95.155.219
+
+  persistence:
+    single_pvc: false
+
+  admin:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  redis:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  postfix:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  dovecot:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  rspamd:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+    startupProbe:
+      periodSeconds: 20
+      failureThreshold: 300
+      timeoutSeconds: 10
+
+  clamav:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  roundcube:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  webdav:
+    enabled: true
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
+
+  mysql:
+    persistence:
+      size: 1Gi
+      storageClass: "csi-cinder-sc-delete-all-zones"
