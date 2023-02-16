@@ -12,6 +12,16 @@ mailu:
     domain: os.sh4ke.rocks
     password: <path:kv/data/k3s/argocd/mailu#initial_admin_password>
 
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: NotIn
+            values:
+            - k3s-server-1
+
   database:
     type: mysql
     roundcubeType: mysql
