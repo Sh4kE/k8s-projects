@@ -5,6 +5,17 @@ mailu:
 
   domain: ws.sh4ke.rocks
 
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app
+            operator: In
+            values:
+            - mailu
+        topologyKey: kubernetes.io/hostname
+
   secretKey: <path:kv/data/k3s/argocd/mailu#secret_key>
 
   initialAccount:
