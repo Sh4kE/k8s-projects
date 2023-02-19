@@ -45,54 +45,16 @@ mailu:
       loadBalancerIP: 31.172.117.49
 
   persistence:
-    single_pvc: false
-
-  admin:
-    persistence:
-      size: 1Gi
-      storageClass: "csi-cinder-sc-delete-all-zones"
-
-  redis:
-    persistence:
-      size: 1Gi
-      storageClass: "csi-cinder-sc-delete-all-zones"
-
-  postfix:
-    persistence:
-      size: 1Gi
-      storageClass: "csi-cinder-sc-delete-all-zones"
-
-  dovecot:
-    persistence:
-      size: 1Gi
-      storageClass: "csi-cinder-sc-delete-all-zones"
+    single_pvc: true
+    size: 10Gi
+    accessMode: ReadWriteOnce
+    storageClass: "csi-cinder-sc-delete-all-zones"
 
   rspamd:
-    persistence:
-      size: 1Gi
-      storageClass: "csi-cinder-sc-delete-all-zones"
     startupProbe: # give it 15 minutes for initial rule compilation
       periodSeconds: 20
       failureThreshold: 300
       timeoutSeconds: 10
 
-  clamav:
-    persistence:
-      size: 1Gi
-      storageClass: "csi-cinder-sc-delete-all-zones"
-
-  roundcube:
-    persistence:
-      size: 1Gi
-      storageClass: "csi-cinder-sc-delete-all-zones"
-
   webdav:
     enabled: true
-    persistence:
-      size: 1Gi
-      storageClass: "csi-cinder-sc-delete-all-zones"
-
-  mysql:
-    persistence:
-      size: 1Gi
-      storageClass: "csi-cinder-sc-delete-all-zones"
