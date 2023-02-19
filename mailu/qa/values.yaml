@@ -3,13 +3,13 @@ mailu:
   hostnames:
     - mail.ws.sh4ke.rocks
 
-  domain: mail.ws.sh4ke.rocks
+  domain: ws.sh4ke.rocks
 
   secretKey: <path:kv/data/k3s/argocd/mailu#secret_key>
 
   initialAccount:
     username: admin
-    domain: sh4ke.rocks
+    domain: ws.sh4ke.rocks
     password: <path:kv/data/k3s/argocd/mailu#initial_admin_password>
 
   database:
