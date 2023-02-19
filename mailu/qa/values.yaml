@@ -47,7 +47,7 @@ mailu:
   persistence:
     single_pvc: true
     size: 10Gi
-    accessMode: ReadWriteMany
+    accessMode: ReadWriteOnce
     storageClass: "csi-cinder-sc-delete-all-zones"
 
   rspamd:
