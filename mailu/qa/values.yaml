@@ -4,6 +4,7 @@ mailu:
     - mail.ws.sh4ke.rocks
 
   domain: ws.sh4ke.rocks
+  subnet: ""
 
   affinity:
     nodeAffinity:
@@ -68,6 +69,11 @@ mailu:
     size: 10Gi
     accessMode: ReadWriteOnce
     storageClass: "csi-cinder-sc-delete-all-zones"
+
+  postfix:
+    image:
+      repository: sh4ke/mailu-postfix
+
 
   rspamd:
     startupProbe: # give it 15 minutes for initial rule compilation
