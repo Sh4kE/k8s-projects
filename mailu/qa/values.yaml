@@ -6,6 +6,14 @@ mailu:
   domain: ws.sh4ke.rocks
 
   affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: NotIn
+            values:
+            - k3s-server-1
     podAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
