@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
-    path: kube-prometheus
+    path: kube-prometheus/prod
     targetRevision: HEAD
     plugin:
       name: argocd-vault-plugin-helm

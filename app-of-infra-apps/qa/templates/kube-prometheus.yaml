@@ -7,10 +7,10 @@ spec:
   project: default
   source:
     repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
-    path: kube-prometheus
+    path: kube-prometheus/qa
     targetRevision: HEAD
     plugin:
-      name: argocd-vault-plugin-helm
+      name: argocd-vault-plugin-helm-kustomize
       env:
         - name: PLUGIN_PARAMS
           value: "-f values.yaml -f values.wavestack.yaml"

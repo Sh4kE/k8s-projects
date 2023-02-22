@@ -1,0 +1,97 @@
+kube-prometheus-stack:
+  alertmanager:
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - alertmanager.ws.sh4ke.rocks
+      paths:
+        - /
+      tls:
+        - secretName: alertmanager-ws-sh4ke-rocks-tls
+          hosts:
+          - alertmanager.ws.sh4ke.rocks
+
+    config:
+      route:
+        group_by: ['namespace']
+        group_wait: 30s
+        group_interval: 5m
+        repeat_interval: 12h
+        receiver: 'telegram'
+        routes:
+        - receiver: 'telegram'
+          matchers:
+            - alertname !~ "infoinhibitor|watchdog"
+        - receiver: 'null'
+          matchers:
+            - alertname =~ "infoinhibitor|watchdog"
+      receivers:
+        - name: 'null'
+        - name: telegram
+          telegram_configs:
+            - bot_token: <path:kv/data/k3s/argocd/kube-prometheus#telegramApiToken>
+              api_url: "https://api.telegram.org"
+              chat_id: 833373832
+              parse_mode: "HTML"
+
+    alertmanagerspec:
+      storage:
+        volumeclaimtemplate:
+          spec:
+            storageclassname: csi-cinder-sc-delete-all-zones
+            accessmodes: ["readwriteonce"]
+            resources:
+              requests:
+                storage: 2gi
+
+  grafana:
+    defaultdashboardstimezone: "europe/berlin"
+    adminpassword: <path:kv/data/k3s/argocd/kube-prometheus#grafanaadminpassword>
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - grafana.ws.sh4ke.rocks
+      paths:
+        - /
+      tls:
+        - secretName: grafana-ws-sh4ke-rocks-tls
+          hosts:
+          - grafana.ws.sh4ke.rocks
+
+  prometheus:
+    ingress:
+      enabled: true
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - prometheus.ws.sh4ke.rocks
+      paths:
+        - /
+      tls:
+        - secretName: prometheus-ws-sh4ke-rocks-tls
+          hosts:
+          - prometheus.ws.sh4ke.rocks
+    prometheusspec:
+      storage:
+        volumeclaimtemplate:
+          spec:
+            storageclassname: csi-cinder-sc-delete-all-zones
+            accessmodes: ["readwriteonce"]
+            resources:
+              requests:
+                storage: 2gi
+      servicemonitorselectorniluseshelmvalues: false
+      podmonitorselectorniluseshelmvalues: false
+      ruleselectorniluseshelmvalues: false
+      probeselectorniluseshelmvalues: false
+
+  kubecontrollermanager:
+    enabled: false
+  kubeproxy:
+    enabled: false
+  kubescheduler:
+    enabled: false
