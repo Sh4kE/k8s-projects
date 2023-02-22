@@ -11,9 +11,6 @@ spec:
     targetRevision: HEAD
     plugin:
       name: argocd-vault-plugin-helm-kustomize
-      env:
-        - name: PLUGIN_PARAMS
-          value: "-f values.yaml -f values.wavestack.yaml"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kube-prometheus
