@@ -1,0 +1,131 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gitea-restore
+  namespace: gitea
+spec:
+  backoffLimit: 1
+  completionMode: NonIndexed
+  completions: 1
+  parallelism: 1
+  template:
+    metadata:
+      name: gitea-restore
+    spec:
+      initContainers:
+        - command:
+            - sh
+            - -c
+            - src="/mnt/gitea-backup/";
+              dest="/restore/";
+              ls -al "${src}";
+              file=$(ls -tr "${src}" | tail -1);
+              cp "${src}${file}" "${dest}${file}";
+              cd "${dest}" || exit 1;
+              tar xzf "${file}";
+              ls -al "${dest}";
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          name: copy-file
+          securityContext:
+            runAsUser: 1000
+          volumeMounts:
+            - mountPath: /mnt/gitea-backup
+              name: gitea-backup
+            - mountPath: /restore
+              name: gitea-restore
+        - command:
+            - sh
+            - -c
+            - cd "/restore/" || exit 1;
+              echo "restoring backup to /data";
+              cp -r data/* /data/;
+              mkdir -p /data/git/gitea-repositories;
+              echo "restoring backup to /data/git/gitea-repositories";
+              cp -r repos/* /data/git/gitea-repositories/;
+              ls -al /data/git/gitea-repositories;
+          image: busybox
+          imagePullPolicy: IfNotPresent
+          name: restore-data
+          securityContext:
+            runAsUser: 1000
+          volumeMounts:
+            - mountPath: /data
+              name: gitea-data
+            - mountPath: /restore
+              name: gitea-restore
+        - command:
+            - sh
+            - -c
+            - export PGPASSWORD="${POSTGRES_PG_PASSWORD}";
+              echo "drop DB";
+              psql -U postgres -h gitea-postgresql --command="DROP DATABASE ${POSTGRES_DB};";
+              echo "create DB";
+              psql -U postgres -h gitea-postgresql --command="CREATE DATABASE ${POSTGRES_DB} WITH OWNER ${POSTGRES_USER};";
+              export PGPASSWORD="${POSTGRES_PASSWORD}";
+              echo "Import dump";
+              psql -U "${POSTGRES_USER}" -d "${POSTGRES_DB}" -h gitea-postgresql < "/restore/gitea-db.sql";
+          image: docker.io/bitnami/postgresql:11.11.0-debian-10-r62
+          imagePullPolicy: IfNotPresent
+          name: restore-db
+          securityContext:
+            runAsUser: 1000
+          volumeMounts:
+            - mountPath: /restore
+              name: gitea-restore
+          env:
+            - name: POSTGRES_USER
+              value: gitea
+            - name: POSTGRES_PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: postgresql-postgres-password
+                  name: gitea-postgresql
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: postgresql-password
+                  name: gitea-postgresql
+            - name: POSTGRES_DB
+              value: gitea
+      containers:
+        - command:
+            - sh
+            - -c
+            - echo "hycybh?";
+              echo "run this inside the gitea pod
+              »/usr/local/bin/gitea -c '/data/gitea/conf/app.ini' admin regenerate hooks«"
+          image: docker.io/gitea/gitea:1.17.2-rootless
+          imagePullPolicy: IfNotPresent
+          name: admin-regenerate-hooks
+          securityContext:
+            runAsUser: 1000
+          volumeMounts:
+            - mountPath: /data
+              name: gitea-data
+          env:
+            - name: SSH_LISTEN_PORT
+              value: "2222"
+            - name: SSH_PORT
+              value: "2222"
+            - name: GITEA_APP_INI
+              value: /data/gitea/conf/app.ini
+            - name: GITEA_CUSTOM
+              value: /data/gitea
+            - name: GITEA_WORK_DIR
+              value: /data
+            - name: GITEA_TEMP
+              value: /tmp/gitea
+            - name: TMPDIR
+              value: /tmp/gitea
+      restartPolicy: Never
+      volumes:
+        - name: gitea-restore
+          emptyDir: {}
+        - name: gitea-data
+          persistentVolumeClaim:
+            claimName: data-gitea-0
+        - name: gitea-backup
+          persistentVolumeClaim:
+            claimName: data-gitea-0-backup
+

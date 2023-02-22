@@ -1,0 +1,97 @@
+gitea:
+  image:
+    rootless: true
+
+  service:
+    ssh:
+      type: LoadBalancer
+      port: 2222
+      loadBalancerIP: 31.172.116.33
+
+  ingress:
+    enabled: true
+    className: nginx
+    apiVersion: networking.k8s.io/v1
+    annotations:
+      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    hosts:
+      - host: gitea.ws.sh4ke.rocks
+        paths:
+          - path: /
+            pathType: Prefix
+    tls:
+      - secretName: gitea-ws-sh4ke-rocks-tls
+        hosts:
+          - gitea.ws.sh4ke.rocks
+
+  persistence:
+    storageClass: csi-cinder-sc-delete-all-zones
+
+  gitea:
+    admin:
+      username: gitea_admin
+      password: <path:kv/data/k3s/argocd/gitea#giteaAdminPassword>
+      email: "michael.wittig@posteo.de"
+    metrics:
+      enabled: false
+      serviceMonitor:
+        enabled: false
+
+    config:
+      APP_NAME: "Gitea: This Is Why We Don't Push To Production On Fridays"
+      RUN_MODE: prod
+      server:
+        SSH_PORT: 2222
+      picture:
+        DISABLE_GRAVATAR: true
+      security:
+        PASSWORD_COMPLEXITY: spec
+        MIN_PASSWORD_LENGTH: 8
+      service:
+        DISABLE_REGISTRATION: true
+        DEFAULT_KEEP_EMAIL_PRIVATE: true
+        DEFAULT_ORG_VISIBILITY: private
+        DEFAULT_USER_IS_RESTRICTED: true
+        REQUIRE_SIGNIN_VIEW: true
+      webhook:
+        ALLOWED_HOST_LIST: "*"
+      log:
+        LEVEL: Error
+
+  postgresql:
+    global:
+      postgresql:
+        postgresqlPassword: <path:kv/data/k3s/argocd/gitea#giteaPostgresPassword>
+
+    persistence:
+      size: 1Gi
+      storageClass: csi-cinder-sc-delete-all-zones
+
+backup:
+  securityContext:
+    runAsUser: 1000
+  schedule: "0 6 * * *"
+  shellCommand: mkdir -p /tmp/gitea && gitea dump -c /data/gitea/conf/app.ini --type tar.gz -f /mnt/gitea-backup/gitea-ws-$(date +%s)
+  volumes:
+    - name: gitea-data
+      persistentVolumeClaim:
+        claimName: data-gitea-0
+    - name: data-gitea-0-backup
+      persistentVolumeClaim:
+        claimName: data-gitea-0-backup
+  volumeMounts:
+    - mountPath: /mnt/gitea-backup
+      name: data-gitea-0-backup
+    - mountPath: /data
+      readOnly: true
+      name: gitea-data
+  permissions:
+    dirs: /mnt/gitea-backup
+    owner: "1000"
+    group: "1000"
+  matchExpressions:
+    - key: statefulset.kubernetes.io/pod-name
+      operator: In
+      values:
+        - gitea-0
+  image: gitea/gitea:1.17.3-rootless
