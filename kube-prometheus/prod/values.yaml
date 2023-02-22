@@ -46,8 +46,8 @@ kube-prometheus-stack:
                 storage: 2gi
 
   grafana:
-    defaultdashboardstimezone: "europe/berlin"
-    adminpassword: <path:kv/data/k3s/argocd/kube-prometheus#grafanaadminpassword>
+    defaultDashboardsTimezone: "Europe/Berlin"
+    adminPassword: <path:kv/data/k3s/argocd/kube-prometheus#grafanaAdminPassword>
     ingress:
       enabled: true
       annotations:
