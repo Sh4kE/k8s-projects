@@ -23,10 +23,10 @@ kube-prometheus-stack:
         routes:
         - receiver: 'telegram'
           matchers:
-            - alertname !~ "infoinhibitor|watchdog"
+            - alertname !~ "InfoInhibitor|Watchdog"
         - receiver: 'null'
           matchers:
-            - alertname =~ "infoinhibitor|watchdog"
+            - alertname =~ "InfoInhibitor|Watchdog"
       receivers:
         - name: 'null'
         - name: telegram
@@ -36,15 +36,15 @@ kube-prometheus-stack:
               chat_id: -833373832
               parse_mode: "HTML"
 
-    alertmanagerspec:
+    alertmanagerSpec:
       storage:
-        volumeclaimtemplate:
+        volumeClaimTemplate:
           spec:
-            storageclassname: csi-cinder-sc-delete-all-zones
-            accessmodes: ["readwriteonce"]
+            storageClassName: csi-cinder-sc-delete-all-zones
+            accessModes: ["ReadWriteOnce"]
             resources:
               requests:
-                storage: 2gi
+                storage: 2Gi
 
   grafana:
     defaultDashboardsTimezone: "Europe/Berlin"
@@ -75,19 +75,19 @@ kube-prometheus-stack:
         - secretName: prometheus-ws-sh4ke-rocks-tls
           hosts:
           - prometheus.ws.sh4ke.rocks
-    prometheusspec:
+    prometheusSpec:
       storage:
-        volumeclaimtemplate:
+        volumeClaimTemplate:
           spec:
-            storageclassname: csi-cinder-sc-delete-all-zones
-            accessmodes: ["readwriteonce"]
+            storageClassName: csi-cinder-sc-delete-all-zones
+            accessModes: ["ReadWriteOnce"]
             resources:
               requests:
-                storage: 2gi
-      servicemonitorselectorniluseshelmvalues: false
-      podmonitorselectorniluseshelmvalues: false
-      ruleselectorniluseshelmvalues: false
-      probeselectorniluseshelmvalues: false
+                storage: 2Gi
+      serviceMonitorSelectorNilUsesHelmValues: false
+      podMonitorSelectorNilUsesHelmValues: false
+      ruleSelectorNilUsesHelmValues: false
+      probeSelectorNilUsesHelmValues: false
 
   kubeControllerManager:
     enabled: false
