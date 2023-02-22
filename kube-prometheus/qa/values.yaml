@@ -33,7 +33,7 @@ kube-prometheus-stack:
           telegram_configs:
             - bot_token: <path:kv/data/k3s/argocd/kube-prometheus#telegramApiToken>
               api_url: "https://api.telegram.org"
-              chat_id: 833373832
+              chat_id: -833373832
               parse_mode: "HTML"
 
     alertmanagerspec:
