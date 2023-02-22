@@ -89,9 +89,9 @@ kube-prometheus-stack:
       ruleselectorniluseshelmvalues: false
       probeselectorniluseshelmvalues: false
 
-  kubecontrollermanager:
+  kubeControllerManager:
     enabled: false
-  kubeproxy:
+  kubeProxy:
     enabled: false
-  kubescheduler:
+  kubeScheduler:
     enabled: false
