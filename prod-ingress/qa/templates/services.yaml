@@ -1,0 +1,10 @@
+{{- range $k,$v:= .Values.apps }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ $k }}
+spec:
+  type: ExternalName
+  externalName: {{ $v.service }}.{{ $k }}.svc.cluster.local
+{{- end }}

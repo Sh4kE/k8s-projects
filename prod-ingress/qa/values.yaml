@@ -1,0 +1,5 @@
+apps:
+  gitea:
+    service: gitea-http
+    hostname: gitea.sh4ke.rocks
+    port: 3000
