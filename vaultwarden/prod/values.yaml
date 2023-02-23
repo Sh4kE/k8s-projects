@@ -35,25 +35,10 @@ vaultwarden:
               pathType: Prefix
               service:
                 port: 3012
-        - host: vaultwarden.sh4ke.rocks
-          paths:
-            - path: /
-              pathType: Prefix
-              service:
-                port: 80
-            - path: /notifications/hub/negotiate
-              pathType: Prefix
-              service:
-                port: 80
-            - path: /notifications/hub
-              pathType: Prefix
-              service:
-                port: 3012
       tls:
         - secretName: vaultwarden-os-sh4ke-rocks-tls
           hosts:
             - vaultwarden.os.sh4ke.rocks
-            - vaultwarden.sh4ke.rocks
   persistence:
     config:
       enabled: true
