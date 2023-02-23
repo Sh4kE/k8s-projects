@@ -12,6 +12,9 @@ spec:
   - host: {{ $v.hostname }}
     http:
       paths:
+{{- if $v.paths }}
+{{- $v.paths | toYaml | nindent 6 }}
+{{- else }}
       - backend:
           service:
             name: {{ $k }}
@@ -19,6 +22,7 @@ spec:
               number: {{ $v.port }}
         path: /
         pathType: Prefix
+{{- end }}
   tls:
   - hosts:
     - {{ $v.hostname }}

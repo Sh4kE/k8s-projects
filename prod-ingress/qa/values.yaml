@@ -3,3 +3,33 @@ apps:
     service: gitea-http
     hostname: gitea.sh4ke.rocks
     port: 3000
+    paths:
+  paperless:
+    service: paperless
+    hostname: paperless.sh4ke.rocks
+    port: 80
+  vaultwarden:
+    service: vaultwarden
+    hostname: vaultwarden.sh4ke.rocks
+    paths:
+      - backend:
+          service:
+            name: vaultwarden
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+      - backend:
+          service:
+            name: vaultwarden
+            port:
+              number: 80
+        path: /notifications/hub/negotiate
+        pathType: Prefix
+      - backend:
+          service:
+            name: vaultwarden
+            port:
+              number: 3012
+        path: /notifications/hub
+        pathType: Prefix
