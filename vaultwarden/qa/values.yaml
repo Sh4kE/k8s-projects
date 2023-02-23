@@ -20,6 +20,25 @@ vaultwarden:
       annotations:
         kubernetes.io/ingress.class: "nginx"
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - host: vaultwarden.ws.sh4ke.rocks
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                port: 80
+            - path: /notifications/hub/negotiate
+              pathType: Prefix
+              service:
+                port: 80
+            - path: /notifications/hub
+              pathType: Prefix
+              service:
+                port: 3012
+      tls:
+        - secretName: vaultwarden-ws-sh4ke-rocks-tls
+          hosts:
+            - vaultwarden.ws.sh4ke.rocks
   persistence:
     config:
       enabled: true

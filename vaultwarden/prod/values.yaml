@@ -1,0 +1,149 @@
+vaultwarden:
+  common:
+      global:
+        annotations:
+          avp.kubernetes.io/path: "kv/data/k3s/argocd/vaultwarden"
+  env:
+    SIGNUPS_VERIFY: true
+    ADMIN_TOKEN: <admin-token>
+    # SMTP_HOST: <smtp-host>
+    # SMTP_FROM: noreply@sh4ke.rocks
+    # SMTP_FROM_NAME: Vaultwarden
+    # SMTP_SECURITY: starttls # ("starttls", "force_tls", "off") Enable a secure connection. Default is "starttls" (Explicit - ports 587 or 25), "force_tls" (Implicit - port 465) or "off", no encryption (port 25)
+    # SMTP_PORT: 587          # Ports 587 (submission) and 25 (smtp) are standard without encryption and with encryption via STARTTLS (Explicit TLS). Port 465 is outdated and used with Implicit TLS.
+    # SMTP_USERNAME: <smtp-username>
+    # SMTP_PASSWORD: <smtp-password>
+    DATABASE_URL: mysql://<username>:<password>@vaultwarden-mariadb:3306/<database>
+  ingress:
+    main:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - host: vaultwarden.os.sh4ke.rocks
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                port: 80
+            - path: /notifications/hub/negotiate
+              pathType: Prefix
+              service:
+                port: 80
+            - path: /notifications/hub
+              pathType: Prefix
+              service:
+                port: 3012
+        - host: vaultwarden.sh4ke.rocks
+          paths:
+            - path: /
+              pathType: Prefix
+              service:
+                port: 80
+            - path: /notifications/hub/negotiate
+              pathType: Prefix
+              service:
+                port: 80
+            - path: /notifications/hub
+              pathType: Prefix
+              service:
+                port: 3012
+      tls:
+        - secretName: vaultwarden-os-sh4ke-rocks-tls
+          hosts:
+            - vaultwarden.os.sh4ke.rocks
+            - vaultwarden.sh4ke.rocks
+  persistence:
+    config:
+      enabled: true
+      storageClass: csi-cinder-sc-delete-all-zones
+  mariadb:
+    enabled: true
+    commonAnnotations:
+      avp.kubernetes.io/path: "kv/data/k3s/argocd/vaultwarden"
+    auth:
+      username: "<username>"
+      password: "<password>"
+      rootPassword: "<rootPassword>"
+      database: "<database>"
+    primary:
+      persistence:
+        storageClass: csi-cinder-sc-delete-all-zones
+        storageClassBackup: nfs-csi
+
+backup-mariadb:
+  schedule: "10 4 * * *"
+  image: docker.io/bitnami/mariadb:10.10.2-debian-11-r9
+  shellCommand: |
+    mysqldump -u ${MARIADB_USER} -p${MARIADB_PASSWORD} -h vaultwarden-mariadb ${MARIADB_DATABASE} > /backup/vaultwarden_dump.$(date +"%d-%m-%Y-%H-%M").sql
+    cd /backup
+    ls -tr vaultwarden_dump.* | head -n -7 | xargs -r rm -f
+  env:
+    - name: MARIADB_ROOT_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: mariadb-root-password
+          name: vaultwarden-mariadb
+    - name: MARIADB_USER
+      value: "<path:kv/data/k3s/argocd/vaultwarden#username>"
+    - name: MARIADB_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: mariadb-password
+          name: vaultwarden-mariadb
+    - name: MARIADB_DATABASE
+      value: "<path:kv/data/k3s/argocd/vaultwarden#database>"
+  volumeMounts:
+    - mountPath: /bitnami/mariadb
+      name: data
+    - mountPath: /backup
+      name: mariadb-backup
+    - mountPath: /opt/bitnami/mariadb/conf/my.cnf
+      name: config
+      subPath: my.cnf
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: data-vaultwarden-mariadb-0
+    - name: mariadb-backup
+      persistentVolumeClaim:
+        claimName: mariadb-backup
+    - configMap:
+        defaultMode: 420
+        name: vaultwarden-mariadb
+      name: config
+  matchExpressions:
+    - key: app.kubernetes.io/name
+      operator: In
+      values:
+        - mariadb
+  permissions:
+    dirs: /backup
+    owner: "1001"
+    group: "1001"
+
+backup-vaultwarden:
+  schedule: "10 4 * * *"
+  image: alpine:latest
+  shellCommand: |
+    tar czf /backup/vaultwarden_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /config
+    cd /backup
+    ls -tr vaultwarden_data.* | head -n -7 | xargs -r rm -f
+  volumeMounts:
+    - mountPath: /config
+      name: config
+    - mountPath: /backup
+      name: mariadb-backup
+  volumes:
+    - name: config
+      persistentVolumeClaim:
+        claimName: vaultwarden-config
+    - name: mariadb-backup
+      persistentVolumeClaim:
+        claimName: mariadb-backup
+  matchExpressions:
+    - key: app.kubernetes.io/name
+      operator: In
+      values:
+        - vaultwarden
