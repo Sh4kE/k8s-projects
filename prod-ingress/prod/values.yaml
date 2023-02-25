@@ -8,6 +8,10 @@ apps:
     service: paperless
     hostname: paperless.sh4ke.rocks
     port: 80
+  privatebin:
+    service: privatebin
+    hostname: privatebin.sh4ke.rocks
+    port: 80
   vaultwarden:
     service: vaultwarden
     hostname: vaultwarden.sh4ke.rocks
