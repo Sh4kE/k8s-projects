@@ -73,7 +73,7 @@ mailu:
   postfix:
     image:
       repository: sh4ke/mailu-postfix
-
+      tag: latest
 
   rspamd:
     startupProbe: # give it 15 minutes for initial rule compilation
