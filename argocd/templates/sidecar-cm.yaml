@@ -13,7 +13,7 @@ data:
     spec:
       allowConcurrency: true
       discover:
-        fileName: "Chart.yaml"
+        fileName: "**/Chart.yaml"
       init:
         command: ["sh", "-c"]
         args: ["helm dependency build"]
@@ -35,7 +35,7 @@ data:
     spec:
       allowConcurrency: true
       discover:
-        fileName: "kustomization.yaml"
+        fileName: "**/kustomization.yaml"
       init:
         command: ["sh", "-c"]
         args: ["helm dependency build"]
