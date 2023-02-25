@@ -76,10 +76,9 @@ mailu:
       tag: latest
 
   rspamd:
-    startupProbe: # give it 15 minutes for initial rule compilation
-      periodSeconds: 20
-      failureThreshold: 300
-      timeoutSeconds: 10
+    resources:
+      limits:
+        memory: 500Mi
 
   webdav:
     enabled: true
