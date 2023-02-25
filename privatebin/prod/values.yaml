@@ -1,0 +1,21 @@
+---
+privatebin:
+  rbac:
+    create: true
+    serviceAccount:
+      name: "privatebin"
+  ingress:
+    enabled: true
+    annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    className: nginx
+    hosts:
+      - host: privatebin.os.sh4ke.rocks
+        paths:
+          - path: "/"
+            pathType: Prefix
+
+    tls:
+      - secretName: privatebin-os-sh4ke-rocks-tls
+        hosts:
+          - privatebin.os.sh4ke.rocks
