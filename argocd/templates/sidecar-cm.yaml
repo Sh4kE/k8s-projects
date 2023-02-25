@@ -13,7 +13,8 @@ data:
     spec:
       allowConcurrency: true
       discover:
-        fileName: "**/Chart.yaml"
+        find:
+          command: [sh, -c, find . -name Chart.yaml]
       init:
         command: ["sh", "-c"]
         args: ["helm repo update && helm dependency build"]
@@ -35,7 +36,8 @@ data:
     spec:
       allowConcurrency: true
       discover:
-        fileName: "**/kustomization.yaml"
+        find:
+          command: [sh, -c, find . -iname kustomization.yaml]
       init:
         command: ["sh", "-c"]
         args: ["helm repo update && helm dependency build"]
