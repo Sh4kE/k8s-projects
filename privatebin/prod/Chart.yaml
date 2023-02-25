@@ -25,4 +25,4 @@ appVersion: "1.3.5"
 dependencies:
 - name: privatebin
   version: 0.17.0
-  repository: https://privatebin.github.io/helm-charts/
+  repository: https://privatebin.github.io/helm-chart/
