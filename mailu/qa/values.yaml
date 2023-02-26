@@ -4,7 +4,7 @@ mailu:
     - mail.ws.sh4ke.rocks
 
   domain: ws.sh4ke.rocks
-  subnet: ""
+  # subnet: ""
 
   affinity:
     nodeAffinity:
