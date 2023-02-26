@@ -4,7 +4,6 @@ mailu:
     - mail.ws.sh4ke.rocks
 
   domain: ws.sh4ke.rocks
-  # subnet: ""
 
   affinity:
     nodeAffinity:
@@ -73,7 +72,6 @@ mailu:
   postfix:
     image:
       repository: sh4ke/mailu-postfix
-      tag: latest
 
   rspamd:
     resources:
