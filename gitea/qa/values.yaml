@@ -1,6 +1,6 @@
 gitea:
   image:
-    tag: "1.18.5"
+    tag: 1.18.5
     rootless: true
 
   service:
