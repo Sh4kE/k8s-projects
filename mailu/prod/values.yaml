@@ -3,14 +3,7 @@ mailu:
   hostnames:
     - mail.os.sh4ke.rocks
 
-  domain: mail.os.sh4ke.rocks
-
-  secretKey: <path:kv/data/k3s/argocd/mailu#secret_key>
-
-  initialAccount:
-    username: admin
-    domain: os.sh4ke.rocks
-    password: <path:kv/data/k3s/argocd/mailu#initial_admin_password>
+  domain: sh4ke.rocks
 
   affinity:
     nodeAffinity:
@@ -21,6 +14,13 @@ mailu:
             operator: NotIn
             values:
             - k3s-server-1
+
+  secretKey: <path:kv/data/k3s/argocd/mailu#secret_key>
+
+  initialAccount:
+    username: admin
+    domain: sh4ke.rocks
+    password: <path:kv/data/k3s/argocd/mailu#initial_admin_password>
 
   database:
     type: mysql
@@ -68,6 +68,8 @@ mailu:
       storageClass: "csi-cinder-sc-delete-all-zones"
 
   postfix:
+    image:
+      repository: sh4ke/mailu-postfix
     persistence:
       size: 1Gi
       storageClass: "csi-cinder-sc-delete-all-zones"
@@ -81,10 +83,9 @@ mailu:
     persistence:
       size: 1Gi
       storageClass: "csi-cinder-sc-delete-all-zones"
-    startupProbe:
-      periodSeconds: 20
-      failureThreshold: 300
-      timeoutSeconds: 10
+    resources:
+      limits:
+        memory: 500Mi
 
   clamav:
     persistence:
