@@ -7,7 +7,7 @@ apps:
   paperless:
     service: paperless
     hostname: paperless.sh4ke.rocks
-    port: 80
+    port: 8000
   vaultwarden:
     service: vaultwarden
     hostname: vaultwarden.sh4ke.rocks
