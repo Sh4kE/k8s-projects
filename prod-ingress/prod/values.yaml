@@ -7,7 +7,7 @@ apps:
   paperless:
     service: paperless
     hostname: paperless.sh4ke.rocks
-    port: 80
+    port: 8000
   privatebin:
     service: privatebin
     hostname: privatebin.sh4ke.rocks
