@@ -12,6 +12,10 @@ apps:
     service: privatebin
     hostname: privatebin.sh4ke.rocks
     port: 80
+  mailu:
+    service: mailu-front
+    hostname: mail.sh4ke.rocks
+    port: 80
   vaultwarden:
     service: vaultwarden
     hostname: vaultwarden.sh4ke.rocks
