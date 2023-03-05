@@ -1,5 +1,0 @@
-global:
-  tld: "sh4ke.rocks"
-  subdomain: "ws"
-  vault_url: "https://vault.ws.sh4ke.rocks"
-

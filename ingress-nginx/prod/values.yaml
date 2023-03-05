@@ -9,4 +9,4 @@ ingress-nginx:
           prometheus.io/scrape: "true"
           prometheus.io/port: "10254"
       serviceMonitor:
-        enabled: false 
+        enabled: false
