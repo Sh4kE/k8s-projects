@@ -30,3 +30,7 @@ dependencies:
   alias: backup-mysql
   version: 1.0.0
   repository: https://chartmuseum.os.sh4ke.rocks
+- name: backup
+  alias: backup-admin
+  version: 1.0.0
+  repository: https://chartmuseum.os.sh4ke.rocks

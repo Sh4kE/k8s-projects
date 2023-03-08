@@ -113,27 +113,34 @@ backup-mysql:
     owner: "999"
     group: "999"
 
-# backup-vaultwarden:
-#   schedule: "10 4 * * *"
-#   image: alpine:latest
-#   shellCommand: |
-#     tar czf /backup/vaultwarden_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /config
-#     cd /backup
-#     ls -tr vaultwarden_data.* | head -n -7 | xargs -r rm -f
-#   volumeMounts:
-#     - mountPath: /config
-#       name: config
-#     - mountPath: /backup
-#       name: mariadb-backup
-#   volumes:
-#     - name: config
-#       persistentVolumeClaim:
-#         claimName: vaultwarden-config
-#     - name: mariadb-backup
-#       persistentVolumeClaim:
-#         claimName: mariadb-backup
-#   matchExpressions:
-#     - key: app.kubernetes.io/name
-#       operator: In
-#       values:
-#         - vaultwarden
+backup-admin:
+  schedule: "10 4 * * *"
+  image: alpine:latest
+  shellCommand: |
+    cd /backup
+    tar czf /backup/mailu_admin_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
+    ls -tr mailu_admin_data.* | head -n -7 | xargs -r rm -f
+    tar czf /backup/mailu_admin_dkim.$(date +"%d-%m-%Y-%H-%M").tar.gz /dkim
+    ls -tr mailu_admin_dkim.* | head -n -7 | xargs -r rm -f
+  volumeMounts:
+    - mountPath: /data
+      name: data
+      subPath: admin
+    - mountPath: /dkim
+      name: data
+      subPath: dkim
+    - mountPath: /backup
+      name: mailu-backup
+      subPath: mysql
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: mailu-storage
+    - name: mailu-backup
+      persistentVolumeClaim:
+        claimName: mailu-backup
+  matchExpressions:
+    - key: component
+      operator: In
+      values:
+        - admin
