@@ -26,3 +26,7 @@ dependencies:
 - name: mailu
   version: 0.3.3
   repository: https://mailu.github.io/helm-charts/
+- name: backup
+  alias: backup-mysql
+  version: 1.0.0
+  repository: https://chartmuseum.os.sh4ke.rocks

@@ -80,3 +80,60 @@ mailu:
 
   webdav:
     enabled: true
+
+backup-mysql:
+  schedule: "11 4 * * *"
+  image: docker.io/library/mariadb:10.4.10
+  shellCommand: |
+    mysqldump -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -h mailu-mysql ${MYSQL_DATABASE} > /backup/mailu_dump.$(date +"%d-%m-%Y-%H-%M").sql
+    cd /backup
+    ls -tr mailu_dump.* | head -n -7 | xargs -r rm -f
+  env:
+    - name: MYSQL_DATABASE
+      value: mailu
+    - name: MYSQL_USER
+      value: mailu
+    - name: MYSQL_PASSWORD
+      value: <path:kv/data/k3s/argocd/mailu#mysql_password>
+  volumeMounts:
+    - mountPath: /backup
+      name: mailu-backup
+      subPath: mysql
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: mailu-storage
+  matchExpressions:
+    - key: component
+      operator: In
+      values:
+        - mysql
+  permissions:
+    dirs: /backup
+    owner: "999"
+    group: "999"
+
+# backup-vaultwarden:
+#   schedule: "10 4 * * *"
+#   image: alpine:latest
+#   shellCommand: |
+#     tar czf /backup/vaultwarden_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /config
+#     cd /backup
+#     ls -tr vaultwarden_data.* | head -n -7 | xargs -r rm -f
+#   volumeMounts:
+#     - mountPath: /config
+#       name: config
+#     - mountPath: /backup
+#       name: mariadb-backup
+#   volumes:
+#     - name: config
+#       persistentVolumeClaim:
+#         claimName: vaultwarden-config
+#     - name: mariadb-backup
+#       persistentVolumeClaim:
+#         claimName: mariadb-backup
+#   matchExpressions:
+#     - key: app.kubernetes.io/name
+#       operator: In
+#       values:
+#         - vaultwarden
