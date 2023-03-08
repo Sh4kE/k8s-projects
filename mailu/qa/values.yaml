@@ -144,3 +144,202 @@ backup-admin:
       operator: In
       values:
         - admin
+
+backup-clamav:
+  schedule: "10 4 * * *"
+  image: alpine:latest
+  shellCommand: |
+    cd /backup
+    tar czf /backup/mailu_clamav_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
+    ls -tr mailu_clamav_data.* | head -n -7 | xargs -r rm -f
+  volumeMounts:
+    - mountPath: /data
+      name: data
+      subPath: clamav
+    - mountPath: /backup
+      name: mailu-backup
+      subPath: clamav
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: mailu-storage
+    - name: mailu-backup
+      persistentVolumeClaim:
+        claimName: mailu-backup
+  matchExpressions:
+    - key: component
+      operator: In
+      values:
+        - clamav
+
+backup-dovecot:
+  schedule: "10 4 * * *"
+  image: alpine:latest
+  shellCommand: |
+    cd /backup
+    tar czf /backup/mailu_dovecot_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
+    ls -tr mailu_dovecot_data.* | head -n -7 | xargs -r rm -f
+    tar czf /backup/mailu_dovecot_mail.$(date +"%d-%m-%Y-%H-%M").tar.gz /mail
+    ls -tr mailu_dovecot_mail.* | head -n -7 | xargs -r rm -f
+  volumeMounts:
+    - mountPath: /data
+      name: data
+      subPath: dovecotdata
+    - mountPath: /mail
+      name: data
+      subPath: dovecotmail
+    - mountPath: /backup
+      name: mailu-backup
+      subPath: dovecot
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: mailu-storage
+    - name: mailu-backup
+      persistentVolumeClaim:
+        claimName: mailu-backup
+  matchExpressions:
+    - key: component
+      operator: In
+      values:
+        - dovecot
+
+backup-postfix:
+  schedule: "10 4 * * *"
+  image: alpine:latest
+  shellCommand: |
+    cd /backup
+    tar czf /backup/mailu_postfix_queue.$(date +"%d-%m-%Y-%H-%M").tar.gz /queue
+    ls -tr mailu_postfix_queue.* | head -n -7 | xargs -r rm -f
+  volumeMounts:
+    - mountPath: /queue
+      name: data
+      subPath: mailqueue
+    - mountPath: /backup
+      name: mailu-backup
+      subPath: postfix
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: mailu-storage
+    - name: mailu-backup
+      persistentVolumeClaim:
+        claimName: mailu-backup
+  matchExpressions:
+    - key: component
+      operator: In
+      values:
+        - postfix
+
+backup-redis:
+  schedule: "10 4 * * *"
+  image: alpine:latest
+  shellCommand: |
+    cd /backup
+    tar czf /backup/mailu_redis_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
+    ls -tr mailu_redis_data.* | head -n -7 | xargs -r rm -f
+  volumeMounts:
+    - mountPath: /data
+      name: data
+      subPath: redis
+    - mountPath: /backup
+      name: mailu-backup
+      subPath: redis
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: mailu-storage
+    - name: mailu-backup
+      persistentVolumeClaim:
+        claimName: mailu-backup
+  matchExpressions:
+    - key: component
+      operator: In
+      values:
+        - redis
+
+backup-roundcube:
+  schedule: "10 4 * * *"
+  image: alpine:latest
+  shellCommand: |
+    cd /backup
+    tar czf /backup/mailu_roundcube_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
+    ls -tr mailu_roundcube_data.* | head -n -7 | xargs -r rm -f
+  volumeMounts:
+    - mountPath: /data
+      name: data
+      subPath: roundcube
+    - mountPath: /backup
+      name: mailu-backup
+      subPath: roundcube
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: mailu-storage
+    - name: mailu-backup
+      persistentVolumeClaim:
+        claimName: mailu-backup
+  matchExpressions:
+    - key: component
+      operator: In
+      values:
+        - roundcube
+
+backup-rspamd:
+  schedule: "10 4 * * *"
+  image: alpine:latest
+  shellCommand: |
+    cd /backup
+    tar czf /backup/mailu_rspamd_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /var/lib/rspamd
+    ls -tr mailu_rspamd_data.* | head -n -7 | xargs -r rm -f
+    tar czf /backup/mailu_rspamd_mapsd.$(date +"%d-%m-%Y-%H-%M").tar.gz /etc/rspamd/local.d/maps.d
+    ls -tr mailu_rspamd_mapsd.* | head -n -7 | xargs -r rm -f
+  volumeMounts:
+    - mountPath: /var/lib/rspamd
+      name: data
+      subPath: rspamd
+    - mountPath: /etc/rspamd/local.d/maps.d
+      name: data
+      subPath: rspamd-local.d-maps.d
+    - mountPath: /backup
+      name: mailu-backup
+      subPath: rspamd
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: mailu-storage
+    - name: mailu-backup
+      persistentVolumeClaim:
+        claimName: mailu-backup
+  matchExpressions:
+    - key: component
+      operator: In
+      values:
+        - rspamd
+
+backup-webdav:
+  schedule: "10 4 * * *"
+  image: alpine:latest
+  shellCommand: |
+    cd /backup
+    tar czf /backup/mailu_webdav_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
+    ls -tr mailu_webdav_data.* | head -n -7 | xargs -r rm -f
+  volumeMounts:
+    - mountPath: /data
+      name: data
+      subPath: webdav
+    - mountPath: /backup
+      name: mailu-backup
+      subPath: webdav
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: mailu-storage
+    - name: mailu-backup
+      persistentVolumeClaim:
+        claimName: mailu-backup
+  matchExpressions:
+    - key: component
+      operator: In
+      values:
+        - webdav

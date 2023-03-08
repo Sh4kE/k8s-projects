@@ -34,3 +34,31 @@ dependencies:
   alias: backup-admin
   version: 1.0.0
   repository: https://chartmuseum.os.sh4ke.rocks
+- name: backup
+  alias: backup-clamav
+  version: 1.0.0
+  repository: https://chartmuseum.os.sh4ke.rocks
+- name: backup
+  alias: backup-dovecot
+  version: 1.0.0
+  repository: https://chartmuseum.os.sh4ke.rocks
+- name: backup
+  alias: backup-postfix
+  version: 1.0.0
+  repository: https://chartmuseum.os.sh4ke.rocks
+- name: backup
+  alias: backup-redis
+  version: 1.0.0
+  repository: https://chartmuseum.os.sh4ke.rocks
+- name: backup
+  alias: backup-roundcube
+  version: 1.0.0
+  repository: https://chartmuseum.os.sh4ke.rocks
+- name: backup
+  alias: backup-rspamd
+  version: 1.0.0
+  repository: https://chartmuseum.os.sh4ke.rocks
+- name: backup
+  alias: backup-webdav
+  version: 1.0.0
+  repository: https://chartmuseum.os.sh4ke.rocks
