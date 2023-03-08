@@ -131,7 +131,7 @@ backup-admin:
       subPath: dkim
     - mountPath: /backup
       name: mailu-backup
-      subPath: mysql
+      subPath: admin
   volumes:
     - name: data
       persistentVolumeClaim:
