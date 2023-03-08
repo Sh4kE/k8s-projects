@@ -100,9 +100,9 @@ backup-mysql:
       name: mailu-backup
       subPath: mysql
   volumes:
-    - name: data
+    - name: mailu-backup
       persistentVolumeClaim:
-        claimName: mailu-storage
+        claimName: mailu-backup
   matchExpressions:
     - key: component
       operator: In
