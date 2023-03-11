@@ -6,6 +6,9 @@ metadata:
   name: {{ $k }}
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+{{- if $v.annotations }}
+{{- $v.annotations | toYaml | nindent 4 }}
+{{- end }}
 spec:
   ingressClassName: nginx
   rules:

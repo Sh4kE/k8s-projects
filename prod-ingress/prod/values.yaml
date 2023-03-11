@@ -8,6 +8,8 @@ apps:
     service: paperless
     hostname: paperless.sh4ke.rocks
     port: 8000
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: 100M
   privatebin:
     service: privatebin
     hostname: privatebin.sh4ke.rocks
