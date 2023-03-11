@@ -7,6 +7,7 @@ metadata:
     {{- include "backup.labels" . | nindent 4 }}
 spec:
   schedule: {{ .Values.schedule | quote }}
+  successfulJobsHistoryLimit: {{ .Values.successfulJobsHistoryLimit }}
   jobTemplate:
     spec:
       template:

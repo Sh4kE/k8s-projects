@@ -40,3 +40,5 @@ shellCommand: echo "update your shellCommand to backup && exit 1"
 
 # use the appropriate image containing your backup tool of choice
 image: busybox
+
+successfulJobsHistoryLimit: 1
