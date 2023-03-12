@@ -27,5 +27,5 @@ dependencies:
   version: 7.0.4
   repository: https://dl.gitea.io/charts
 - name: backup
-  version: 1.0.0
+  version: 1.1.0
   repository: https://chartmuseum.os.sh4ke.rocks
