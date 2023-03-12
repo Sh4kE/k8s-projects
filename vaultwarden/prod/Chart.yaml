@@ -28,9 +28,9 @@ dependencies:
   repository: https://k8s-at-home.com/charts/
 - name: backup
   alias: backup-mariadb
-  version: 1.0.0
+  version: 1.1.0
   repository: https://chartmuseum.os.sh4ke.rocks
 - name: backup
   alias: backup-vaultwarden
-  version: 1.0.0
+  version: 1.1.0
   repository: https://chartmuseum.os.sh4ke.rocks
