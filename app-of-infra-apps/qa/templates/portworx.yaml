@@ -6,8 +6,6 @@ metadata:
 spec:
   project: default
   source:
-    kustomize:
-      version: hahnebüchen
     repoURL: git@github.com:Sh4kE/k8s-projects.git
     targetRevision: main
     path: portworx/qa
