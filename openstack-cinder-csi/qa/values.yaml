@@ -1,7 +1,9 @@
 openstack-cinder-csi:
   secret:
+    enabled: true
+    create: true
+    name: cinder-csi-cloud-config
     data:
-      # TODO: replace cloud.conf with cloud-config in actual secret
       cloud.conf.template: |-
         [Global]
         auth-url="https://api.wavestack.de:5000/v3"
@@ -12,8 +14,14 @@ openstack-cinder-csi:
         tenant-name=nn-mwittig
         tenant-domain-id=736f42e6197e4805b707099acfbc28ac
         region=MUC5
-
   storageClass:
+    enabled: true
+    delete:
+      isDefault: false
+      allowVolumeExpansion: true
+    retain:
+      isDefault: false
+      allowVolumeExpansion: true
     custom: |-
       ---
       apiVersion: storage.k8s.io/v1
@@ -22,17 +30,4 @@ openstack-cinder-csi:
         name: csi-cinder-sc-delete-all-zones
       provisioner: cinder.csi.openstack.org
       volumeBindingMode: WaitForFirstConsumer
-      allowVolumeExpansion: true
-      ---
-      apiVersion: storage.k8s.io/v1
-      kind: StorageClass
-      metadata:
-        name: csi-cinder-sc-delete-a
-      provisioner: cinder.csi.openstack.org
-      volumeBindingMode: Immediate
-      allowedTopologies:
-      - matchLabelExpressions:
-        - key: topology.cinder.csi.openstack.org/zone
-          values:
-          - muc5-a
       allowVolumeExpansion: true

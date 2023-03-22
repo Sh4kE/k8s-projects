@@ -1,0 +1,33 @@
+openstack-cinder-csi:
+  secret:
+    enabled: true
+    create: true
+    name: cinder-csi-cloud-config
+    data:
+      cloud.conf.template: |-
+        [Global]
+        auth-url="https://de-nbg6-1.noris.cloud:5000/v3"
+        username="mwittig"
+        user-domain-name="noris.de"
+        password=""
+        tenant-id=8e3e72a2e75c44eba74be23856b02fa2
+        tenant-name=mwittig
+        tenant-domain-id=0fd4315f3f784ee2a37cfd9657385fe5
+        region=de-nbg6-1
+  storageClass:
+    enabled: true
+    delete:
+      isDefault: false
+      allowVolumeExpansion: true
+    retain:
+      isDefault: false
+      allowVolumeExpansion: true
+    custom: |-
+      ---
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: csi-cinder-sc-delete-all-zones
+      provisioner: cinder.csi.openstack.org
+      volumeBindingMode: WaitForFirstConsumer
+      allowVolumeExpansion: true
