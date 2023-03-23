@@ -40,7 +40,7 @@ kube-prometheus-stack:
       storage:
         volumeClaimTemplate:
           spec:
-            storageClassName: csi-cinder-sc-delete-all-zones
+            storageClassName: px-csi-db
             accessModes: ["ReadWriteOnce"]
             resources:
               requests:
@@ -79,7 +79,7 @@ kube-prometheus-stack:
       storage:
         volumeClaimTemplate:
           spec:
-            storageClassName: csi-cinder-sc-delete-all-zones
+            storageClassName: px-csi-db
             accessModes: ["ReadWriteOnce"]
             resources:
               requests:

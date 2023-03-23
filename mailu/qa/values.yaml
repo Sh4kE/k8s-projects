@@ -64,22 +64,58 @@ mailu:
       loadBalancerIP: 31.172.117.49
 
   persistence:
-    single_pvc: true
-    size: 10Gi
-    accessMode: ReadWriteOnce
-    storageClass: "csi-cinder-sc-delete-all-zones"
+    single_pvc: false
+
+  admin:
+    persistence:
+      size: 1Gi
+      storageClass: px-csi-db
+
+  redis:
+    persistence:
+      size: 1Gi
+      storageClass: px-csi-db
 
   postfix:
     image:
       repository: sh4ke/mailu-postfix
+    persistence:
+      size: 1Gi
+      storageClass: px-csi-db
+
+  dovecot:
+    persistence:
+      size: 1Gi
+      storageClass: px-csi-db
 
   rspamd:
+    persistence:
+      size: 1Gi
+      storageClass: px-csi-db
     resources:
       limits:
         memory: 500Mi
 
+  clamav:
+    persistence:
+      size: 1Gi
+      storageClass: px-csi-db
+
+  roundcube:
+    persistence:
+      size: 1Gi
+      storageClass: px-csi-db
+
   webdav:
     enabled: true
+    persistence:
+      size: 1Gi
+      storageClass: px-csi-db
+
+  mysql:
+    persistence:
+      size: 1Gi
+      storageClass: px-csi-db
 
 backup-mysql:
   schedule: "11 4 * * *"

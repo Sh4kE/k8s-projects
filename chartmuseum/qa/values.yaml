@@ -4,17 +4,17 @@ chartmuseum:
       AUTH_ANONYMOUS_GET: true
       DISABLE_API: false
     secret:
-      BASIC_AUTH_USER: "Sh4kE"
+      BASIC_AUTH_USER: Sh4kE
       BASIC_AUTH_PASS: <path:kv/data/k3s/argocd/chartmuseum#password>
 
   persistence:
     enabled: true
-    storageClass: "csi-cinder-sc-delete-all-zones"
+    storageClass: px-csi-db
 
   ingress:
     enabled: true
     annotations:
-      cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
     ingressClassName: nginx
     hosts:
      - name: chartmuseum.ws.sh4ke.rocks

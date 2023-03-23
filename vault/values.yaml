@@ -6,12 +6,12 @@ vault:
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
     dataStorage:
-      storageClass: csi-cinder-sc-delete-all-zones
+      storageClass: px-csi-db
       size: 2Gi
     auditStorage:
       enabled: true
       size: 2Gi
-      storageClass: csi-cinder-sc-delete-all-zones
+      storageClass: px-csi-db
     ha:
       enabled: true
       raft:

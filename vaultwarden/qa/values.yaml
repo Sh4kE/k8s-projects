@@ -44,7 +44,7 @@ vaultwarden:
   persistence:
     config:
       enabled: true
-      storageClass: csi-cinder-sc-delete-all-zones
+      storageClass: px-csi-db
   mariadb:
     enabled: true
     commonAnnotations:
@@ -56,7 +56,7 @@ vaultwarden:
       database: "<database>"
     primary:
       persistence:
-        storageClass: csi-cinder-sc-delete-all-zones
+        storageClass: px-csi-db
         storageClassBackup: nfs-csi
 
 backup-mariadb:
