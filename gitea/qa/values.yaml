@@ -32,7 +32,7 @@ gitea:
     admin:
       username: gitea_admin
       password: <path:kv/data/k3s/argocd/gitea#giteaAdminPassword>
-      email: "michael.wittig@posteo.de"
+      email: "michael.wittig@sh4ke.rocks"
     metrics:
       enabled: false
       serviceMonitor:
