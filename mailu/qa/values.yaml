@@ -171,7 +171,7 @@ backup-admin:
   volumes:
     - name: data
       persistentVolumeClaim:
-        claimName: mailu-storage
+        claimName: mailu-admin
     - name: mailu-backup
       persistentVolumeClaim:
         claimName: mailu-backup
@@ -198,7 +198,7 @@ backup-clamav:
   volumes:
     - name: data
       persistentVolumeClaim:
-        claimName: mailu-storage
+        claimName: mailu-clamav
     - name: mailu-backup
       persistentVolumeClaim:
         claimName: mailu-backup
@@ -230,7 +230,7 @@ backup-dovecot:
   volumes:
     - name: data
       persistentVolumeClaim:
-        claimName: mailu-storage
+        claimName: mailu-dovecot
     - name: mailu-backup
       persistentVolumeClaim:
         claimName: mailu-backup
@@ -257,7 +257,7 @@ backup-postfix:
   volumes:
     - name: data
       persistentVolumeClaim:
-        claimName: mailu-storage
+        claimName: mailu-postfix
     - name: mailu-backup
       persistentVolumeClaim:
         claimName: mailu-backup
@@ -284,7 +284,7 @@ backup-redis:
   volumes:
     - name: data
       persistentVolumeClaim:
-        claimName: mailu-storage
+        claimName: mailu-redis
     - name: mailu-backup
       persistentVolumeClaim:
         claimName: mailu-backup
@@ -311,7 +311,7 @@ backup-roundcube:
   volumes:
     - name: data
       persistentVolumeClaim:
-        claimName: mailu-storage
+        claimName: mailu-roundcube
     - name: mailu-backup
       persistentVolumeClaim:
         claimName: mailu-backup
@@ -343,7 +343,7 @@ backup-rspamd:
   volumes:
     - name: data
       persistentVolumeClaim:
-        claimName: mailu-storage
+        claimName: mailu-rspamd
     - name: mailu-backup
       persistentVolumeClaim:
         claimName: mailu-backup
@@ -370,7 +370,7 @@ backup-webdav:
   volumes:
     - name: data
       persistentVolumeClaim:
-        claimName: mailu-storage
+        claimName: mailu-webdav
     - name: mailu-backup
       persistentVolumeClaim:
         claimName: mailu-backup
