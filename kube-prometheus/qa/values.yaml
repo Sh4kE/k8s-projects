@@ -40,7 +40,7 @@ kube-prometheus-stack:
       storage:
         volumeClaimTemplate:
           spec:
-            storageClassName: px-csi-db
+            storageClassName: longhorn
             accessModes: ["ReadWriteOnce"]
             resources:
               requests:
@@ -79,7 +79,7 @@ kube-prometheus-stack:
       storage:
         volumeClaimTemplate:
           spec:
-            storageClassName: px-csi-db
+            storageClassName: longhorn
             accessModes: ["ReadWriteOnce"]
             resources:
               requests:

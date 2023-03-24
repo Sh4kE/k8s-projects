@@ -44,7 +44,7 @@ vaultwarden:
   persistence:
     config:
       enabled: true
-      storageClass: px-csi-db
+      storageClass: longhorn
   mariadb:
     enabled: true
     commonAnnotations:
@@ -56,7 +56,7 @@ vaultwarden:
       database: "<database>"
     primary:
       persistence:
-        storageClass: px-csi-db
+        storageClass: longhorn
         storageClassBackup: nfs-csi
 
 backup-mariadb:

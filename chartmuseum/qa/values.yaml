@@ -9,7 +9,7 @@ chartmuseum:
 
   persistence:
     enabled: true
-    storageClass: px-csi-db
+    storageClass: longhorn
 
   ingress:
     enabled: true

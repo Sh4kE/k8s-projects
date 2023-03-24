@@ -69,29 +69,29 @@ mailu:
   admin:
     persistence:
       size: 1Gi
-      storageClass: px-csi-db
+      storageClass: longhorn
 
   redis:
     persistence:
       size: 1Gi
-      storageClass: px-csi-db
+      storageClass: longhorn
 
   postfix:
     image:
       repository: sh4ke/mailu-postfix
     persistence:
       size: 1Gi
-      storageClass: px-csi-db
+      storageClass: longhorn
 
   dovecot:
     persistence:
       size: 1Gi
-      storageClass: px-csi-db
+      storageClass: longhorn
 
   rspamd:
     persistence:
       size: 1Gi
-      storageClass: px-csi-db
+      storageClass: longhorn
     resources:
       limits:
         memory: 500Mi
@@ -99,23 +99,23 @@ mailu:
   clamav:
     persistence:
       size: 1Gi
-      storageClass: px-csi-db
+      storageClass: longhorn
 
   roundcube:
     persistence:
       size: 1Gi
-      storageClass: px-csi-db
+      storageClass: longhorn
 
   webdav:
     enabled: true
     persistence:
       size: 1Gi
-      storageClass: px-csi-db
+      storageClass: longhorn
 
   mysql:
     persistence:
       size: 1Gi
-      storageClass: px-csi-db
+      storageClass: longhorn
 
 backup-mysql:
   schedule: "11 4 * * *"

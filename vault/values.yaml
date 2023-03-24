@@ -6,12 +6,12 @@ vault:
       annotations:
         cert-manager.io/cluster-issuer: "letsencrypt-prod"
     dataStorage:
-      storageClass: px-csi-db
+      storageClass: longhorn
       size: 2Gi
     auditStorage:
       enabled: true
       size: 2Gi
-      storageClass: px-csi-db
+      storageClass: longhorn
     ha:
       enabled: true
       raft:
