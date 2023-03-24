@@ -1,0 +1,9 @@
+longhorn:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    host: longhorn.ws.sh4ke.rocks
+    tls: true
+    tlsSecret: longhorn-ws-sh4ke-rocks-tls
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
