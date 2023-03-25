@@ -14,15 +14,6 @@ mailu:
             operator: NotIn
             values:
             - k3s-server-1
-    podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-      - labelSelector:
-          matchExpressions:
-          - key: app
-            operator: In
-            values:
-            - mailu
-        topologyKey: kubernetes.io/hostname
 
   secretKey: <path:kv/data/k3s/argocd/mailu#secret_key>
 
