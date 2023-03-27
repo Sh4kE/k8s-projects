@@ -22,4 +22,5 @@ spec:
   tls:
   - hosts:
     - argocd.{{ .Values.global.subdomain }}.{{ .Values.global.tld }}
+    - argocd2.{{ .Values.global.subdomain }}.{{ .Values.global.tld }}
     secretName: argocd-{{ .Values.global.subdomain }}-{{ .Values.global.tld | replace "." "-" }}-tls
