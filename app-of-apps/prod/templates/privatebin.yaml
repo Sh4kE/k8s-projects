@@ -9,8 +9,6 @@ spec:
     repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
     path: privatebin/prod
     targetRevision: HEAD
-    plugin:
-      name: argocd-vault-plugin-helm
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: privatebin
