@@ -1,5 +1,9 @@
 vault:
   server:
+    dataStorage:
+      storageClass: csi-cinder-sc-delete-all-zones
+    auditStorage:
+      storageClass: csi-cinder-sc-delete-all-zones
     ingress:
       hosts:
         - host: vault.os.sh4ke.rocks
