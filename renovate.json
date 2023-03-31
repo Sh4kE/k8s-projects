@@ -3,6 +3,16 @@
   "extends": [
     "config:base"
   ],
+  "regexManagers": [
+    {
+      "fileMatch": [
+        "(^|/)kustomization\\.ya?ml$"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>[a-z-]+?)\\s+- https://raw\.githubusercontent\.com/(?<depName>.*?/.*?)/(?<currentValue>[\\w+\\.\\-]*)"
+      ]
+    }
+  ],
   "additionalBranchPrefix": "{{parentDir}}-",
   "packageRules": [
     {

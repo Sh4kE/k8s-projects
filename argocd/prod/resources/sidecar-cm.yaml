@@ -14,7 +14,10 @@ data:
       allowConcurrency: true
       discover:
         find:
-          command: [sh, -c, find . -name Chart.yaml]
+          command:
+            - "sh"
+            - "-c"
+            - "ls Chart.yaml && find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
       init:
         command: ["sh", "-c"]
         args: ["helm dependency build"]
@@ -37,7 +40,10 @@ data:
       allowConcurrency: true
       discover:
         find:
-          command: [sh, -c, find . -iname kustomization.yaml]
+          command:
+            - "sh"
+            - "-c"
+            - "ls kustomization.yaml && find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
       init:
         command: ["sh", "-c"]
         args: ["helm dependency build"]

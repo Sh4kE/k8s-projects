@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  sshConfigs: |
+    Host gitea.sh4ke.rocks
+        KexAlgorithms ecdh-sha2-nistp521
+        PubkeyAcceptedAlgorithms +ssh-rsa
+    Host gitea.os.sh4ke.rocks
+        KexAlgorithms ecdh-sha2-nistp521
+        PubkeyAcceptedAlgorithms +ssh-rsa
+    Host gitea.ws.sh4ke.rocks
+        KexAlgorithms ecdh-sha2-nistp521
+        PubkeyAcceptedAlgorithms +ssh-rsa
+
