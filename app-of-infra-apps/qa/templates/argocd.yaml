@@ -6,6 +6,8 @@ metadata:
 spec:
   project: default
   source:
+    kustomize:
+        version: default
     repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
     path: argocd/qa
     targetRevision: HEAD
