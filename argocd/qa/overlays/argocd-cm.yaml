@@ -4,6 +4,7 @@ kind: ConfigMap
 metadata:
   name: argocd-cm
 data:
+  kustomize.path.default: /usr/local/bin/kustomize
   sshConfigs: |
     Host gitea.sh4ke.rocks
         KexAlgorithms ecdh-sha2-nistp521
