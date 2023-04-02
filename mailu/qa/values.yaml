@@ -94,7 +94,7 @@ mailu:
 
   roundcube:
     image:
-      repository: sh4ke:mailu-roundcube
+      repository: sh4ke/mailu-roundcube
     persistence:
       size: 1Gi
       storageClass: longhorn
