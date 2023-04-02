@@ -1,0 +1,29 @@
+kubeclarity:
+  kubeclarity-runtime-scan:
+
+    vulnerability-scanner:
+      analyzer:
+        analyzerList: "syft gomod trivy"
+        analyzerScope: "squashed"
+        trivy:
+          enabled: true
+          timeout: "300"
+
+      scanner:
+        scannerList: "grype dependency-track trivy"
+        grype:
+          enabled: true
+          ## Grype scanner mode. (LOCAL, REMOTE)
+          mode: "REMOTE"
+          remote-grype:
+            timeout: "2m"
+        dependency-track:
+          enabled: true
+          insecureSkipVerify: "true"
+          disableTls: "true"
+          apiserverAddress: "dependency-track-apiserver.dependency-track"
+          apiKey: ""
+
+        trivy:
+          enabled: true
+          timeout: "300"
