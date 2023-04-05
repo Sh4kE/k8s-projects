@@ -5,10 +5,6 @@ name: setup wavestack
 
 steps:
   - name: install k3s basic cluster
-    when:
-      branch:
-        exclude:
-          - main
     image: hashicorp/terraform:1.4.4
     commands:
       - cd gitea/repos
@@ -25,7 +21,7 @@ steps:
       TF_VAR_gitea_token:
         from_secret: GITEA_TF_AUTOMATION_TOKEN
 
-host_aliases:
-  - ip: 192.168.178.55
-    hostnames:
-      - ganymed
+# host_aliases:
+#   - ip: 192.168.178.55
+#     hostnames:
+#       - ganymed
