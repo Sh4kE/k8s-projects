@@ -12,13 +12,13 @@ terraform {
 
   required_providers {
     gitea = {
-      source = "go-gitea/gitea"
-      version = "0.1.0"
+      source = "Lerentis/gitea"
+      version = "0.12.2"
     }
   }
 }
 
 provider "gitea" {
-  base_url = var.gitea_url # optionally use GITEA_BASE_URL env var
-  token    = var.gitea_token # optionally use GITEA_TOKEN env var
+  base_url = var.gitea_url
+  token    = var.gitea_token
 }
