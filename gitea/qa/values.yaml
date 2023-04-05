@@ -1,6 +1,6 @@
 gitea:
   image:
-    tag: 1.19.0
+    tag: 1.19-dev
     rootless: true
 
   service:
