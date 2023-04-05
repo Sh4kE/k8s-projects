@@ -32,7 +32,7 @@ gitea:
     admin:
       username: gitea_admin
       password: <path:kv/data/k3s/argocd/gitea#giteaAdminPassword>
-      email: "michael.wittig@posteo.de"
+      email: "michael.wittig@sh4ke.rocks"
     metrics:
       enabled: false
       serviceMonitor:
@@ -41,6 +41,9 @@ gitea:
     config:
       APP_NAME: "Gitea: This Is Why We Don't Push To Production On Fridays"
       RUN_MODE: prod
+      database:
+        PASSWD: <path:kv/data/k3s/argocd/gitea#giteaPostgresPassword>
+        LOG_SQL: false
       server:
         SSH_PORT: 2222
         DOMAIN: gitea.sh4ke.rocks
@@ -61,13 +64,16 @@ gitea:
         LEVEL: Error
 
   postgresql:
+    enabled: true
     global:
       postgresql:
-        postgresqlPassword: <path:kv/data/k3s/argocd/gitea#giteaPostgresPassword>
-
-    persistence:
-      size: 1Gi
-      storageClass: csi-cinder-sc-delete-all-zones
+        auth:
+          password: <path:kv/data/k3s/argocd/gitea#giteaPostgresPassword>
+    primary:
+      persistence:
+        enabled: true
+        storageClass: csi-cinder-sc-delete-all-zones
+        size: 1Gi
 
 backup:
   securityContext:

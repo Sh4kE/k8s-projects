@@ -46,6 +46,7 @@ gitea:
         LOG_SQL: false
       server:
         SSH_PORT: 2222
+        DOMAIN: gitea.sh4ke.rocks
       picture:
         DISABLE_GRAVATAR: true
       security:
