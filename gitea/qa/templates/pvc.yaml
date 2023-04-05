@@ -11,6 +11,6 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.gitea.postgresql.persistence.size }}
+      storage: {{ .Values.gitea.postgresql.primary.persistence.size }}
   storageClassName: nfs-csi
 
