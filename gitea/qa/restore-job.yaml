@@ -65,7 +65,7 @@ spec:
               export PGPASSWORD="${POSTGRES_PASSWORD}";
               echo "Import dump";
               psql -U "${POSTGRES_USER}" -d "${POSTGRES_DB}" -h gitea-postgresql < "/restore/gitea-db.sql";
-          image: docker.io/bitnami/postgresql:11.11.0-debian-10-r62
+          image: docker.io/bitnami/postgresql:15.2.0-debian-11-r14
           imagePullPolicy: IfNotPresent
           name: restore-db
           securityContext:
@@ -79,12 +79,12 @@ spec:
             - name: POSTGRES_PG_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: postgresql-postgres-password
+                  key: postgres-password
                   name: gitea-postgresql
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  key: postgresql-password
+                  key: password
                   name: gitea-postgresql
             - name: POSTGRES_DB
               value: gitea
@@ -95,7 +95,7 @@ spec:
             - echo "hycybh?";
               echo "run this inside the gitea pod
               »/usr/local/bin/gitea -c '/data/gitea/conf/app.ini' admin regenerate hooks«"
-          image: docker.io/gitea/gitea:1.17.2-rootless
+          image: docker.io/gitea/gitea:1.19-dev-rootless
           imagePullPolicy: IfNotPresent
           name: admin-regenerate-hooks
           securityContext:
