@@ -2,11 +2,7 @@
 
 GITEA_TOKEN=$1
 
-user_id=$(curl -s -X "GET" "https://gitea.sh4ke.rocks/api/v1/user?access_token=$GITEA_TOKEN" -H "accept: application/json" | jq -r ".id")
-echo "user id of sh4ke is: $user_id"
-
-repos=$(curl -s -X "GET" "https://gitea.sh4ke.rocks/api/v1/repos/search?uid=2&access_token=$GITEA_TOKEN" -H "accept: application/json" | jq -r ".data[] | .name")
-
+repos=$(curl -s -X "GET" "https://gitea.sh4ke.rocks/api/v1/user/repos?access_token=$GITEA_TOKEN" -H "accept: application/json" | jq -r ".[] | .name")
 for repo in $repos; do
     echo "$repo"
     remotes=$(curl -s -X "GET" "https://gitea.sh4ke.rocks/api/v1/repos/sh4ke/$repo/push_mirrors?access_token=$GITEA_TOKEN" -H "accept: application/json" | jq -r ".[] | .remote_address")
