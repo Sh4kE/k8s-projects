@@ -16,4 +16,5 @@ for repo in $repos; do
           \"remote_username\": \"sh4ke\",
           \"sync_on_commit\": true
         }"
+    curl -s -X "POST" "https://gitea.sh4ke.rocks/api/v1/repos/sh4ke/$repo/push_mirrors-sync?access_token=$GITEA_TOKEN" -H "accept: application/json"
 done
