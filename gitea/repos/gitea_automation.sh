@@ -5,7 +5,7 @@ GITEA_TOKEN=$1
 repos=$(curl -s -X "GET" "https://gitea.sh4ke.rocks/api/v1/user/repos?access_token=$GITEA_TOKEN" -H "accept: application/json" | jq -r ".[] | .name")
 for repo in $repos; do
     echo "$repo"
-    curl -X 'POST' \
+    curl -s -X 'POST' \
       "https://gitea.sh4ke.rocks/api/v1/repos/sh4ke/$repo/push_mirrors?access_token=$GITEA_TOKEN" \
       -H "accept: application/json" \
       -H "Content-Type: application/json" \
