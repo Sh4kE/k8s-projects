@@ -1,4 +1,4 @@
-#!/boot/bash
+#!/bin/bash
 
 GITEA_TOKEN=$1
 
