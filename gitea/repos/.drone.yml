@@ -10,7 +10,7 @@ steps:
     commands:
       - |
         cd gitea/repos
-        id=$(curl -X "GET" "https://gitea.sh4ke.rocks/api/v1/user?access_token=a370e8b5657b3860d502d813cd7e2e478b320fb5" -H "accept: application/json" | jq '.id')
+        id=$(curl -X "GET" "https://gitea.sh4ke.rocks/api/v1/user?access_token=${GITEA_TOKEN}" -H "accept: application/json" | jq '.id')
         echo $id
     environment:
       GITEA_TOKEN:
