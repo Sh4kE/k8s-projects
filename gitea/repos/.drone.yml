@@ -8,10 +8,8 @@ steps:
     image: sh4ke/docker-devoops-tools
     pull: always
     commands:
-      - |
-        cd gitea/repos
-        id=$(curl -X "GET" "https://gitea.sh4ke.rocks/api/v1/user?access_token=$GITEA_TOKEN" -H "accept: application/json" | jq '.id')
-        echo $id
+      - cd gitea/repos
+      - bash gitea_automation.sh $GITEA_TOKEN
     environment:
       GITEA_TOKEN:
         from_secret: GITEA_TF_AUTOMATION_TOKEN
