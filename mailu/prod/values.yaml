@@ -46,6 +46,8 @@ mailu:
       kubernetes.io/ingress.class: "nginx"
 
   front:
+    image:
+      repository: ghcr.io/mailu/nginx
     hostPort:
       enabled: false
 
@@ -58,6 +60,8 @@ mailu:
     single_pvc: false
 
   admin:
+    image:
+      repository: ghcr.io/mailu/admin
     persistence:
       size: 1Gi
       storageClass: "csi-cinder-sc-delete-all-zones"
@@ -75,11 +79,15 @@ mailu:
       storageClass: "csi-cinder-sc-delete-all-zones"
 
   dovecot:
+    image:
+      repository: ghcr.io/mailu/dovecot
     persistence:
       size: 1Gi
       storageClass: "csi-cinder-sc-delete-all-zones"
 
   rspamd:
+    image:
+      repository: ghcr.io/mailu/rspamd
     persistence:
       size: 1Gi
       storageClass: "csi-cinder-sc-delete-all-zones"
@@ -88,6 +96,8 @@ mailu:
         memory: 500Mi
 
   clamav:
+    image:
+      repository: ghcr.io/mailu/clamav
     persistence:
       size: 1Gi
       storageClass: "csi-cinder-sc-delete-all-zones"
@@ -99,6 +109,8 @@ mailu:
 
   webdav:
     enabled: true
+    image:
+      repository: ghcr.io/mailu/radicale
     persistence:
       size: 1Gi
       storageClass: "csi-cinder-sc-delete-all-zones"
