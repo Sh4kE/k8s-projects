@@ -17,6 +17,7 @@ spec:
     namespace: kubeclarity
   syncPolicy:
     automated:
+      prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
