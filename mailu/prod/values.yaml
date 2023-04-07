@@ -110,7 +110,7 @@ mailu:
       storageClass: "csi-cinder-sc-delete-all-zones"
     resources:
       limits:
-        memory: 400Mi
+        cpu: 400m
 
   webdav:
     enabled: true
