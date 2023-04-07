@@ -103,9 +103,14 @@ mailu:
       storageClass: "csi-cinder-sc-delete-all-zones"
 
   roundcube:
+    image:
+      repository: ghcr.io/mailu/roundcube
     persistence:
       size: 1Gi
       storageClass: "csi-cinder-sc-delete-all-zones"
+    resources:
+      limits:
+        memory: 400Mi
 
   webdav:
     enabled: true
