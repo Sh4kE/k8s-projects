@@ -16,6 +16,7 @@ spec:
     namespace: chartmuseum
   syncPolicy:
     automated:
+      prune: true
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
