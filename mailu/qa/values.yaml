@@ -112,7 +112,7 @@ mailu:
   webdav:
     enabled: true
     image:
-      repository: ghcr.io/mailu/redicale
+      repository: ghcr.io/mailu/radicale
     persistence:
       size: 1Gi
       storageClass: longhorn
