@@ -1,0 +1,25 @@
+vault:
+  server:
+    ingress:
+      enabled: true
+      ingressClassName: nginx
+      annotations:
+        cert-manager.io/cluster-issuer: "letsencrypt-prod"
+      hosts:
+        - host: vault.os.sh4ke.rocks
+          paths: []
+      tls:
+        - secretName: vault-os-sh4ke-rocks
+          hosts:
+            - vault.os.sh4ke.rocks
+    dataStorage:
+      storageClass: csi-cinder-sc-delete-all-zones
+      size: 2Gi
+    auditStorage:
+      enabled: true
+      size: 2Gi
+      storageClass: csi-cinder-sc-delete-all-zones
+    ha:
+      enabled: true
+      raft:
+        enabled: true
