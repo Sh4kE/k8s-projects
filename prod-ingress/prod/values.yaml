@@ -3,6 +3,8 @@ apps:
     service: gitea-http
     hostname: gitea.sh4ke.rocks
     port: 3000
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: 2G
     paths:
   paperless:
     service: paperless
