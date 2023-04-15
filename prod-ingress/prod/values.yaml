@@ -20,6 +20,10 @@ apps:
     service: privatebin
     hostname: privatebin.sh4ke.rocks
     port: 80
+  freshrss:
+    service: freshrss
+    hostname: freshrss.sh4ke.rocks
+    port: 80
   mailu:
     service: mailu-front
     hostname: mail.sh4ke.rocks
