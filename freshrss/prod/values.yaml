@@ -1,0 +1,28 @@
+freshrss:
+  image:
+    tag: 1.21.0
+  persistence:
+    enabled: true
+    storageClassName: csi-cinder-sc-delete-all-zones
+    size: 1Gi
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    hosts:
+      - freshrss.os.sh4ke.rocks
+    tls:
+      - hosts:
+        - freshrss.os.sh4ke.rocks
+        secretName: freshrss-os-sh4ke-rocks-tls
+  postgresql:
+    enabled: true
+    global:
+      postgresql:
+        auth:
+          password: <path:kv/data/k3s/argocd/freshrss#freshrssPostgresPassword>
+    primary:
+      persistence:
+        enabled: true
+        storageClass: csi-cinder-sc-delete-all-zones
+        size: 1Gi
