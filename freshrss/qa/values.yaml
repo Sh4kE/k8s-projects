@@ -20,7 +20,7 @@ freshrss:
     global:
       postgresql:
         auth:
-          password: <path:kv/data/k3s/argocd/gitea#giteaPostgresPassword>
+          password: <path:kv/data/k3s/argocd/freshrss#freshrssPostgresPassword>
     primary:
       persistence:
         enabled: true
