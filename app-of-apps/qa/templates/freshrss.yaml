@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: freshrss
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
+    path: freshrss/qa
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: freshrss
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
