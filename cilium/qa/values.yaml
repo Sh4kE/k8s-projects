@@ -1,0 +1,64 @@
+---
+kubeProxyReplacement: "strict"
+# global:
+#   encryption:
+#     enabled: true
+#     nodeEncryption: true
+
+k8sServiceHost: "10.0.1.31"
+k8sServicePort: "6443"
+
+containerRuntime:
+  integration: crio
+
+hubble:
+  # metrics:
+  #   #serviceMonitor:
+  #   #  enabled: true
+  #   enabled:
+  #   - dns:query;ignoreAAAA
+  #   - drop
+  #   - tcp
+  #   - flow
+  #   - icmp
+  #   - http
+
+  ui:
+    enabled: true
+    replicas: 1
+    ingress:
+      enabled: true
+      hosts:
+        - hubble.ws.sh4ke.rocks
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt-prod
+      tls:
+      - secretName: hubble-ws-sh4ke-rocks-tls
+        hosts:
+        - hubble.ws.sh4ke.rocks
+
+  relay:
+    enabled: true
+  tls:
+    auto:
+      enabled: true
+      method: cronJob
+      schedule: "0 0 1 * *"
+      certValidityDuration: 90
+
+operator:
+  replicas: 1
+
+ipam:
+  mode: "cluster-pool"
+  operator:
+    clusterPoolIPv4PodCIDR: "10.44.0.0/16"
+    clusterPoolIPv4MaskSize: 24
+    # clusterPoolIPv6PodCIDR: "fd00::/104"
+    # clusterPoolIPv6MaskSize: 120
+
+# prometheus:
+#   enabled: true
+#   # Default port value (9090) needs to be changed since the RHEL cockpit also listens on this port.
+#   port: 19090
+#
