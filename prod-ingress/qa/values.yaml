@@ -10,6 +10,20 @@ apps:
     service: paperless
     hostname: paperless.sh4ke.rocks
     port: 8000
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-body-size: 100M
+  chartmuseum:
+    service: chartmuseum
+    hostname: chartmuseum.sh4ke.rocks
+    port: 8080
+  privatebin:
+    service: privatebin
+    hostname: privatebin.sh4ke.rocks
+    port: 80
+  mailu:
+    service: mailu-front
+    hostname: mail.sh4ke.rocks
+    port: 80
   vaultwarden:
     service: vaultwarden
     hostname: vaultwarden.sh4ke.rocks
