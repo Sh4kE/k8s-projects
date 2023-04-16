@@ -34,6 +34,7 @@ hubble:
         - hubble.ws.sh4ke.rocks
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
+      className: nginx
       tls:
       - secretName: hubble-ws-sh4ke-rocks-tls
         hosts:
