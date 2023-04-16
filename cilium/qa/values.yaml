@@ -26,6 +26,8 @@ hubble:
   ui:
     enabled: true
     replicas: 1
+    tolerations:
+      - operator: Exists
     ingress:
       enabled: true
       hosts:
@@ -39,6 +41,8 @@ hubble:
 
   relay:
     enabled: true
+    tolerations:
+      - operator: Exists
   tls:
     auto:
       enabled: true
