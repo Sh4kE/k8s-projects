@@ -4,7 +4,7 @@ metadata:
   name: openstack-cinder-csi
   namespace: argocd
 spec:
-  project: default
+  project: infra-apps
   source:
     repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
     path: openstack-cinder-csi/prod

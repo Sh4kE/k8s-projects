@@ -4,7 +4,7 @@ metadata:
   name: argocd
   namespace: argocd
 spec:
-  project: default
+  project: infra-apps
   source:
     kustomize:
       version: default
