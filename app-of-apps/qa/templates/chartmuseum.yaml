@@ -4,7 +4,7 @@ metadata:
   name: chartmuseum
   namespace: argocd
 spec:
-  project: default
+  project: apps
   source:
     repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
     path: chartmuseum/qa
