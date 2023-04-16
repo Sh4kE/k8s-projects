@@ -62,3 +62,8 @@ ipam:
 #   # Default port value (9090) needs to be changed since the RHEL cockpit also listens on this port.
 #   port: 19090
 #
+
+# ignore all taints (nodes are not ready yet)
+certgen:
+  tolerations:
+    - operator: Exists
