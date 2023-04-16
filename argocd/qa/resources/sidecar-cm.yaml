@@ -49,5 +49,28 @@ data:
         args: ["helm dependency build"]
       generate:
         command: ["sh", "-c"]
-        args: ["helm template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE ${helm_args} ${ARGOCD_ENV_PLUGIN_PARAMS} . --include-crds > all.yaml && kustomize build | argocd-vault-plugin generate -"]
+        args: ["helm template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE . --include-crds > all.yaml && kustomize build | argocd-vault-plugin generate -"]
+      lockRepo: false
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kustomize-build-with-helm
+data:
+  plugin.yaml: |
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      name: kustomize-build-with-helm
+    spec:
+      allowConcurrency: true
+      discover:
+        find:
+          command:
+            - "sh"
+            - "-c"
+            - "ls kustomization.yaml"
+      generate:
+        command: ["sh", "-c"]
+        args: ["kustomize build --enable-helm"]
       lockRepo: false
