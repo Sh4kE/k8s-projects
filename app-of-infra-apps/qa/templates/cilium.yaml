@@ -11,6 +11,8 @@ spec:
     repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
     path: cilium/qa
     targetRevision: HEAD
+    plugin:
+      name: kustomize-build-with-helm
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: cilium

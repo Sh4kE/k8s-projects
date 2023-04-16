@@ -1,5 +1,12 @@
 ---
-resources:
-  - all.yaml
+helmCharts:
+  - name: kube-prometheus-stack
+    includeCRDs: true
+    releaseName: kube-prometheus
+    version: 45.10.1
+    repo: https://prometheus-community.github.io/helm-charts
+    valuesFile: values.yaml
+    namespace: kube-prometheus
+
 patches:
   - path: kustomizations/crd_prometheuses.monitoring.coreos.com.yaml
