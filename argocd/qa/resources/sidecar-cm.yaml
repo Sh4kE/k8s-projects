@@ -44,9 +44,6 @@ data:
             - "sh"
             - "-c"
             - "ls kustomization.yaml && find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
-      init:
-        command: ["sh", "-c"]
-        args: ["helm dependency build"]
       generate:
         command: ["sh", "-c"]
         args: ["kustomize build --enable-helm | argocd-vault-plugin generate -"]
