@@ -16,7 +16,7 @@ spec:
     namespace: cilium
   syncPolicy:
     automated:
+      prune: true
       selfHeal: true
-      prune: false
     syncOptions:
       - CreateNamespace=true
