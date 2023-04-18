@@ -24,7 +24,7 @@ appVersion: "1.9"
 
 dependencies:
 - name: mailu
-  version: 0.3.3
+  version: 0.3.5
   repository: https://mailu.github.io/helm-charts/
 - name: backup
   alias: backup-mysql
