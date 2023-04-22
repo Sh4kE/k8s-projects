@@ -42,7 +42,7 @@ mailu:
         size: 1Gi
 
   ingress:
-    # tlsFlavorOverride: cert
+    tlsFlavorOverride: cert
     ingressClassName: nginx
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-prod
