@@ -4,6 +4,8 @@ mailu:
 
   domain: ws.sh4ke.rocks
 
+  imageRegistry: ""
+
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -47,6 +49,8 @@ mailu:
       cert-manager.io/cluster-issuer: letsencrypt-prod
 
   front:
+    image:
+      repository: ghcr.io/mailu/nginx
     hostPort:
       enabled: false
     externalService:
@@ -55,6 +59,8 @@ mailu:
       loadBalancerIP: 31.172.117.18
 
   admin:
+    image:
+      repository: ghcr.io/mailu/admin
     persistence:
       size: 1Gi
       storageClass: longhorn
@@ -74,27 +80,37 @@ mailu:
       storageClass: longhorn
 
   dovecot:
+    image:
+      repository: ghcr.io/mailu/dovecot
     persistence:
       size: 1Gi
       storageClass: longhorn
 
   rspamd:
+    image:
+      repository: ghcr.io/mailu/rspamd
     persistence:
       size: 1Gi
       storageClass: longhorn
 
   clamav:
+    image:
+      repository: ghcr.io/mailu/clamav
     persistence:
       size: 1Gi
       storageClass: longhorn
 
   webmail:
+    image:
+      repository: ghcr.io/mailu/webmail
     persistence:
       size: 1Gi
       storageClass: longhorn
 
   webdav:
     enabled: true
+    image:
+      repository: ghcr.io/mailu/radicale
     persistence:
       size: 1Gi
       storageClass: longhorn
