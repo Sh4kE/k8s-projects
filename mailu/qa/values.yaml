@@ -67,7 +67,7 @@ mailu:
 
   postfix:
     image:
-      repository: sh4ke/mailu-postfix
+      repository: docker.io/sh4ke/mailu-postfix
       tag: 2.0
     persistence:
       size: 1Gi
