@@ -19,6 +19,7 @@ mailu:
   secretKey: <path:kv/data/k3s/argocd/mailu#secret_key>
 
   initialAccount:
+    enabled: true
     username: admin
     domain: ws.sh4ke.rocks
     password: <path:kv/data/k3s/argocd/mailu#initial_admin_password>
