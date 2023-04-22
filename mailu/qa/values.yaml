@@ -1,5 +1,4 @@
 mailu:
-  mailuVersion: 1.9
   hostnames:
     - mail.ws.sh4ke.rocks
 
@@ -22,365 +21,77 @@ mailu:
     domain: ws.sh4ke.rocks
     password: <path:kv/data/k3s/argocd/mailu#initial_admin_password>
 
-  database:
-    type: mysql
-    roundcubeType: mysql
+  persistence:
+    single_pvc: false
 
-    mysql:
-      rootPassword: <path:kv/data/k3s/argocd/mailu#mysql_root_password>
+  global:
+    database:
+      roundcube:
+        password: <path:kv/data/k3s/argocd/mailu#roundcube_password>
 
-      database: mailu
-      user: mailu
-      password: <path:kv/data/k3s/argocd/mailu#mysql_password>
-
-      roundcubeDatabase: roundcube
-      roundcubeUser: roundcube
-      roundcubePassword: <path:kv/data/k3s/argocd/mailu#roundcube_password>
-
-  certmanager:
-    issuerName: letsencrypt-prod
+  postgresql:
+    enabled: true
+    auth:
+      postgresPassword: <path:kv/data/k3s/argocd/mailu#postgresPassword>
+      password: <path:kv/data/k3s/argocd/mailu#postgresUserPassword>
+    primary:
+      persistance:
+        enabled: true
+        storageClass: longhorn
+        size: 1Gi
 
   ingress:
-    tlsFlavor: cert
+    # tlsFlavorOverride: cert
+    ingressClassName: nginx
     annotations:
-      kubernetes.io/ingress.class: "nginx"
+      cert-manager.io/cluster-issuer: letsencrypt-prod
 
   front:
-    image:
-      repository: ghcr.io/mailu/nginx
     hostPort:
       enabled: false
-
     externalService:
       enabled: true
       type: LoadBalancer
       loadBalancerIP: 31.172.116.229
 
-  persistence:
-    single_pvc: false
-
   admin:
-    image:
-      repository: ghcr.io/mailu/admin
     persistence:
       size: 1Gi
       storageClass: longhorn
 
   redis:
-    persistence:
-      size: 1Gi
-      storageClass: longhorn
+    master:
+      persistence:
+        size: 1Gi
+        storageClass: longhorn
 
   postfix:
-    image:
-      repository: sh4ke/mailu-postfix
     persistence:
       size: 1Gi
       storageClass: longhorn
 
   dovecot:
-    image:
-      repository: ghcr.io/mailu/dovecot
     persistence:
       size: 1Gi
       storageClass: longhorn
 
   rspamd:
-    image:
-      repository: ghcr.io/mailu/rspamd
     persistence:
       size: 1Gi
       storageClass: longhorn
-    resources:
-      limits:
-        memory: 500Mi
 
   clamav:
-    image:
-      repository: ghcr.io/mailu/clamav
     persistence:
       size: 1Gi
       storageClass: longhorn
 
-  roundcube:
-    image:
-      repository: sh4ke/mailu-roundcube
+  webmail:
     persistence:
       size: 1Gi
       storageClass: longhorn
 
   webdav:
     enabled: true
-    image:
-      repository: ghcr.io/mailu/radicale
     persistence:
       size: 1Gi
       storageClass: longhorn
-
-  mysql:
-    persistence:
-      size: 1Gi
-      storageClass: longhorn
-
-backup-mysql:
-  schedule: "11 4 * * *"
-  image: docker.io/library/mariadb:10.11.2
-  shellCommand: |
-    mysqldump -u ${MYSQL_USER} -p${MYSQL_PASSWORD} -h mailu-mysql ${MYSQL_DATABASE} > /backup/mailu_dump.$(date +"%d-%m-%Y-%H-%M").sql
-    cd /backup
-    ls -tr mailu_dump.* | head -n -7 | xargs -r rm -f
-  env:
-    - name: MYSQL_DATABASE
-      value: mailu
-    - name: MYSQL_USER
-      value: mailu
-    - name: MYSQL_PASSWORD
-      value: <path:kv/data/k3s/argocd/mailu#mysql_password>
-  volumeMounts:
-    - mountPath: /backup
-      name: mailu-backup
-      subPath: mysql
-  volumes:
-    - name: mailu-backup
-      persistentVolumeClaim:
-        claimName: mailu-backup
-  matchExpressions:
-    - key: component
-      operator: In
-      values:
-        - mysql
-  permissions:
-    dirs: /backup
-    owner: "999"
-    group: "999"
-
-backup-admin:
-  schedule: "10 4 * * *"
-  image: alpine:latest
-  shellCommand: |
-    cd /backup
-    tar czf /backup/mailu_admin_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
-    ls -tr mailu_admin_data.* | head -n -7 | xargs -r rm -f
-    tar czf /backup/mailu_admin_dkim.$(date +"%d-%m-%Y-%H-%M").tar.gz /dkim
-    ls -tr mailu_admin_dkim.* | head -n -7 | xargs -r rm -f
-  volumeMounts:
-    - mountPath: /data
-      name: data
-      subPath: admin
-    - mountPath: /dkim
-      name: data
-      subPath: dkim
-    - mountPath: /backup
-      name: mailu-backup
-      subPath: admin
-  volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: mailu-admin
-    - name: mailu-backup
-      persistentVolumeClaim:
-        claimName: mailu-backup
-  matchExpressions:
-    - key: component
-      operator: In
-      values:
-        - admin
-
-backup-clamav:
-  schedule: "10 4 * * *"
-  image: alpine:latest
-  shellCommand: |
-    cd /backup
-    tar czf /backup/mailu_clamav_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
-    ls -tr mailu_clamav_data.* | head -n -7 | xargs -r rm -f
-  volumeMounts:
-    - mountPath: /data
-      name: data
-      subPath: clamav
-    - mountPath: /backup
-      name: mailu-backup
-      subPath: clamav
-  volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: mailu-clamav
-    - name: mailu-backup
-      persistentVolumeClaim:
-        claimName: mailu-backup
-  matchExpressions:
-    - key: component
-      operator: In
-      values:
-        - clamav
-
-backup-dovecot:
-  schedule: "10 4 * * *"
-  image: alpine:latest
-  shellCommand: |
-    cd /backup
-    tar czf /backup/mailu_dovecot_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
-    ls -tr mailu_dovecot_data.* | head -n -7 | xargs -r rm -f
-    tar czf /backup/mailu_dovecot_mail.$(date +"%d-%m-%Y-%H-%M").tar.gz /mail
-    ls -tr mailu_dovecot_mail.* | head -n -7 | xargs -r rm -f
-  volumeMounts:
-    - mountPath: /data
-      name: data
-      subPath: dovecotdata
-    - mountPath: /mail
-      name: data
-      subPath: dovecotmail
-    - mountPath: /backup
-      name: mailu-backup
-      subPath: dovecot
-  volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: mailu-dovecot
-    - name: mailu-backup
-      persistentVolumeClaim:
-        claimName: mailu-backup
-  matchExpressions:
-    - key: component
-      operator: In
-      values:
-        - dovecot
-
-backup-postfix:
-  schedule: "10 4 * * *"
-  image: alpine:latest
-  shellCommand: |
-    cd /backup
-    tar czf /backup/mailu_postfix_queue.$(date +"%d-%m-%Y-%H-%M").tar.gz /queue
-    ls -tr mailu_postfix_queue.* | head -n -7 | xargs -r rm -f
-  volumeMounts:
-    - mountPath: /queue
-      name: data
-      subPath: mailqueue
-    - mountPath: /backup
-      name: mailu-backup
-      subPath: postfix
-  volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: mailu-postfix
-    - name: mailu-backup
-      persistentVolumeClaim:
-        claimName: mailu-backup
-  matchExpressions:
-    - key: component
-      operator: In
-      values:
-        - postfix
-
-backup-redis:
-  schedule: "10 4 * * *"
-  image: alpine:latest
-  shellCommand: |
-    cd /backup
-    tar czf /backup/mailu_redis_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
-    ls -tr mailu_redis_data.* | head -n -7 | xargs -r rm -f
-  volumeMounts:
-    - mountPath: /data
-      name: data
-      subPath: redis
-    - mountPath: /backup
-      name: mailu-backup
-      subPath: redis
-  volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: mailu-redis
-    - name: mailu-backup
-      persistentVolumeClaim:
-        claimName: mailu-backup
-  matchExpressions:
-    - key: component
-      operator: In
-      values:
-        - redis
-
-backup-roundcube:
-  schedule: "10 4 * * *"
-  image: alpine:latest
-  shellCommand: |
-    cd /backup
-    tar czf /backup/mailu_roundcube_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
-    ls -tr mailu_roundcube_data.* | head -n -7 | xargs -r rm -f
-  volumeMounts:
-    - mountPath: /data
-      name: data
-      subPath: roundcube
-    - mountPath: /backup
-      name: mailu-backup
-      subPath: roundcube
-  volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: mailu-roundcube
-    - name: mailu-backup
-      persistentVolumeClaim:
-        claimName: mailu-backup
-  matchExpressions:
-    - key: component
-      operator: In
-      values:
-        - roundcube
-
-backup-rspamd:
-  schedule: "10 4 * * *"
-  image: alpine:latest
-  shellCommand: |
-    cd /backup
-    tar czf /backup/mailu_rspamd_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /var/lib/rspamd
-    ls -tr mailu_rspamd_data.* | head -n -7 | xargs -r rm -f
-    tar czf /backup/mailu_rspamd_mapsd.$(date +"%d-%m-%Y-%H-%M").tar.gz /etc/rspamd/local.d/maps.d
-    ls -tr mailu_rspamd_mapsd.* | head -n -7 | xargs -r rm -f
-  volumeMounts:
-    - mountPath: /var/lib/rspamd
-      name: data
-      subPath: rspamd
-    - mountPath: /etc/rspamd/local.d/maps.d
-      name: data
-      subPath: rspamd-local.d-maps.d
-    - mountPath: /backup
-      name: mailu-backup
-      subPath: rspamd
-  volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: mailu-rspamd
-    - name: mailu-backup
-      persistentVolumeClaim:
-        claimName: mailu-backup
-  matchExpressions:
-    - key: component
-      operator: In
-      values:
-        - rspamd
-
-backup-webdav:
-  schedule: "10 4 * * *"
-  image: alpine:latest
-  shellCommand: |
-    cd /backup
-    tar czf /backup/mailu_webdav_data.$(date +"%d-%m-%Y-%H-%M").tar.gz /data
-    ls -tr mailu_webdav_data.* | head -n -7 | xargs -r rm -f
-  volumeMounts:
-    - mountPath: /data
-      name: data
-      subPath: webdav
-    - mountPath: /backup
-      name: mailu-backup
-      subPath: webdav
-  volumes:
-    - name: data
-      persistentVolumeClaim:
-        claimName: mailu-webdav
-    - name: mailu-backup
-      persistentVolumeClaim:
-        claimName: mailu-backup
-  matchExpressions:
-    - key: component
-      operator: In
-      values:
-        - webdav
