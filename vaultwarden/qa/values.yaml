@@ -18,7 +18,7 @@ vaultwarden:
     DATABASE_URL: mysql://<username>:<password>@vaultwarden-mariadb:3306/<database>
     YUBICO_CLIENT_ID: <yubicoClientId>
     YUBICO_SECRET_KEY: <yubicoSecretKey>
-    DOMAIN: vaultwarden.ws.sh4ke.rocks
+    DOMAIN: https://vaultwarden.ws.sh4ke.rocks
   ingress:
     main:
       enabled: true
