@@ -13,14 +13,7 @@ helmCharts:
 resources:
 - https://raw.githubusercontent.com/kyverno/policies/main/pod-security/subrule/podsecurity-subrule-baseline/podsecurity-subrule-baseline.yaml
 - https://raw.githubusercontent.com/kyverno/policies/main/pod-security/subrule/restricted/restricted-latest/restricted-latest.yaml
-- https://raw.githubusercontent.com/kyverno/policies/main/other/apply-pss-restricted-profile/apply-pss-restricted-profile.yaml
 
 patches:
 - path: kustomizations/crd_policies.yaml
 - path: kustomizations/crd_clusterpolicies.yaml
-- path: kustomizations/cpol_apply_pss.yaml
-  target:
-    kind: ClusterPolicy
-    group: kyverno.io
-    version: v1
-    name: apply-pss-restricted-profile

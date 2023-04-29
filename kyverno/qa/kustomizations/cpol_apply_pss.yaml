@@ -1,3 +1,6 @@
 - op: add
   path: "/spec/rules/0/match/any/0/resources/namespaces"
   value: ["privatebin"]
+- op: add
+  path: "/spec/mutateExistingOnPolicyUpdate"
+  value: true
