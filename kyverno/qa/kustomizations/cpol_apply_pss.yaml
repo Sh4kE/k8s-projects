@@ -1,0 +1,14 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: apply-pss-restricted-profile
+spec:
+  rules:
+  - name: add-pss-fields
+    match:
+      any:
+      - resources:
+          kinds:
+          - Pod
+          namespaces:
+          - privatebin
