@@ -10,7 +10,7 @@ spec:
     path: kyverno/qa
     targetRevision: HEAD
     plugin:
-      name: argocd-vault-plugin-helm-kustomize
+      name: kustomize-build-with-helm
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: kyverno
