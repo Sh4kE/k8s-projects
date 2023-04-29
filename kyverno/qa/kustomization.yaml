@@ -14,3 +14,4 @@ resources:
 
 patches:
   - path: kustomizations/crd_policies.yaml
+  - path: kustomizations/crd_clusterpolicies.yaml
