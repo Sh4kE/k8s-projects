@@ -1,0 +1,16 @@
+---
+helmCharts:
+  - name: kyverno
+    includeCRDs: true
+    releaseName: kyverno
+    version: 2.7.2
+    repo: https://kyverno.github.io/kyverno/
+    valuesFile: values.yaml
+    namespace: kyverno
+
+resources:
+  - https://raw.githubusercontent.com/kyverno/policies/main/pod-security/subrule/podsecurity-subrule-baseline/podsecurity-subrule-baseline.yaml
+  - https://raw.githubusercontent.com/kyverno/policies/main/pod-security/subrule/restricted/restricted-latest/restricted-latest.yaml
+
+# patches:
+#   - path: kustomizations/crd_prometheuses.monitoring.coreos.com.yaml
