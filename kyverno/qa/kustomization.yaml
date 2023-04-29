@@ -12,5 +12,5 @@ resources:
   - https://raw.githubusercontent.com/kyverno/policies/main/pod-security/subrule/podsecurity-subrule-baseline/podsecurity-subrule-baseline.yaml
   - https://raw.githubusercontent.com/kyverno/policies/main/pod-security/subrule/restricted/restricted-latest/restricted-latest.yaml
 
-# patches:
-#   - path: kustomizations/crd_prometheuses.monitoring.coreos.com.yaml
+patches:
+  - path: kustomizations/crd_policies.yaml
