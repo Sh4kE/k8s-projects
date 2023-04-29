@@ -1,19 +1,26 @@
----
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 helmCharts:
-  - name: kyverno
-    includeCRDs: true
-    releaseName: kyverno
-    version: 2.7.2
-    repo: https://kyverno.github.io/kyverno/
-    valuesFile: values.yaml
-    namespace: kyverno
+- includeCRDs: true
+  name: kyverno
+  namespace: kyverno
+  releaseName: kyverno
+  repo: https://kyverno.github.io/kyverno/
+  valuesFile: values.yaml
+  version: 2.7.2
 
 resources:
-  - https://raw.githubusercontent.com/kyverno/policies/main/pod-security/subrule/podsecurity-subrule-baseline/podsecurity-subrule-baseline.yaml
-  - https://raw.githubusercontent.com/kyverno/policies/main/pod-security/subrule/restricted/restricted-latest/restricted-latest.yaml
-  - https://raw.githubusercontent.com/kyverno/policies/32ca655410580aa38ac315927af1ea2a59067a04/other/apply-pss-restricted-profile/apply-pss-restricted-profile.yaml
+- https://raw.githubusercontent.com/kyverno/policies/main/pod-security/subrule/podsecurity-subrule-baseline/podsecurity-subrule-baseline.yaml
+- https://raw.githubusercontent.com/kyverno/policies/main/pod-security/subrule/restricted/restricted-latest/restricted-latest.yaml
+- https://raw.githubusercontent.com/kyverno/policies/main/other/apply-pss-restricted-profile/apply-pss-restricted-profile.yaml
 
 patches:
-  - path: kustomizations/crd_policies.yaml
-  - path: kustomizations/crd_clusterpolicies.yaml
-  - path: kustomizations/cpol_apply_pss.yaml
+- path: kustomizations/crd_policies.yaml
+- path: kustomizations/crd_clusterpolicies.yaml
+- path: kustomizations/cpol_apply_pss.yaml
+  target:
+    kind: ClusterPolicy
+    group: kyverno.io
+    version: v1
+    name: apply-pss-restricted-profile
