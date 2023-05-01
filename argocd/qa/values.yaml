@@ -35,15 +35,15 @@ server:
       Host gitea.ws.sh4ke.rocks
           KexAlgorithms ecdh-sha2-nistp521
           PubkeyAcceptedAlgorithms +ssh-rsa
+
 repoServer:
+  envFrom:
+    - secretRef:
+        name: argocd-vault-plugin-credentials
+  volumeMounts:
+    - name: ssh-configs
+      mountPath: /home/argocd/.ssh/
   extraContainers:
-    - name: argocd-repo-server
-      volumeMounts:
-        - name: ssh-configs
-          mountPath: /home/argocd/.ssh/
-      envFrom:
-        - secretRef:
-            name: argocd-vault-plugin-credentials
     - name: avp-helm
       command: [/var/run/argocd/argocd-cmp-server]
       image: sh4ke/argocd-plugins
