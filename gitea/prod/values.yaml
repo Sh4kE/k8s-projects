@@ -1,6 +1,5 @@
 gitea:
   image:
-    tag: 1.19-dev
     rootless: true
 
   service:
@@ -103,4 +102,4 @@ backup:
       operator: In
       values:
         - gitea-0
-  image: gitea/gitea:1.19-dev-rootless
+  image: gitea/gitea:1.19.2-rootless
