@@ -1,8 +1,4 @@
 - op: add
-  path: "/spec/template/spec/securityContext/allowPrivilegeEscalation"
-  value: false
-
-- op: add
   path: "/spec/template/spec/securityContext/seccompProfile"
   value:
     type: RuntimeDefault
