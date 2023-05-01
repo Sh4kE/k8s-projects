@@ -1,26 +1,25 @@
-chartmuseum:
-  env:
-    open:
-      AUTH_ANONYMOUS_GET: true
-      DISABLE_API: false
-    secret:
-      BASIC_AUTH_USER: Sh4kE
-      BASIC_AUTH_PASS: <path:kv/data/k3s/argocd/chartmuseum#password>
+env:
+  open:
+    AUTH_ANONYMOUS_GET: true
+    DISABLE_API: false
+  secret:
+    BASIC_AUTH_USER: Sh4kE
+    BASIC_AUTH_PASS: <path:kv/data/k3s/argocd/chartmuseum#password>
 
-  persistence:
-    enabled: true
-    storageClass: longhorn
+persistence:
+  enabled: true
+  storageClass: longhorn
 
-  ingress:
-    enabled: true
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-    ingressClassName: nginx
-    hosts:
-     - name: chartmuseum.ws.sh4ke.rocks
-       path: /
-       tls: true
-       tlsSecret: chartmuseum.ws.sh4ke.rocks-tls
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+  ingressClassName: nginx
+  hosts:
+   - name: chartmuseum.ws.sh4ke.rocks
+     path: /
+     tls: true
+     tlsSecret: chartmuseum.ws.sh4ke.rocks-tls
 
-  securityContext:
-    runAsNonRoot: true
+securityContext:
+  runAsNonRoot: true
