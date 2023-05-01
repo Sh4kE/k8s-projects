@@ -1,0 +1,22 @@
+apiVersion: cilium.io/v2
+kind: CiliumClusterwideNetworkPolicy
+metadata:
+  name: allow-everything
+  namespace: default
+spec:
+  endpointSelector: {}
+  ingress:
+    - fromEndpoints:
+        - {}
+    - fromEntities:
+        - world
+    - fromEntities:
+        - cluster
+  egress:
+    - toEndpoints:
+        - {}
+    - toEntities:
+        - world
+    - toEntities:
+        - cluster
+
