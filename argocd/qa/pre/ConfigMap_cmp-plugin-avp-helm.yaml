@@ -1,0 +1,29 @@
+---
+apiVersion: v1
+data:
+  plugin.yaml: |
+    ---
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      name: argocd-vault-plugin-helm
+    spec:
+      allowConcurrency: true
+      discover:
+        find:
+          command:
+            - "sh"
+            - "-c"
+            - "ls Chart.yaml && find . -name '*.yaml' | xargs -I {} grep \"<path\\|avp\\.kubernetes\\.io\" {} | grep ."
+      init:
+        command: ["sh", "-c"]
+        args: ["helm dependency build"]
+      generate:
+        command: ["sh", "-c"]
+        args: ["helm template $ARGOCD_APP_NAME --namespace $ARGOCD_APP_NAMESPACE . --include-crds | argocd-vault-plugin generate -"]
+      lockRepo: false
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/instance: argocd
+  name: cmp-plugin-avp-helm
