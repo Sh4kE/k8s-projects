@@ -1,18 +1,18 @@
 - op: add
-  path: "/spec/template/securityContext/allowPrivilegeEscalation"
+  path: "/spec/template/spec/securityContext/allowPrivilegeEscalation"
   value: false
 
 - op: add
-  path: "/spec/template/securityContext/seccompProfile"
+  path: "/spec/template/spec/securityContext/seccompProfile"
   value:
     type: RuntimeDefault
 
 - op: add
-  path: "/spec/template/securityContext/runAsUser"
+  path: "/spec/template/spec/securityContext/runAsUser"
   value: 1000
 
 - op: add
-  path: "/spec/template/securityContext/runAsGroup"
+  path: "/spec/template/spec/securityContext/runAsGroup"
   value: 2000
 
 - op: add
@@ -24,7 +24,11 @@
   value: false
 
 - op: add
-  path: "/spec/template/spec/containers/0/securityContext/capabilities/drop"
+  path: "/spec/template/spec/containers/0/securityContext/capabilities"
   value:
-    - ALL
+    drop: []
+
+- op: add
+  path: "/spec/template/spec/containers/0/securityContext/capabilities/drop/0"
+  value: "ALL"
 
