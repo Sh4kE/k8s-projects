@@ -15,5 +15,6 @@ helmCharts:
 
 resources:
   - resources/ns.yaml
+  - resources/network_policy.yaml
 
 namespace: cilium
