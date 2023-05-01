@@ -21,3 +21,6 @@ chartmuseum:
        path: /
        tls: true
        tlsSecret: chartmuseum.ws.sh4ke.rocks-tls
+
+  securityContext:
+    runAsNonRoot: true
