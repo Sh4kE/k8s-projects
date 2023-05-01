@@ -25,6 +25,6 @@
     drop: []
 
 - op: add
-  path: "/spec/template/spec/containers/0/securityContext/capabilities/drop/0"
-  value: "ALL"
+  path: "/spec/template/spec/containers/0/securityContext/capabilities/drop/-"
+  value: ALL
 
