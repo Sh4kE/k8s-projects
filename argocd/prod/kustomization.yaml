@@ -1,18 +1,27 @@
----
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+namespace: argocd
 commonLabels:
-  app.kubernetes.io/instance: argocd
+  argocd.argoproj.io/instance: argocd
+
+helmCharts:
+- includeCRDs: true
+  name: argo-cd
+  namespace: argocd
+  releaseName: argocd
+  repo: https://argoproj.github.io/argo-helm
+  valuesFile: values.yaml
+  version: 5.29.1
 
 resources:
-  # renovate: datasource=github-releases
-  - https://raw.githubusercontent.com/argoproj/argo-cd/v2.6.7/manifests/install.yaml
-  - resources/ingress.yaml
-  - resources/namespace.yaml
-  - resources/sidecar-cm.yaml
-  - resources/argocd-vault-plugin-credentials.yaml
+- resources/namespace.yaml
+- resources/sidecar-cm.yaml
+- resources/argocd-vault-plugin-credentials.yaml
 
-patchesStrategicMerge:
-  - overlays/argocd-cm.yaml
-  - overlays/argocd-repo-server.yaml
-  - overlays/argocd-ssh-known-hosts-cm.yaml
+patches:
+  - path: overlays/argocd-repo-server.yaml
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: argocd-repo-server

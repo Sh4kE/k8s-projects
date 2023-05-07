@@ -6,17 +6,17 @@ metadata:
 spec:
   project: infra-apps
   source:
-    kustomize:
-      version: default
     repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
     path: argocd/prod
     targetRevision: HEAD
+    plugin:
+      name: kustomize-build-with-helm
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
   syncPolicy:
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true
     syncOptions:
       - CreateNamespace=true
