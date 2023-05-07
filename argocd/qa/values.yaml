@@ -25,6 +25,7 @@ server:
           - argocd.ws.sh4ke.rocks
   config:
     kustomize.path.default: /usr/local/bin/kustomize
+    kustomize.buildOptions: --enable-helm
     sshConfigs: |
       Host gitea.sh4ke.rocks
           KexAlgorithms ecdh-sha2-nistp521
