@@ -15,6 +15,7 @@ server:
     enabled: true
     https: false
     annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     ingressClassName: nginx
     hosts:
