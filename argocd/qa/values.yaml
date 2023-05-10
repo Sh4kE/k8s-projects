@@ -36,6 +36,7 @@ server:
       Host gitea.ws.sh4ke.rocks
           KexAlgorithms ecdh-sha2-nistp521
           PubkeyAcceptedAlgorithms +ssh-rsa
+    accounts.v3nc: apiKey, login
 
 repoServer:
   envFrom:
