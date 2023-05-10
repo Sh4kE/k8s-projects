@@ -37,6 +37,8 @@ server:
           KexAlgorithms ecdh-sha2-nistp521
           PubkeyAcceptedAlgorithms +ssh-rsa
     accounts.v3nc: apiKey, login
+  rbacConfig:
+    policy.default: role:readonly
 
 repoServer:
   envFrom:
