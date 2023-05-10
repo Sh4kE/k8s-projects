@@ -54,16 +54,19 @@ mailu:
       enabled: true
       type: LoadBalancer
       loadBalancerIP: 31.172.117.18
-    updateStrategy: Recreate
+    updateStrategy:
+      type: Recreate
 
   oleTools:
-    updateStrategy: Recreate
+    updateStrategy:
+      type: Recreate
 
   admin:
     persistence:
       size: 1Gi
       storageClass: longhorn
-    updateStrategy: Recreate
+    updateStrategy:
+      type: Recreate
 
   redis:
     master:
@@ -75,19 +78,22 @@ mailu:
     persistence:
       size: 1Gi
       storageClass: longhorn
-    updateStrategy: Recreate
+    updateStrategy:
+      type: Recreate
 
   dovecot:
     persistence:
       size: 1Gi
       storageClass: longhorn
-    updateStrategy: Recreate
+    updateStrategy:
+      type: Recreate
 
   rspamd:
     persistence:
       size: 1Gi
       storageClass: longhorn
-    updateStrategy: Recreate
+    updateStrategy:
+      type: Recreate
 
   clamav:
     persistence:
@@ -98,11 +104,13 @@ mailu:
     persistence:
       size: 1Gi
       storageClass: longhorn
-    updateStrategy: Recreate
+    updateStrategy:
+      type: Recreate
 
   webdav:
     enabled: true
     persistence:
       size: 1Gi
       storageClass: longhorn
-    updateStrategy: Recreate
+    updateStrategy:
+      type: Recreate
