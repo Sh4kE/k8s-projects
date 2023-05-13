@@ -28,7 +28,7 @@ mailu:
   global:
     database:
       roundcube:
-        password: <path:kv/data/k3s/argocd/mailu#roundcube_password>
+        password: <path:kv/data/k3s/argocd/mailu#postgresUserPassword>
 
   postgresql:
     enabled: true
