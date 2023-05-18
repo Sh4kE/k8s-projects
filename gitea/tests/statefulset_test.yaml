@@ -1,0 +1,36 @@
+---
+suite: test statefulset
+templates:
+  - charts/gitea/templates/gitea/statefulset.yaml
+tests:
+  - it: container should run the rootless image
+    asserts:
+      - isKind:
+          of: StatefulSet
+      - matchRegex:
+          pattern: "-rootless$"
+          path: spec.template.spec.containers[0].image
+  - it: contains the correct ssh port env
+    asserts:
+      - equal:
+          value: "2222"
+          path: spec.template.spec.containers[0].env[?(@.name == "SSH_PORT")].value
+  - it: storageclass is recognized
+    set:
+      gitea.persistence.storageClass: longhorn
+    asserts:
+      - equal:
+          value: longhorn
+          path: spec.volumeClaimTemplates[0].spec.storageClassName
+      - equal:
+          value: ReadWriteOnce
+          path: spec.volumeClaimTemplates[0].spec.accessModes[0]
+      - equal:
+          value: 10Gi
+          path: spec.volumeClaimTemplates[0].spec.resources.requests.storage
+  - it: predefined admin password
+    asserts:
+      - equal:
+          value: gitea_admin
+          path: spec.template.spec.initContainers[?(@.name == "configure-gitea")].env[?(@.name == "GITEA_ADMIN_USERNAME")].value
+
