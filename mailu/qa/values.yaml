@@ -55,6 +55,7 @@ mailu:
       enabled: true
       type: LoadBalancer
       loadBalancerIP: 31.172.117.18
+      externalTrafficPolicy: Cluster
     updateStrategy:
       type: Recreate
 
