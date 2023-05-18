@@ -8,5 +8,5 @@ subjects:
   namespace: default
 roleRef:
   kind: ClusterRole
-  name: readonly
+  name: view
   apiGroup: rbac.authorization.k8s.io
