@@ -3,6 +3,7 @@ mailu:
     - mail.ws.sh4ke.rocks
 
   domain: ws.sh4ke.rocks
+  subnet: 10.44.0.0/16
 
   affinity:
     nodeAffinity:
