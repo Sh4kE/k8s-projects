@@ -6,7 +6,7 @@ metadata:
 spec:
   project: infra-apps
   source:
-    repoURL: 'git@github.com/Sh4kE/k8s-projects.git'
+    repoURL: 'git@github.com:Sh4kE/k8s-projects.git'
     path: iam
     targetRevision: HEAD
   destination:
