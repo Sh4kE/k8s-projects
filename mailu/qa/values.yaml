@@ -77,6 +77,9 @@ mailu:
         storageClass: longhorn
 
   postfix:
+    image:
+      repository: sh4ke/mailu-postfix
+      tag: 2.0
     persistence:
       size: 1Gi
       storageClass: longhorn
