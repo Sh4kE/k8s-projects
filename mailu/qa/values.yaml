@@ -27,6 +27,8 @@ mailu:
     single_pvc: false
 
   global:
+    imagePullSecrets:
+      - name: ghcr-cred
     database:
       roundcube:
         password: <path:kv/data/k3s/argocd/mailu#postgresUserPassword>
