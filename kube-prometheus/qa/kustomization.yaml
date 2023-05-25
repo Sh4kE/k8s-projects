@@ -3,7 +3,7 @@ helmCharts:
   - name: kube-prometheus-stack
     includeCRDs: true
     releaseName: kube-prometheus
-    version: 45.25.0
+    version: 46.4.1
     repo: https://prometheus-community.github.io/helm-charts
     valuesFile: values.yaml
     namespace: kube-prometheus
